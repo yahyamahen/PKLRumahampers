@@ -1,0 +1,536 @@
+@import url("https://fonts.google.com/specimen/Montserrat?query=montserrat&selection.family=Montserrat:wght@200;300;400;500;600;700|Roboto:wght@700");
+@import url("//db.onlinewebfonts.com/c/47e420c599ca5e9fe2b946075a1f8f7b?family=Segoe+Alt");
+@font-face {
+  font-family: "mayeka_demi_bold";
+  src: url("../fonts/mayeka_demi_bold.woff2") format("woff2"), url("../fonts/mayeka_demi_bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mayeka_regular";
+  src: url("../fonts/mayeka_regular.woff2") format("woff2"), url("../fonts/mayeka_regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mayeka_thin";
+  src: url("../fonts/mayeka_thin.woff2") format("woff2"), url("../fonts/mayeka_thin.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mayeka_light";
+  src: url("../fonts/mayeka_light.woff2") format("woff2"), url("../fonts/mayeka_light.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mayeka_bold";
+  src: url("../fonts/mayeka_bold.woff2") format("woff2"), url("../fonts/mayeka_bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body .hero {
+  display: flex;
+  padding: 5em;
+  background-image: url(../images/assets/hero.png);
+  height: 33.5vmax;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+body .hero .head-promo {
+  text-align: center;
+}
+
+body .hero .head-promo h1 {
+  margin-bottom: 0.5em;
+  color: white;
+  font-size: 2.5em;
+  letter-spacing: 0.2px;
+  font-weight: 700;
+  text-shadow: 1px 1px 10px rgba(54, 54, 54, 0.9);
+}
+
+body .hero .head-promo img {
+  width: 20em;
+  filter: drop-shadow(1px 1px 10px rgba(54, 54, 54, 0.9));
+}
+
+body .hero .head-promo .order-now {
+  margin: 1em 1em 0em 1em;
+  background-color: #e18a79;
+  border: none;
+  font-size: 1.1em;
+  border-radius: 5em;
+  font-weight: 700;
+  padding: 0.6em 1em 0.6em 1em;
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.4);
+}
+
+body .hero .head-promo .order-now:hover, body .hero .head-promo .order-now:active, body .hero .head-promo .order-now:focus {
+  border: none;
+  background-color: #e49586;
+}
+
+body .visi {
+  width: 100%;
+  padding: 1em;
+  box-shadow: 0px 0px 15px rgba(45, 45, 45, 0.4);
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+}
+
+body .visi h2 {
+  letter-spacing: 3px;
+  color: #4d4d4d;
+  font-family: "mayeka_demi_bold";
+  margin-top: 0.8em;
+  text-align: center;
+  font-size: 2em;
+}
+
+body .visi .visi-detail {
+  color: #2e2e2e;
+  padding: 3em;
+  text-align: center;
+  transition: 0.3s transform ease;
+}
+
+body .visi .visi-detail img {
+  width: 3em;
+  margin-bottom: 1em;
+}
+
+body .visi .visi-detail h3 {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+body .visi .visi-detail p {
+  font-size: 0.9em;
+  line-height: 1.5em;
+}
+
+body .visi .visi-detail:hover {
+  transform: scale(1.07);
+}
+
+body .content .search-container {
+  margin: 1.5em;
+  display: flex;
+  justify-content: center;
+}
+
+body .content .search-container input[type="text"] {
+  width: 25em;
+  color: white;
+  font-weight: 500;
+  border-radius: 5em;
+  background-color: #edb9a3;
+  padding: 1em 2em 1em 1.1em;
+  font-size: 1em;
+  border: 0.2em solid #eaaf96;
+  box-shadow: 1px 1px 3px rgba(77, 77, 77, 0.5);
+}
+
+body .content .search-container input[type="text"][type="text"]::placeholder {
+  color: white;
+}
+
+body .content .search-container button {
+  color: white;
+  float: right;
+  margin-top: 0.35em;
+  margin-left: -2em;
+  background: transparent;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+}
+
+body .content .sub-title {
+  text-decoration: none;
+  font-size: 1.5em;
+  color: #4d4d4d;
+  font-weight: 700;
+  padding: 0em 0.2em 0.2em 0.6em;
+  border-left: 0.3em solid #98afbb;
+}
+
+body .content .sub-title:hover {
+  color: #676767;
+}
+
+body .content .main-category {
+  display: flex;
+  margin: 1em;
+  height: auto;
+  padding: 1em;
+  background-color: white;
+}
+
+body .content .main-category .slide-button {
+  align-self: center;
+}
+
+body .content .main-category .slide-button a {
+  color: #adadad;
+}
+
+body .content .main-category .slide-button a:hover {
+  color: #949494;
+}
+
+body .content .main-category .produk {
+  padding: 0em 1em 0em 1em;
+}
+
+body .content .main-category .produk h5 {
+  font-weight: 700;
+}
+
+body .content .main-category .produk a {
+  color: #98afbb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body .content .main-category .produk a:hover {
+  color: #7997a7;
+}
+
+body .content .main-category .produk img {
+  margin-right: 1em;
+  width: 10em;
+  float: left;
+}
+
+body .content .main-category .produk .produk-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #e18a79;
+  text-decoration: none;
+}
+
+body .content .main-category .produk .produk-title:hover {
+  color: #d8664f;
+}
+
+body .content .main-category .produk .action-button .heart-wishtlist {
+  width: 2em;
+  color: #c5c5c5;
+  font-size: 1.3em;
+}
+
+body .content .main-category .produk .action-button .heart-wishtlist:active {
+  color: #e18a79;
+}
+
+body .content .main-category .produk .action-button .heart-wishtlist:hover {
+  color: #b3b3b3;
+}
+
+body .content .main-category .produk .action-button .cart-trolley {
+  width: 2em;
+  color: #c5c5c5;
+  font-size: 1.3em;
+}
+
+body .content .main-category .produk .action-button .cart-trolley:active {
+  color: #5e7e8f;
+}
+
+body .content .main-category .produk .action-button .cart-trolley:hover {
+  color: #b3b3b3;
+}
+
+body .sidebar .testimoni {
+  margin-top: 1.5em;
+  padding: 1em;
+  text-align: center;
+}
+
+body .sidebar .testimoni img {
+  border-radius: 50%;
+  width: 6em;
+  margin-bottom: 0.8em;
+}
+
+body .sidebar .testimoni p {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+body .sidebar .article {
+  text-align: center;
+  background-color: white;
+  padding: 1.3em;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+body .sidebar .article .slide-button {
+  font-size: 0.5em;
+  opacity: 0.5;
+}
+
+body .sidebar .article a {
+  color: #4d4d4d;
+  text-decoration: none;
+  font-size: 1.6em;
+}
+
+body .sidebar .article a h4 {
+  margin: 0.3em 0em 0.6em 0em;
+  font-weight: 600;
+}
+
+body .sidebar .article a:hover {
+  color: #737373;
+}
+
+body .sidebar .article img {
+  width: 15em;
+}
+
+body .sidebar .article a h5 {
+  margin-top: 1em;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.65em;
+}
+
+body .sidebar .article a:hover {
+  color: #737373;
+}
+
+body .sidebar .article p {
+  font-size: 0.9em;
+  line-height: 1.4em;
+  text-align: left;
+}
+
+body .sidebar .sidebar-quick-info {
+  padding: 1.5em;
+  text-align: center;
+  background-color: white;
+  margin-top: 2em;
+}
+
+body .sidebar .sidebar-quick-info a {
+  text-decoration: none;
+  display: block;
+}
+
+body .sidebar .sidebar-quick-info li {
+  list-style-type: none;
+}
+
+body .sidebar .sidebar-quick-info h4 {
+  font-weight: 600;
+}
+
+body .sidebar .sidebar-quick-info .marketplace-info p {
+  color: #98afbb;
+  font-weight: 600;
+}
+
+body .sidebar .sidebar-quick-info .marketplace-info a {
+  display: inline-block;
+}
+
+body .sidebar .sidebar-quick-info .marketplace-info a img {
+  width: 2.3em;
+  margin: 0.4em;
+}
+
+body .sidebar .sidebar-quick-info .contact-us {
+  margin-top: 2em;
+}
+
+body .sidebar .sidebar-quick-info .contact-us a {
+  display: inline-block;
+  color: #98afbb;
+  font-weight: 600;
+}
+
+body .sidebar .sidebar-quick-info .contact-us a:hover {
+  color: #89a3b1;
+}
+
+body .sidebar .sidebar-quick-info .contact-us li {
+  text-align: left;
+}
+
+body .sidebar .sidebar-quick-info .contact-us img {
+  width: 1.4em;
+  margin: 0.4em;
+}
+
+@media screen and (max-width: 992px) {
+  body .hero {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.container-main {
+  margin: auto;
+  max-width: 1320px;
+}
+
+body {
+  background-image: url(../images/assets/bgbody.png);
+  background-repeat: repeat;
+  background-size: 350px;
+  text-decoration: none;
+  color: #4d4d4d;
+  line-height: 1.7em;
+  letter-spacing: 0.4px;
+}
+
+body .navbar-main {
+  background-color: #e18a79;
+}
+
+body .navbar-main .profile-dropdown {
+  margin-left: -6em;
+}
+
+body .navbar-main .logo-home {
+  width: 10em;
+  margin-left: -9em;
+}
+
+body .navbar-main .profile {
+  width: 2em;
+  border-radius: 50%;
+}
+
+body .navbar-main .motto-bar {
+  background-color: white;
+  width: 100%;
+  height: 30px;
+  box-shadow: 0px 4px 10px rgba(104, 104, 104, 0.8);
+}
+
+body .navbar-main .motto-bar h5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+  line-height: 2.3em;
+}
+
+body .footer {
+  margin-top: 1em;
+  padding-top: 3em;
+  color: white;
+  background-color: #e18a79;
+  text-align: center;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+body .footer h4 {
+  margin-bottom: 1.4em;
+}
+
+body .footer .social-media ul li {
+  text-align: left;
+  list-style-type: none;
+  margin-left: -3em;
+}
+
+body .footer .social-media ul li img {
+  margin-left: 1em;
+  margin-bottom: 0.7em;
+  width: 1.7em;
+  margin-right: 0.3em;
+}
+
+body .footer .social-media ul li a {
+  font-size: 1em;
+  color: white;
+}
+
+body .footer .marketplace {
+  padding: 0em 2em 0em 2em;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+body .footer .marketplace img {
+  margin: 0em 0.8em 0.8em 0.8em;
+}
+
+body .footer .pembayaran ul li {
+  list-style-type: none;
+  margin-left: -3em;
+}
+
+body .footer .pembayaran ul li img {
+  width: 8em;
+  margin: 0.4em;
+}
+
+@media (max-width: 768px) {
+  body .row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  body .navbar-main li {
+    text-align: center;
+    border-bottom: 0.3px solid white;
+  }
+  body .hero {
+    height: 23em;
+  }
+  body .hero .head-promo {
+    margin-top: -2em;
+  }
+  body .hero .head-promo h1 {
+    font-size: 2em;
+  }
+  body .hero .head-promo img {
+    width: 15em;
+  }
+  body .logo-home,
+  body .sidebar {
+    display: none;
+  }
+  body .footer .marketplace {
+    padding: 2em;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+  body .pembayaran h4 {
+    margin-top: 1.5em;
+  }
+  body .footer .social-media ul li {
+    text-align: center;
+  }
+}
+/*# sourceMappingURL=style.css.map */

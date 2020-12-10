@@ -1,0 +1,49 @@
+$primary-color: #e18a79;
+$light-color: #edb9a3;
+$secondary-color: #98afbb;
+$dark-color: #a68d89;
+$text-color: #4d4d4d;
+
+@import url("https://fonts.google.com/specimen/Montserrat?query=montserrat&selection.family=Montserrat:wght@200;300;400;500;600;700|Roboto:wght@700");
+
+@import url("//db.onlinewebfonts.com/c/47e420c599ca5e9fe2b946075a1f8f7b?family=Segoe+Alt");
+
+@font-face {
+   font-family: "mayeka_demi_bold";
+   src: url("../fonts/mayeka_demi_bold.woff2") format("woff2"),
+      url("../fonts/mayeka_demi_bold.woff") format("woff");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "mayeka_regular";
+   src: url("../fonts/mayeka_regular.woff2") format("woff2"),
+      url("../fonts/mayeka_regular.woff") format("woff");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "mayeka_thin";
+   src: url("../fonts/mayeka_thin.woff2") format("woff2"),
+      url("../fonts/mayeka_thin.woff") format("woff");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "mayeka_light";
+   src: url("../fonts/mayeka_light.woff2") format("woff2"),
+      url("../fonts/mayeka_light.woff") format("woff");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "mayeka_bold";
+   src: url("../fonts/mayeka_bold.woff2") format("woff2"),
+      url("../fonts/mayeka_bold.woff") format("woff");
+   font-weight: normal;
+   font-style: normal;
+}
