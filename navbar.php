@@ -33,7 +33,7 @@
          <ul class="navbar-nav">
             <li class="nav-item">
                <a class="nav-link" href="wishlist.php" tabindex="-1" aria-disabled="true">
-                  <i class="far fa-heart"></i>
+                  <i class="far fa-running"></i>
                   <span>5</span>
                </a>
             </li>

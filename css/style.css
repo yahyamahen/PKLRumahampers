@@ -35,6 +35,34 @@
   font-style: normal;
 }
 
+.red {
+  width: 1em;
+  border-radius: 300em;
+  background-color: red;
+  color: red;
+}
+
+.green {
+  width: 1em;
+  border-radius: 300em;
+  background-color: green;
+  color: green;
+}
+
+.white {
+  width: 1em;
+  border-radius: 300em;
+  background-color: #d4d4d4;
+  color: #d4d4d4;
+}
+
+.black {
+  width: 1em;
+  border-radius: 300em;
+  background-color: black;
+  color: black;
+}
+
 body .hero {
   display: flex;
   padding: 5em;
@@ -382,6 +410,176 @@ body .sidebar .sidebar-quick-info .contact-us img {
     display: flex;
     flex-direction: column;
   }
+}
+
+body .product-card .product-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #e18a79;
+  text-decoration: none;
+}
+
+body .product-card .product-title:hover {
+  color: #d8664f;
+}
+
+body .product-card .product-price {
+  color: #4d4d4d;
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+body .product-card .action-button .heart-wishtlist {
+  color: #c5c5c5;
+  font-size: 1.1em;
+}
+
+body .product-card .action-button .heart-wishtlist:active {
+  color: #e18a79;
+}
+
+body .product-card .action-button .heart-wishtlist:hover {
+  color: #b3b3b3;
+}
+
+body .product-card .action-button .cart-trolley {
+  margin-left: 1em;
+  color: #c5c5c5;
+  font-size: 1.1em;
+}
+
+body .product-card .action-button .cart-trolley:active {
+  color: #5e7e8f;
+}
+
+body .product-card .action-button .cart-trolley:hover {
+  color: #b3b3b3;
+}
+
+body .pagination {
+  display: flex;
+  justify-content: center;
+}
+
+body .pagination ul li {
+  margin: 0em 0.5em 0em 0.5em;
+  display: inline;
+  text-align: center;
+}
+
+body .pagination ul li a {
+  text-decoration: none;
+  color: #4d4d4d;
+}
+
+body .pagination ul li a:hover {
+  color: gray;
+}
+
+body .sub-title {
+  text-decoration: none;
+  font-size: 1.5em;
+  color: #4d4d4d;
+  font-weight: 700;
+  padding: 0em 0.2em 0.2em 0.6em;
+  border-left: 0.3em solid #98afbb;
+}
+
+body .sub-title:hover {
+  color: #676767;
+}
+
+body .product-details {
+  padding: 1em;
+  background-color: white;
+  height: auto;
+}
+
+body .product-details .product-image-list {
+  list-style-type: none;
+}
+
+body .product-details .product-image-list img {
+  width: 5em;
+  margin: 0.4em 1.5em 0.4em 0em;
+}
+
+body .product-details .image-order {
+  margin-top: 0.4em;
+  height: 28.3em;
+}
+
+body .product-details .product-description .produk-title {
+  font-size: 1.8em;
+  color: #e18a79;
+  font-weight: 700;
+}
+
+body .product-details .product-description p {
+  line-height: 1.4em;
+}
+
+body .product-details .product-description h4 {
+  font-weight: 700;
+}
+
+body .product-details .product-description .color-variant {
+  padding: 0.7em 0em 1.4em 0em;
+  border-top: 1px solid #c5c5c5;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+body .product-details .product-description .btn-rounded-outline {
+  padding: 0.3em 0.3em 0.3em 0.9em;
+  border: 1px solid #4d4d4d;
+  border-radius: 100em;
+  margin: 0em 0.3em 0.3em 0.3em;
+}
+
+body .product-details .product-description .btn-rounded-outline:hover {
+  background-color: #e6e6e6;
+}
+
+body .product-details .product-description .btn-rounded-outline:active {
+  background-color: #e6e6e6;
+}
+
+body .product-details .product-description .input-group {
+  width: 12em;
+}
+
+body .product-details .product-description .input-group input [type="number"]::placeholder {
+  text-align: center;
+}
+
+body .product-details .product-description .product-action {
+  padding: 0.5em 1.5em 0.5em 1.5em;
+  border-radius: 100em;
+  font-weight: 700;
+  color: white;
+}
+
+body .product-details .product-description .product-action.trolley-button {
+  background-color: #e18a79;
+  border: 2px solid #eaaea3;
+}
+
+body .product-details .product-description .product-action.trolley-button:hover, body .product-details .product-description .product-action.trolley-button:active, body .product-details .product-description .product-action.trolley-button:visited {
+  background-color: #e5998a;
+}
+
+body .product-details .product-description .product-action.wishlist-button {
+  background-color: #98afbb;
+  border: 2px solid #b7c7cf;
+}
+
+body .product-details .product-description .product-action.wishlist-button:hover, body .product-details .product-description .product-action.wishlist-button:active, body .product-details .product-description .product-action.wishlist-button:visited {
+  background-color: #a4b9c3;
+}
+
+body .panel-comment img {
+  width: 2em;
+  margin: 0.8em 1em 0.8em 0.8em;
 }
 
 html {

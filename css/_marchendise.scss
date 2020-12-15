@@ -1,0 +1,62 @@
+body {
+   .product-card {
+      .product-title {
+         font-size: 1.3em;
+         font-weight: 600;
+         color: $primary-color;
+         text-decoration: none;
+
+         &:hover {
+            color: darken($color: $primary-color, $amount: 10%);
+         }
+      }
+
+      .product-price {
+         color: $text-color;
+         font-weight: 700;
+         font-size: 1.05em;
+      }
+
+      .action-button {
+         .heart-wishtlist {
+            color: #c5c5c5;
+            font-size: 1.1em;
+            &:active {
+               color: $primary-color;
+            }
+            &:hover {
+               color: darken($color: #c5c5c5, $amount: 7%);
+            }
+         }
+
+         .cart-trolley {
+            margin-left: 1em;
+            color: #c5c5c5;
+            font-size: 1.1em;
+            &:active {
+               color: darken($color: $secondary-color, $amount: 20%);
+            }
+            &:hover {
+               color: darken($color: #c5c5c5, $amount: 7%);
+            }
+         }
+      }
+   }
+
+   .pagination {
+      display: flex;
+      justify-content: center;
+      ul li {
+         margin: 0em 0.5em 0em 0.5em;
+         display: inline;
+         text-align: center;
+         a {
+            text-decoration: none;
+            color: $text-color;
+            &:hover {
+               color: lighten($color: $text-color, $amount: 20%);
+            }
+         }
+      }
+   }
+}
