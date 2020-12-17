@@ -16,12 +16,23 @@ body {
          text-align: center;
       }
 
+      table {
+         th {
+            text-align: center;
+         }
+
+         th,
+         td {
+            vertical-align: middle;
+         }
+      }
+
       .sub-total {
          font-weight: 600;
          color: $text-color;
          background-color: white;
          border: 3px solid $primary-color;
-         padding: 0.8em 0em 0.8em 0.8em;
+         padding: 0.5em 0em 0.5em 0.5em;
          border-radius: 100em;
       }
 
@@ -30,7 +41,31 @@ body {
          background-color: $primary-color;
          color: white;
          border-radius: 100px;
-         padding: 0.8em 1.5em 0.8em 1.5em;
+         padding: 0.5em 1.5em 0.5em 1.5em;
+      }
+
+      .total-bayar {
+         font-size: 1.3em;
+         color: #a68d89;
+      }
+
+      .pembayaran-text {
+         font-size: 0.8em;
+         line-height: 1.4em;
+      }
+
+      .pesan-button {
+         margin: auto;
+         width: 90%;
+         background-color: $primary-color;
+         border-radius: 100em;
+         color: white;
+         // border: 2px solid lighten($color: $primary-color, $amount: 10%);
+         &:hover,
+         &:active,
+         &:visited {
+            background-color: lighten($color: $primary-color, $amount: 4%);
+         }
       }
    }
 }

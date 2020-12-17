@@ -1,0 +1,33 @@
+body {
+   .biodata-title {
+      padding: 0.8em 0em 0.8em 4em;
+      background-color: rgb(240, 240, 240);
+      text-align: center;
+      h3 {
+         font-size: 1.3em;
+      }
+
+      a {
+         text-decoration: none;
+         color: $dark-color;
+         &:hover {
+            color: darken($color: $dark-color, $amount: 20%);
+         }
+      }
+   }
+
+   .biodata-body {
+      background-color: white;
+      padding-bottom: 3em;
+      form {
+         padding: 0em 15em 0em 15em;
+      }
+      img {
+         width: 7em;
+      }
+
+      .alamat-lengkap {
+         padding: 1.5em 1em 5em 1em;
+      }
+   }
+}

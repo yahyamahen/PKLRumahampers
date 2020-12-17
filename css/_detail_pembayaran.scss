@@ -1,0 +1,42 @@
+body {
+   .detail-pembayaran {
+      a {
+         color: $dark-color;
+         &:hover {
+            color: darken($color: $dark-color, $amount: 15%);
+         }
+      }
+      padding: 2em;
+      background-color: white;
+
+      .total-pembayaran {
+         color: $primary-color;
+         font-size: 1.5em;
+         font-weight: 700;
+         margin: 0em 21em 0em 21em;
+         padding: 0.5em 1em 0.5em 1em;
+         border: 1px solid rgb(182, 182, 182);
+         border-radius: 100em;
+      }
+
+      .kode-pemesanan {
+         font-size: 1.5em;
+         margin: 0em 22em 0em 22em;
+         padding: 0.5em 1em 0.5em 1em;
+         border: 1px solid rgb(182, 182, 182);
+      }
+   }
+
+   .bank-list {
+      img {
+         width: 10em;
+         vertical-align: middle;
+      }
+      span {
+         font-size: 0.8em;
+      }
+      a {
+         font-size: 0.9em;
+      }
+   }
+}

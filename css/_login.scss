@@ -1,0 +1,24 @@
+body {
+   .modal-title {
+      text-align: center;
+      margin-left: 10em;
+   }
+
+   a {
+      color: $dark-color;
+      &:hover {
+         color: darken($color: $dark-color, $amount: 16%);
+      }
+   }
+
+   .modal-button {
+      border: none;
+      background-color: $primary-color;
+      color: white;
+      width: 100em;
+
+      &:hover {
+         background-color: lighten($color: $primary-color, $amount: 5%);
+      }
+   }
+}

@@ -6,12 +6,6 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <style>
-      body {
-         background-color: white;
-      }
-   </style>
-
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="css/bootstrap.css">
    <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -69,13 +63,12 @@
                </div>
                <div class="col-md-12 mt-3">
                   <label for="catatan" class="form-label">Catatan Pemesanan *</label>
-                  <input type="text" class="form-control catatan-pemesanan" name="catatan" id="catatan">
+                  <input type="textarea" class="form-control catatan-pemesanan" name="catatan" id="catatan">
                </div>
             </form>
-
-
          </div>
-         <div class="col-md-5 cart-detail detail-pemesanan p-4">
+
+         <div class="col-md-5 cart-detail p-4">
             <h5 class="mb-5">Pesanan Kamu</h5>
             <table class="table p-4">
                <thead>
@@ -88,19 +81,19 @@
                </thead>
                <tbody>
                   <tr>
-                     <th scope="row"><input class="form-check-input" type="checkbox" value="" checked></th>
+                     <th scope="row"><input class="form-check-input mt-n1" type="checkbox" value="" checked></th>
                      <td>Barang1</td>
                      <td align="center"><input type="number" class="form-control form_pcs w-25" placeholder="pcs" value="1"></td>
                      <td>Rp. 300000</td>
                   </tr>
                   <tr>
-                     <th scope="row"><input class="form-check-input" type="checkbox" value="" checked></th>
+                     <th scope="row"><input class="form-check-input mt-n1" type="checkbox" value="" checked></th>
                      <td>Barang2</td>
                      <td align="center"><input type="number" class="form-control form_pcs w-25" placeholder="pcs" value="1"></td>
                      <td>Rp. 300000</td>
                   </tr>
                   <tr>
-                     <th scope="row"><input class="form-check-input" type="checkbox" value="" checked></th>
+                     <th scope="row"><input class="form-check-input  mt-n1" type="checkbox" value="" checked></th>
                      <td>Barang3</td>
                      <td align="center"><input type="number" class="form-control form_pcs w-25" placeholder="pcs" value="1"></td>
                      <td>Rp. 300000</td>
@@ -110,6 +103,39 @@
             <p class="d-inline">total berat : 4.78kg</p>
             <div class="subtotal-body float-right">
                <span class="sub-total float">SUB-TOTAL<span class="total-harga">Rp. 178000</span></span>
+            </div>
+            <div class="kurir-pengiriman mt-5">
+               <span class="float-left mr-3">kurir pengiriman</span>
+               <ul class=" list-group">
+                  <li class="list-inline">
+                     <input class="mr-2" type="radio" name="kurir" id="kurir1" c>
+                     <label for="kurir1">JNE - REG (1-3 Hari) Rp.19.000</label>
+                  </li>
+                  <li class="list-inline">
+                     <input class="mr-2" type="radio" name="kurir" id="kurir2" c>
+                     <label for="kurir2">JNE - REG (1-3 Hari) Rp.19.000</label>
+                  </li>
+               </ul>
+            </div>
+            <p class="d-inline">Total Pembayaran </p><span class="total-bayar ml-3"><strong> Rp. 157.000</strong> </span>
+
+            <div class="pembayaran mt-3 ml-4">
+               <input class="d-block form-check-input mt-2 mr-2" type="radio" value="" checked>
+               <p>Pembayaran via transfer bank</p>
+               <p class="pembayaran-text mt-n2">Lakukan pembayaran via transfer bank yang tersedia dan lakukan konfirmasi pembayaran. Selesaikan pembayaran sebelum 24 Jam atau pemesanan akan dibatalkan.</p>
+            </div>
+
+            <div class="persetujuan mt-3 ml-4">
+               <input class="form-check-input mt-2" type="checkbox" value="">
+               <p>Saya menyetujui ketentuan & Syarat</p>
+            </div>
+
+            <div class="text-center">
+               <a href="detail_pembayaran.php" class=" card-link">
+                  <button class="btn pesan-button mr-3 pt-2 pb-2" type="button">PESAN
+                     <i class=" fa fa-shopping-cart"></i>
+                  </button>
+               </a>
             </div>
          </div>
       </div>

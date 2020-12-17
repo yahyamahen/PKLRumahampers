@@ -1,0 +1,24 @@
+.total-body {
+   z-index: 1;
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   margin: 0em 4em 4em 0em;
+   .total-cart-floated {
+      font-weight: 700;
+      font-size: 1.1em;
+      color: $dark-color;
+      background-color: white;
+      border: 3px solid darken($light-color, 4%);
+      padding: 0.5em 0em 0.5em 1.3em;
+      border-radius: 100em;
+   }
+
+   .total-price {
+      font-weight: 700;
+      background-color: $light-color;
+      color: white;
+      border-radius: 100px;
+      padding: 0.5em 1.5em 0.5em 1.5em;
+   }
+}

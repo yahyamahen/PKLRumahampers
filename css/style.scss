@@ -4,6 +4,10 @@
 @import "marchendise";
 @import "produk_detail";
 @import "detail_pemesanan";
+@import "detail_pembayaran";
+@import "riwayat_pemesanan";
+@import "edit_biodata";
+@import "login";
 
 html {
    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -37,7 +41,7 @@ body {
       background-color: $primary-color;
 
       .profile-dropdown {
-         margin-left: -6em;
+         margin-left: -8em;
       }
 
       .logo-home {
@@ -129,6 +133,10 @@ body {
       .navbar-main li {
          text-align: center;
          border-bottom: 0.3px solid white;
+
+         .profile-dropdown {
+            margin-left: 0em;
+         }
       }
 
       .hero {
@@ -165,6 +173,17 @@ body {
 
       .footer .social-media ul li {
          text-align: center;
+      }
+   }
+
+   .produk-title {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: $primary-color;
+      text-decoration: none;
+
+      &:hover {
+         color: darken($color: $primary-color, $amount: 10%);
       }
    }
 }

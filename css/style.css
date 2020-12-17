@@ -63,6 +63,32 @@
   color: black;
 }
 
+.total-body {
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0em 4em 4em 0em;
+}
+
+.total-body .total-cart-floated {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #a68d89;
+  background-color: white;
+  border: 3px solid #eaac92;
+  padding: 0.5em 0em 0.5em 1.3em;
+  border-radius: 100em;
+}
+
+.total-body .total-price {
+  font-weight: 700;
+  background-color: #edb9a3;
+  color: white;
+  border-radius: 100px;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+}
+
 body .hero {
   display: flex;
   padding: 5em;
@@ -606,12 +632,21 @@ body .cart-detail h5 {
   text-align: center;
 }
 
+body .cart-detail table th {
+  text-align: center;
+}
+
+body .cart-detail table th,
+body .cart-detail table td {
+  vertical-align: middle;
+}
+
 body .cart-detail .sub-total {
   font-weight: 600;
   color: #4d4d4d;
   background-color: white;
   border: 3px solid #e18a79;
-  padding: 0.8em 0em 0.8em 0.8em;
+  padding: 0.5em 0em 0.5em 0.5em;
   border-radius: 100em;
 }
 
@@ -620,7 +655,172 @@ body .cart-detail .total-harga {
   background-color: #e18a79;
   color: white;
   border-radius: 100px;
-  padding: 0.8em 1.5em 0.8em 1.5em;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+}
+
+body .cart-detail .total-bayar {
+  font-size: 1.3em;
+  color: #a68d89;
+}
+
+body .cart-detail .pembayaran-text {
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+body .cart-detail .pesan-button {
+  margin: auto;
+  width: 90%;
+  background-color: #e18a79;
+  border-radius: 100em;
+  color: white;
+}
+
+body .cart-detail .pesan-button:hover, body .cart-detail .pesan-button:active, body .cart-detail .pesan-button:visited {
+  background-color: #e5998a;
+}
+
+body .detail-pembayaran {
+  padding: 2em;
+  background-color: white;
+}
+
+body .detail-pembayaran a {
+  color: #a68d89;
+}
+
+body .detail-pembayaran a:hover {
+  color: #816661;
+}
+
+body .detail-pembayaran .total-pembayaran {
+  color: #e18a79;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0em 21em 0em 21em;
+  padding: 0.5em 1em 0.5em 1em;
+  border: 1px solid #b6b6b6;
+  border-radius: 100em;
+}
+
+body .detail-pembayaran .kode-pemesanan {
+  font-size: 1.5em;
+  margin: 0em 22em 0em 22em;
+  padding: 0.5em 1em 0.5em 1em;
+  border: 1px solid #b6b6b6;
+}
+
+body .bank-list img {
+  width: 10em;
+  vertical-align: middle;
+}
+
+body .bank-list span {
+  font-size: 0.8em;
+}
+
+body .bank-list a {
+  font-size: 0.9em;
+}
+
+body .riwayat-pemesanan {
+  padding: 3em;
+  background-color: white;
+  border-radius: 2em;
+}
+
+body .riwayat-pemesanan table .produk-title {
+  display: block;
+  font-size: 1em;
+}
+
+body .riwayat-pemesanan table .upload-bukti-pembayaran {
+  font-size: 0.8em;
+  line-height: 1.5em;
+  color: #a68d89;
+}
+
+body .riwayat-pemesanan table .upload-bukti-pembayaran:hover {
+  color: #90716c;
+}
+
+body .riwayat-pemesanan table .total-riwayat-pembelian {
+  color: #a68d89;
+  font-weight: 700;
+}
+
+body .riwayat-pemesanan table .status-pembayaran {
+  border: 1px solid #a68d89;
+  border-radius: 100em;
+}
+
+body .riwayat-pemesanan table th {
+  text-align: center;
+}
+
+body .riwayat-pemesanan table th,
+body .riwayat-pemesanan table td {
+  vertical-align: middle;
+}
+
+body .biodata-title {
+  padding: 0.8em 0em 0.8em 4em;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+body .biodata-title h3 {
+  font-size: 1.3em;
+}
+
+body .biodata-title a {
+  text-decoration: none;
+  color: #a68d89;
+}
+
+body .biodata-title a:hover {
+  color: #735a56;
+}
+
+body .biodata-body {
+  background-color: white;
+  padding-bottom: 3em;
+}
+
+body .biodata-body form {
+  padding: 0em 15em 0em 15em;
+}
+
+body .biodata-body img {
+  width: 7em;
+}
+
+body .biodata-body .alamat-lengkap {
+  padding: 1.5em 1em 5em 1em;
+}
+
+body .modal-title {
+  text-align: center;
+  margin-left: 10em;
+}
+
+body a {
+  color: #a68d89;
+}
+
+body a:hover {
+  color: #7e635f;
+}
+
+body .modal-button {
+  border: none;
+  background-color: #e18a79;
+  color: white;
+  width: 100em;
+}
+
+body .modal-button:hover {
+  background-color: #e69c8e;
 }
 
 html {
@@ -656,7 +856,7 @@ body .navbar-main {
 }
 
 body .navbar-main .profile-dropdown {
-  margin-left: -6em;
+  margin-left: -8em;
 }
 
 body .navbar-main .logo-home {
@@ -742,6 +942,9 @@ body .footer .pembayaran ul li img {
     text-align: center;
     border-bottom: 0.3px solid white;
   }
+  body .navbar-main li .profile-dropdown {
+    margin-left: 0em;
+  }
   body .hero {
     height: 23em;
   }
@@ -771,5 +974,16 @@ body .footer .pembayaran ul li img {
   body .footer .social-media ul li {
     text-align: center;
   }
+}
+
+body .produk-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #e18a79;
+  text-decoration: none;
+}
+
+body .produk-title:hover {
+  color: #d8664f;
 }
 /*# sourceMappingURL=style.css.map */

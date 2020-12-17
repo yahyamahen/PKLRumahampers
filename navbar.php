@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/style.css">
 <div class="navbar-main">
    <nav class="navbar navbar-expand-lg navbar-dark mr-auto">
       <a class="navbar-brand" href="index.php"> <i class="fa fa-home"></i> Home</a>
@@ -13,7 +14,7 @@
                   <a class="dropdown-item" href="marchendise.php">Sajadah</a>
                   <a class="dropdown-item" href="marchendise.php">Qur'an</a>
                   <a class="dropdown-item" href="marchendise.php">Tasbih</a>
-                  <a class="dropdown-item" href="marchendise.php">Mueknah</a>
+                  <a class="dropdown-item" href="marchendise.php">Mukenah</a>
                   <a class="dropdown-item" href="marchendise.php">Sarung</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="marchendise.php"><strong>Paket Bundle</strong></a>
@@ -50,6 +51,9 @@
 
                </a>
                <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
+                  <input type="button" class="btn dropdown-item tombolLogin" data-toggle="modal" data-target="#form-input" value="Login">
+                  <input type="button" class="btn dropdown-item tombolRegister" data-toggle="modal" data-target="#form-register" value="Register">
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="riwayat_pemesanan.php">Riwayat Pemesanan</a>
                   <a class="dropdown-item" href="edit_biodata.php">Edit Bidoata</a>
                   <div class="dropdown-divider"></div>
@@ -62,4 +66,8 @@
    <div class="motto-bar d-flex justify-content-center">
       <h5>MAKE YOUR DREAM HAMPERS</h5>
    </div>
+</div>
+
+<div class="total-body float-right">
+   <span class="total-cart-floated">Rp. 178000 <a href="detail_pemesanan.php" class="total-price"><i class="fa fa-shopping-cart"></i></a></span>
 </div>

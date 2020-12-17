@@ -46,7 +46,8 @@
             <ul>
                <li>
                   <img src="images/assets/bri.png" alt="bri">
-                  <img src="images/assets/mandiri.png" alt="mandiri"></li>
+                  <img src="images/assets/mandiri.png" alt="mandiri">
+               </li>
             </ul>
          </div>
 

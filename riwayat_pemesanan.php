@@ -19,7 +19,40 @@
    <?php require_once "navbar.php" ?>
 
    <!-- ==============================(WRITE YOUR) BODY (HERE)================================ -->
-
+   <div class="container-main content">
+      <div class="col-md-10 m-auto">
+         <div class="d-flex justify-content-center mt-5 mb-4">
+            <h3 class="sub-title">Riwayat Pemesanan</h3>
+         </div>
+         <div class="riwayat-pemesanan mb-5">
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th scope="col">Kode Pembayaran</th>
+                     <th scope="col">Barang</th>
+                     <th scope="col">Total</th>
+                     <th scope="col">Status Pemesanan </th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <th scope="row">
+                     PG13451
+                     <a href="#" class="card-link d-block upload-bukti-pembayaran">Upload Bukti <br> Pembayaran</a></th>
+                  <td>
+                     <a href="produk_detail.php" class="produk-title">produk1</a>
+                     <a href="produk_detail.php" class="produk-title">produk1</a>
+                     <a href="produk_detail.php" class="produk-title">produk1</a>
+                  </td>
+                  <td align="center" class="total-riwayat-pembelian">Rp. 467.000</td>
+                  <td align="center">
+                     <p class="status-pembayaran">Menunggu Pembayaran</p>
+                  </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>

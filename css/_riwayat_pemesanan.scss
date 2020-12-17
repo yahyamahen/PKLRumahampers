@@ -1,0 +1,40 @@
+body {
+   .riwayat-pemesanan {
+      padding: 3em;
+      background-color: white;
+      border-radius: 2em;
+      table {
+         .produk-title {
+            display: block;
+            font-size: 1em;
+         }
+
+         .upload-bukti-pembayaran {
+            font-size: 0.8em;
+            line-height: 1.5em;
+            color: $dark-color;
+            &:hover {
+               color: darken($color: $dark-color, $amount: 10%);
+            }
+         }
+
+         .total-riwayat-pembelian {
+            color: $dark-color;
+            font-weight: 700;
+         }
+
+         .status-pembayaran {
+            border: 1px solid $dark-color;
+            border-radius: 100em;
+         }
+
+         th {
+            text-align: center;
+         }
+         th,
+         td {
+            vertical-align: middle;
+         }
+      }
+   }
+}

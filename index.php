@@ -153,6 +153,10 @@
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
+   <?php require "resource/login.php" ?>
+   <?php require "resource/register.php" ?>
+
+
    <script src="js/jquery-3.5.1.js"></script>
    <script src="js/jquery-3.5.1.min.js"></script>
    <script src="js/bootstrap.js"></script>
