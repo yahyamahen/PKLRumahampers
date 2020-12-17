@@ -6,12 +6,17 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+   <style>
+      body {
+         background-color: white;
+      }
+   </style>
+
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="css/bootstrap.css">
    <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
    <title>Detail Pemesanan</title>
-
 </head>
 
 <body>
@@ -19,7 +24,97 @@
    <?php require_once "navbar.php" ?>
 
    <!-- ==============================(WRITE YOUR) BODY (HERE)================================ -->
+   <div class="container-main content">
+      <div class="row">
+         <a class="col-md-12 sub-title mb-3 mt-4" href="#">Detail Pemesanan</a>
+      </div>
 
+      <div class="row informasi-transaksi d-flex justify-content-between">
+         <div class="col-md-7 detail-pemesanan p-4">
+            <h5>Alamat Pengiriman</h5>
+            <form action="" class="row g-3">
+               <div class="col-md-12">
+                  <label for="nama" class="form-label">Nama Lengkap *</label>
+                  <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap Kamu" autocomplete="off">
+               </div>
+               <div class="col-md-12 mt-3">
+                  <label for="email" class="form-label">Email *</label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off">
+               </div>
+               <div class="col-md-12 mt-3">
+                  <label for="password" class="form-label">Password *</label>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="**********" autocomplete="off">
+               </div>
+               <div class="col-md-12 mt-3">
+                  <label for="no_telp" class="form-label">No. Handphone *</label>
+                  <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off">
+               </div>
+               <div class="col-md-12 mt-3">
+                  <label class="form-label">Alamat Pengiriman *</label>
+               </div>
+               <div class="col-md-4">
+                  <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Provinsi">
+               </div>
+               <div class="col-md-4">
+                  <input type="text" class="form-control" name="kota" id="kota" placeholder="Kota/Kabupaten">
+               </div>
+               <div class="col-md-4">
+                  <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="Kecamatan">
+               </div>
+               <div class="col-md-10 mt-3">
+                  <input type="text" class="form-control alamat-lengkap" name="alamat" id="alamat" placeholder="Alamat Lengkap">
+               </div>
+               <div class="col-md-2 mt-3">
+                  <input type="number" class="form-control" name="kode_pos" id="kode_pos" placeholder="Kode Pos" autocomplete="off">
+               </div>
+               <div class="col-md-12 mt-3">
+                  <label for="catatan" class="form-label">Catatan Pemesanan *</label>
+                  <input type="text" class="form-control catatan-pemesanan" name="catatan" id="catatan">
+               </div>
+            </form>
+
+
+         </div>
+         <div class="col-md-5 cart-detail detail-pemesanan p-4">
+            <h5 class="mb-5">Pesanan Kamu</h5>
+            <table class="table p-4">
+               <thead>
+                  <tr>
+                     <th scope="col"></th>
+                     <th scope="col">Nama Barang</th>
+                     <th scope="col" align="center">QTY</th>
+                     <th scope="col">Harga</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <th scope="row"><input class="form-check-input" type="checkbox" value="" checked></th>
+                     <td>Barang1</td>
+                     <td align="center"><input type="number" class="form-control form_pcs w-25" placeholder="pcs" value="1"></td>
+                     <td>Rp. 300000</td>
+                  </tr>
+                  <tr>
+                     <th scope="row"><input class="form-check-input" type="checkbox" value="" checked></th>
+                     <td>Barang2</td>
+                     <td align="center"><input type="number" class="form-control form_pcs w-25" placeholder="pcs" value="1"></td>
+                     <td>Rp. 300000</td>
+                  </tr>
+                  <tr>
+                     <th scope="row"><input class="form-check-input" type="checkbox" value="" checked></th>
+                     <td>Barang3</td>
+                     <td align="center"><input type="number" class="form-control form_pcs w-25" placeholder="pcs" value="1"></td>
+                     <td>Rp. 300000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <p class="d-inline">total berat : 4.78kg</p>
+            <div class="subtotal-body float-right">
+               <span class="sub-total float">SUB-TOTAL<span class="total-harga">Rp. 178000</span></span>
+            </div>
+         </div>
+      </div>
+
+   </div>
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>

@@ -582,6 +582,47 @@ body .panel-comment img {
   margin: 0.8em 1em 0.8em 0.8em;
 }
 
+body {
+  background-color: white;
+}
+
+body .detail-pemesanan {
+  background-color: white;
+}
+
+body .detail-pemesanan h5 {
+  text-align: center;
+}
+
+body .detail-pemesanan .catatan-pemesanan {
+  height: 6em;
+}
+
+body .cart-detail {
+  background-color: #f9f9f9;
+}
+
+body .cart-detail h5 {
+  text-align: center;
+}
+
+body .cart-detail .sub-total {
+  font-weight: 600;
+  color: #4d4d4d;
+  background-color: white;
+  border: 3px solid #e18a79;
+  padding: 0.8em 0em 0.8em 0.8em;
+  border-radius: 100em;
+}
+
+body .cart-detail .total-harga {
+  font-weight: 700;
+  background-color: #e18a79;
+  color: white;
+  border-radius: 100px;
+  padding: 0.8em 1.5em 0.8em 1.5em;
+}
+
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
