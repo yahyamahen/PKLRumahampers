@@ -43,23 +43,32 @@
                   <i class="fa fa-shopping-cart"></i>
                   <span>3</span>
                </a>
-            </li>
+
+               <?php if (isset($_SESSION['login'])) : ?>
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                   <img class="profile" src="images/assets/profile.jpg" alt="profile">
+               </a>
+               <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="riwayat_pemesanan.php">Riwayat Pemesanan</a>
+                  <a class="dropdown-item" href="edit_biodata.php">Edit Bidoata</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="resource/logout.php">Log Out</a>
+               </div>
+            </li>
+         <?php endif; ?>
 
+         <?php if (!isset($_SESSION['login'])) : ?>
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class="profile" src="images/assets/guest_user.png" alt="profile">
                </a>
                <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
                   <input type="button" class="btn dropdown-item tombolLogin" data-toggle="modal" data-target="#form-input" value="Login">
                   <input type="button" class="btn dropdown-item tombolRegister" data-toggle="modal" data-target="#form-register" value="Register">
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="riwayat_pemesanan.php">Riwayat Pemesanan</a>
-                  <a class="dropdown-item" href="edit_biodata.php">Edit Bidoata</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="logout.php">Log Out</a>
                </div>
             </li>
+         <?php endif; ?>
          </ul>
       </div>
    </nav>

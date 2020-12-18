@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once "function.php";
+require_once "resource/access.php";
+
 ?>
 
 <!doctype html>

@@ -58,55 +58,5 @@
    </div>
 </footer>
 
-<?php
-// if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
-//    $id = $_COOKIE['id'];
-//    $key = $_COOKIE['key'];
-
-//    $query = "SELECT email FROM customers WHERE id = '$id';";
-
-//    $row = readAll($query);
-
-//    if ($key === hash('sha256', $row['email'])) {
-//       $_SESSION['login'] = true;
-//    }
-// }
-
-// if (isset($_SESSION["login"])) {
-//    // header("Location: index.php");
-//    exit;
-// }
-
-// if (isset($_POST["login"])) {
-
-//    $email = $_POST["email"];
-//    $password = $_POST["password"];
-
-//    $result = mysqli_query($conn, "SELECT * FROM customers WHERE email = '$email';");
-
-//    // cek email
-//    if (mysqli_num_rows($result) === 1) {
-//       //cek password
-//       $row = mysqli_fetch_assoc($result);
-//       if (password_verify($password, $row["password"])) {
-//          // set session
-//          $_SESSION['login'] = true;
-
-//          // set remember me
-//          if (isset($_POST['remember'])) {
-//             setcookie('id', $row['id']); //, time() + 60);
-//             setcookie('key', hash('sha256', $row['email'])); //, time() + 60);
-//          }
-
-//          // header("Location: index.php");
-//          exit;
-//       }
-//    }
-
-//    $error = true;
-// }
-
-?>
-
 <?php require "resource/login.php" ?>
 <?php require "resource/register.php" ?>

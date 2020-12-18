@@ -36,6 +36,10 @@ function userCreated()
                      <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap Kamu" autocomplete="off">
                   </div>
                   <div class="col-md-12 mt-2">
+                     <label for="username" class="form-label">Username *</label>
+                     <input type="text" class="form-control" name="username" id="username" placeholder="Buat Username" autocomplete="off">
+                  </div>
+                  <div class="col-md-12 mt-2">
                      <label for="email" class="form-label">Email *</label>
                      <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off">
                   </div>
