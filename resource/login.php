@@ -11,7 +11,7 @@
             </button>
          </div>
          <div class="modal-body">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post">
                <div class="form-group">
                   <label for="email">Email</label>
                   <input type="email" class="form-control mb-3" id="email" name="email" placeholder="email">
@@ -26,7 +26,10 @@
                </div>
 
                <div class="modal-footer">
-                  <button type="submit" class="btn btn-danger modal-button">LOGIN</button>
+                  <button type="submit" name="login" class="btn btn-danger modal-button">LOGIN</button>
+                  <?php if (isset($error)) : ?>
+                     <p style="color: red; font-style: italic;">email / password salah</p>
+                  <?php endif; ?>
                </div>
             </form>
          </div>
