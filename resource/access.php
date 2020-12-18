@@ -38,7 +38,7 @@ if (isset($_POST["login"])) {
             setcookie('key', hash('sha256', $row['email']));
          }
 
-         header("Location: index.php");
+         header("Refresh:0");
          exit;
       }
    }

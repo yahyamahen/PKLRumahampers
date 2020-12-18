@@ -53,7 +53,7 @@
                   <a class="dropdown-item" href="riwayat_pemesanan.php">Riwayat Pemesanan</a>
                   <a class="dropdown-item" href="edit_biodata.php">Edit Bidoata</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="resource/logout.php">Log Out</a>
+                  <a class="dropdown-item" href="logout.php">Log Out</a>
                </div>
             </li>
          <?php endif; ?>

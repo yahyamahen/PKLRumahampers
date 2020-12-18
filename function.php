@@ -35,7 +35,7 @@ function registration($data)
 
    $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
    $email = htmlspecialchars($data['email']);
-   $username = htmlspecialchars($data["username"]);
+   $username = strtolower(stripcslashes(htmlspecialchars($data['username'])));
    $pass = mysqli_real_escape_string($conn, htmlspecialchars($data['pass']));
    $pass2 = mysqli_real_escape_string($conn, htmlspecialchars($data['pass2']));
    $no_telp = htmlspecialchars($data['no_telp']);
@@ -74,7 +74,7 @@ function registration($data)
       "INSERT INTO customers 
       (username, pass, nama_lengkap , email, no_telp, tanggal_lahir, provinsi, kota, kecamatan, alamat_lengkap, kodepos) 
       VALUES
-      ( $username, '$pass', '$nama_lengkap', '$email', '$no_telp', '$tanggal_lahir', '$provinsi', '$kota', '$kecamatan', '$alamat_lengkap', '$kodepos');";
+      ( '$username', '$pass', '$nama_lengkap', '$email', '$no_telp', '$tanggal_lahir', '$provinsi', '$kota', '$kecamatan', '$alamat_lengkap', '$kodepos');";
 
    mysqli_query($conn, $insertsql);
 
