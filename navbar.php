@@ -77,6 +77,8 @@
    </div>
 </div>
 
-<div class="total-body float-right">
-   <span class="total-cart-floated">Rp. 178000 <a href="detail_pemesanan.php" class="total-price"><i class="fa fa-shopping-cart"></i></a></span>
-</div>
+<?php if (isset($_SESSION['login'])) : ?>
+   <div class="total-body float-right">
+      <span class="total-cart-floated">Rp. 178000 <a href="detail_pemesanan.php" class="total-price"><i class="fa fa-shopping-cart"></i></a></span>
+   </div>
+<?php endif; ?>

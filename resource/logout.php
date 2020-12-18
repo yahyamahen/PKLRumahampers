@@ -4,8 +4,8 @@ $_SESSION = [];
 session_unset();
 session_destroy();
 
-setcookie('user', '', time() - 9999);
-setcookie('key', '', time() - 9999);
+setcookie('user', '');
+setcookie('key', '');
 
 header("Location: ../index.php");
 exit;

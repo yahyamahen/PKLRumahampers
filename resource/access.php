@@ -3,9 +3,8 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['key'])) {
    $username = $_COOKIE['user'];
    $key = $_COOKIE['key'];
 
-   $query = "SELECT email FROM customers WHERE username = '$username';";
-   $row = read($query);
-   // var_dump($row["email"]);
+   $result = mysqli_query($conn, "SELECT email FROM customers WHERE username = '$username';");
+   $row = mysqli_fetch_assoc($result);
 
    if ($key === hash('sha256', $row['email'])) {
       $_SESSION['login'] = true;
@@ -35,8 +34,8 @@ if (isset($_POST["login"])) {
 
          // set remember me
          if (isset($_POST['remember'])) {
-            setcookie('user', $row['username'], time() + 3600);
-            setcookie('key', hash('sha256', $row['email']), time() + 3600);
+            setcookie('user', $row['username']);
+            setcookie('key', hash('sha256', $row['email']));
          }
 
          header("Location: index.php");
