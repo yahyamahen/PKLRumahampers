@@ -2,6 +2,24 @@
 session_start();
 require_once "function.php";
 require_once "resource/access.php";
+require_once "model.php";
+
+if (isset($_POST["edit"])) {
+   if (update($_POST) > 0) {
+      echo
+         "<script>
+         alert('Data Customers Terupdate');
+         document.location.href = 'edit_biodata.php';
+		</script>";
+   } else {
+      echo
+         "<script>
+			alert('Data Customers Tidak Berhasil Diupdate');
+		</script>";
+      echo "<br> Error : " . mysqli_error($conn);
+   }
+}
+
 ?>
 
 <!doctype html>
@@ -20,7 +38,7 @@ require_once "resource/access.php";
 
 </head>
 
-<body>
+<body class="white-bg">
    <!-- ====================================== NAVBAR ======================================== -->
    <?php require_once "navbar.php" ?>
 
@@ -28,60 +46,66 @@ require_once "resource/access.php";
    <div class="container-main content">
       <div class="row">
          <div class="col-md-12">
-            <div class="biodata-title mt-5">
-               <h3 class=" d-inline ml-4">BIODATA</h3><a class="float-right mr-4" href="" class="">Sunting</a>
-            </div>
-            <div class="biodata-body m-auto">
-               <div class="d-flex justify-content-center">
-                  <a href="" class="mt-5 mb-3"><img src="images/assets/profile.jpg" class=" rounded-circle" alt="profile"></a>
+            <form action="" class="row g-3" method="POST">
+               <div class="col-md-12 biodata-title mt-5">
+                  <h3 class=" d-inline ml-4">BIODATA</h3>
+                  <button type="submit" class="float-right mr-4 mt-n1 btn btn-outline-danger" type="submit" name="edit">Sunting</button>
                </div>
-               <form action="" class="row g-3">
-                  <div class="col-md-12">
-                     <label for="nama" class="form-label">Nama Lengkap *</label>
-                     <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap Kamu" autocomplete="off">
-                  </div>
-                  <div class="col-md-12 mt-3">
-                     <label for="email" class="form-label">Email *</label>
-                     <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off">
-                  </div>
-                  <div class="col-md-12 mt-3">
-                     <label for="password" class="form-label">Password *</label>
-                     <input type="password" class="form-control" name="password" id="password" placeholder="**********" autocomplete="off">
-                  </div>
-                  <div class="col-md-12 mt-3">
-                     <label for="no_telp" class="form-label">No. Handphone *</label>
-                     <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off">
-                  </div>
-                  <div class="col-md-12 mt-3">
-                     <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                     <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="16-10-2000" autocomplete="off">
-                  </div>
-                  <div class="col-md-12 mt-3">
-                     <label class="form-label">Alamat *</label>
-                  </div>
-                  <div class="col-md-4">
-                     <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Provinsi">
-                  </div>
-                  <div class="col-md-4">
-                     <input type="text" class="form-control" name="kota" id="kota" placeholder="Kota/Kabupaten">
-                  </div>
-                  <div class="col-md-4">
-                     <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="Kecamatan">
-                  </div>
-                  <div class="col-md-10 mt-3">
-                     <input type="textarea" class="form-control alamat-lengkap" name="alamat" id="alamat" placeholder="Alamat Lengkap">
-                  </div>
-                  <div class="col-md-2 mt-3">
-                     <input type="number" class="form-control" name="kode_pos" id="kode_pos" placeholder="Kode Pos" autocomplete="off">
-                  </div>
-                  <!-- <div class="col-md-12 mt-3">
+               <div class="row biodata-body">
+                  <?php foreach ($user as $usr) : ?>
+                     <input type="hidden" class="form-control" name="username" id="username" placeholder="Nama Lengkap Kamu" autocomplete="off" value="<?= $usr['username']; ?>">
+
+                     <div class="m-auto pt-4">
+                        <a href="#"><input type="file" name="gambar" id="gambar"><img src="images/<?= $usr['username']; ?>/<?= $usr['foto_profile']; ?>.jpg" class="rounded-circle" alt="profile"></a>
+                     </div>
+                     <div class="col-md-12 mt-3">
+                        <label for="nama" class="form-label">Nama Lengkap *</label>
+                        <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap Kamu" autocomplete="off" value="<?= $usr['nama_lengkap']; ?>">
+                     </div>
+                     <div class="col-md-12 mt-3">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off" value="<?= $usr['email']; ?>">
+                     </div>
+                     <div class="col-md-12 mt-3">
+                        <label for="password" class="form-label">Password *</label><a class="float-right card-link" href="#">Ganti Password</a>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="**********" autocomplete="off">
+                     </div>
+                     <div class="col-md-12 mt-3">
+                        <label for="no_telp" class="form-label">No. Handphone *</label>
+                        <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off" value="<?= $usr['no_telp']; ?>">
+                     </div>
+                     <div class="col-md-12 mt-3">
+                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                        <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="16-10-2000" autocomplete="off" value="<?= $usr['tanggal_lahir']; ?>">
+                     </div>
+                     <div class="col-md-12 mt-3">
+                        <label class="form-label">Alamat *</label>
+                     </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Provinsi" value="<?= $usr['provinsi']; ?>">
+                     </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control" name="kota" id="kota" placeholder="Kota/Kabupaten" value="<?= $usr['kota']; ?>">
+                     </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="Kecamatan" value="<?= $usr['kecamatan']; ?>">
+                     </div>
+                     <div class="col-md-10 mt-3">
+                        <input type="textarea" class="form-control alamat-lengkap" name="alamat_lengkap" id="alamat_lengkap" placeholder="Alamat Lengkap" value="<?= $usr['alamat_lengkap']; ?>">
+                     </div>
+                     <div class="col-md-2 mt-3">
+                        <input type="number" class="form-control" name="kodepos" id="kodepos" placeholder="Kode Pos" autocomplete="off" value="<?= $usr['kodepos']; ?>">
+                     </div>
+                     <!-- <div class="col-md-12 mt-3">
                      <label for="catatan" class="form-label">Catatan Pemesanan *</label>
                      <input type="textarea" class="form-control catatan-pemesanan" name="catatan" id="catatan">
-                  </div> -->
-               </form>
-            </div>
+                     </div> -->
+                  <?php endforeach; ?>
+               </div>
+            </form>
          </div>
       </div>
+   </div>
    </div>
 
    <!-- ======================================= FOOTER ======================================== -->

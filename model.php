@@ -1,4 +1,12 @@
 <?php
+if (isset($_GET['wishlist'])) {
+   $wishlist = $_GET['wishlist'];
+   $query = "SELECT customers.username, produk.nama_produk, produk.harga_produk, produk.jumlah_produk 
+   FROM produk, wishlist, customers
+   WHERE produk.id_produk = wishlist.id_produk && customers.username = wishlist.username && customers.username = '$wishlist';";
+   $wishlist = read($query);
+}
+
 if (isset($_GET['produk'])) {
    $id_produk = $_GET['produk'];
    $produk = read("SELECT * FROM produk WHERE id_produk = '$id_produk'");

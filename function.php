@@ -30,6 +30,32 @@ function read($query)
    return $record;
 }
 
+
+function update($data)
+{
+   global $conn;
+   $key = $data["username"];
+
+   $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
+   $email = htmlspecialchars($data['email']);
+   // $username = strtolower(stripcslashes(htmlspecialchars($data['username'])));
+   // $password = mysqli_real_escape_string($conn, htmlspecialchars($data['password']));
+   // $pass2 = mysqli_real_escape_string($conn, htmlspecialchars($data['pass2']));
+   $no_telp = htmlspecialchars($data['no_telp']);
+   $tanggal_lahir = htmlspecialchars($data['tanggal_lahir']);
+   $provinsi = htmlspecialchars($data['provinsi']);
+   $kota = htmlspecialchars($data['kota']);
+   $kecamatan = htmlspecialchars($data['kecamatan']);
+   $alamat_lengkap = htmlspecialchars($data['alamat_lengkap']);
+   $kodepos = htmlspecialchars($data['kodepos']);
+
+   $query = "UPDATE customers SET nama_lengkap = '$nama_lengkap', email = '$email', no_telp = '$no_telp', tanggal_lahir = '$tanggal_lahir', provinsi = '$provinsi', kota = '$kota', kecamatan = '$kecamatan', alamat_lengkap = '$alamat_lengkap', kodepos = '$kodepos' WHERE username = '$key';";
+
+   $result = mysqli_query($conn, $query);
+   return mysqli_affected_rows($conn);
+}
+
+
 function registration($data)
 {
    global $conn;

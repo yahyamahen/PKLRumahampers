@@ -22,7 +22,7 @@ require_once "model.php";
 
 </head>
 
-<body>
+<body class="image-bg">
    <!-- ====================================== NAVBAR ======================================== -->
    <?php require_once "navbar.php" ?>
 

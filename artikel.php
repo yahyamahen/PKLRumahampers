@@ -2,6 +2,8 @@
 session_start();
 require_once "function.php";
 require_once "resource/access.php";
+require_once "model.php";
+
 ?>
 
 <!doctype html>
@@ -20,7 +22,7 @@ require_once "resource/access.php";
 
 </head>
 
-<body>
+<body class="image-bg">
    <!-- ====================================== NAVBAR ======================================== -->
    <?php require_once "navbar.php" ?>
 

@@ -2,6 +2,8 @@
 session_start();
 require_once "function.php";
 require_once "resource/access.php";
+require_once "model.php";
+
 ?>
 
 <!doctype html>
@@ -20,11 +22,53 @@ require_once "resource/access.php";
 
 </head>
 
-<body>
+<body class="white-bg">
    <!-- ====================================== NAVBAR ======================================== -->
    <?php require_once "navbar.php" ?>
 
    <!-- ==============================(WRITE YOUR) BODY (HERE)================================ -->
+   <div class="container-main content">
+      <div class="row justify-content-center d-flex flex-column">
+         <div class="col-md-8 mt-5 align-self-center ">
+            <div class="d-flex justify-content-center">
+               <p class="sub-title align-self-center text-center">My Wishlist on Rumahampers</p>
+            </div>
+
+            <div class="wishlist-table">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama Produk</th>
+                        <th scope="col">Harga Produk</th>
+                        <th scope="col">Status Stok</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <?php $i = 1;
+                     foreach ($wishlist as $ws) : ?>
+                        <tr>
+                           <th scope="row"><?= $i ?></th>
+                           <td><img class="mr-3" src="images/assets/Product1.png"><a class="produk-title" href="produk_detail.php"><?= $ws['nama_produk']; ?></a></td>
+                           <td class="harga" align="center">Rp. <?= $ws['harga_produk']; ?></td>
+                           <td class="stok" align="center"><?= $ws['jumlah_produk']; ?></td>
+                        </tr>
+                     <?php $i++;
+                     endforeach; ?>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="col-md-12">
+            <p class="ml-3 mt-5 sub-title bt">Rekomendasi untuk kamu</p>
+            <?php require_once "resource/recommended.php" ?>
+         </div>
+      </div>
+   </div>
+
 
 
    <!-- ======================================= FOOTER ======================================== -->
@@ -38,5 +82,7 @@ require_once "resource/access.php";
    <script src="js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
 </body>
+
+
 
 </html>

@@ -1,4 +1,4 @@
-body {
+.white-bg {
    .detail-pembayaran {
       a {
          color: $dark-color;
@@ -8,8 +8,7 @@ body {
       }
       padding: 2em;
       background-color: white;
-
-      .total-pembayaran {
+      W .total-pembayaran {
          color: $primary-color;
          font-size: 1.5em;
          font-weight: 700;

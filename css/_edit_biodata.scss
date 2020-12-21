@@ -1,4 +1,4 @@
-body {
+.white-bg {
    .biodata-title {
       padding: 0.8em 0em 0.8em 4em;
       background-color: rgb(240, 240, 240);
@@ -16,18 +16,19 @@ body {
       }
    }
 
-   .biodata-body {
-      background-color: white;
-      padding-bottom: 3em;
-      form {
-         padding: 0em 15em 0em 15em;
-      }
-      img {
-         width: 7em;
-      }
+   form {
+      // padding: 0em 15em 0em 15em;
+      margin: 0em 12em 0em 12em;
+      .biodata-body {
+         background-color: white;
+         padding-bottom: 3em;
+         img {
+            width: 7em;
+         }
 
-      .alamat-lengkap {
-         padding: 1.5em 1em 5em 1em;
+         .alamat-lengkap {
+            padding: 1.5em 1em 5em 1em;
+         }
       }
    }
 }

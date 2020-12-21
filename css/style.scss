@@ -8,6 +8,8 @@
 @import "riwayat_pemesanan";
 @import "edit_biodata";
 @import "login";
+@import "wishlist";
+@import "artikel";
 
 html {
    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -28,8 +30,16 @@ a {
    max-width: 1320px;
 }
 
-body {
+.white-bg {
+   background-color: white;
+}
+
+.image-bg {
    background-image: url(../images/assets/bgbody.png);
+}
+
+body {
+   // background-image: url(../images/assets/bgbody.png);
    background-repeat: repeat;
    background-size: 350px;
    text-decoration: none;

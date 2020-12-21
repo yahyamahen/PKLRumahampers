@@ -1,0 +1,31 @@
+.white-bg {
+   .harga {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: $dark-color;
+   }
+
+   .wishlist-table {
+      background: #ffffff;
+      padding: 3em;
+      border-radius: 2em;
+      .produk-title {
+         font-size: 1.1em;
+      }
+
+      .harga {
+         font-size: 1.1em;
+      }
+
+      th {
+         text-align: center;
+      }
+      td,
+      th {
+         img {
+            width: 7em;
+         }
+         vertical-align: middle;
+      }
+   }
+}

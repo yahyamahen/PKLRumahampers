@@ -37,45 +37,60 @@
          </ul>
 
          <ul class="navbar-nav">
-            <li class="nav-item">
-               <a class="nav-link" href="wishlist.php" tabindex="-1" aria-disabled="true">
-                  <i class="far fa-heart"></i>
-                  <span>5</span>
-               </a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" href="trolley.php" tabindex="-1" aria-disabled="true">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span>3</span>
-               </a>
+            <?php if (!isset($_SESSION['login'])) : ?>
+               <li class="nav-item">
+                  <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" data-toggle="modal" data-target="#form-input">
+                     <i class="far fa-heart"></i>
+                     <span>5</span>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" data-toggle="modal" data-target="#form-input">
+                     <i class="fa fa-shopping-cart"></i>
+                     <span>3</span>
+                  </a>
+               </li>
+            <?php endif; ?>
 
-               <?php if (isset($_SESSION['login'])) : ?>
-            <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <?php foreach ($user as $usr) : ?>
-                     <img class="profile" src="images/assets/<?= $usr['username'] ?>/<?= $usr['foto_profil'] ?>.jpg" alt="profile">
-                  <?php endforeach; ?>
-               </a>
-               <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="riwayat_pemesanan.php">Riwayat Pemesanan</a>
-                  <a class="dropdown-item" href="edit_biodata.php">Edit Bidoata</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="logout.php">Log Out</a>
-               </div>
-            </li>
-         <?php endif; ?>
+            <?php if (isset($_SESSION['login'])) : ?>
+               <?php foreach ($user as $usr) : ?>
+                  <li class="nav-item">
+                     <a class="nav-link" href="wishlist.php?wishlist=<?= $usr['username'] ?>" tabindex="-1" aria-disabled="true">
+                        <i class="far fa-heart"></i>
+                        <span>5</span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="trolley.php?wishlist=<?= $usr['username'] ?>" tabindex="-1" aria-disabled="true">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>3</span>
+                     </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="profile" src="images/assets/<?= $usr['username'] ?>/<?= $usr['foto_profil'] ?>.jpg" alt="profile">
+                     </a>
+                     <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="riwayat_pemesanan.php?username=<?= $usr['username'] ?>">Riwayat Pemesanan</a>
+                        <a class="dropdown-item" href="edit_biodata.php?username=<?= $usr['username'] ?>">Edit Bidoata</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="logout.php">Log Out</a>
+                     </div>
+                  </li>
+               <?php endforeach; ?>
+            <?php endif; ?>
 
-         <?php if (!isset($_SESSION['login'])) : ?>
-            <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="profile" src="images/assets/guest_user.png" alt="profile">
-               </a>
-               <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
-                  <input type="button" class="btn dropdown-item tombolLogin" data-toggle="modal" data-target="#form-input" value="Login">
-                  <input type="button" class="btn dropdown-item tombolRegister" data-toggle="modal" data-target="#form-register" value="Register">
-               </div>
-            </li>
-         <?php endif; ?>
+            <?php if (!isset($_SESSION['login'])) : ?>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <img class="profile" src="images/assets/guest_user.png" alt="profile">
+                  </a>
+                  <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
+                     <input type="button" class="btn dropdown-item tombolLogin" data-toggle="modal" data-target="#form-input" value="Login">
+                     <input type="button" class="btn dropdown-item tombolRegister" data-toggle="modal" data-target="#form-register" value="Register">
+                  </div>
+               </li>
+            <?php endif; ?>
          </ul>
       </div>
    </nav>
