@@ -11,14 +11,19 @@
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Marchendise</a>
                <div class="dropdown-menu marchendise-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="marchendise.php">Sajadah</a>
-                  <a class="dropdown-item" href="marchendise.php">Qur'an</a>
-                  <a class="dropdown-item" href="marchendise.php">Tasbih</a>
-                  <a class="dropdown-item" href="marchendise.php">Mukenah</a>
-                  <a class="dropdown-item" href="marchendise.php">Sarung</a>
+                  <?php // foreach ($produk as $pr) : 
+                  ?>
+                  <!-- <a class="dropdown-item" href="marchendise.php?marchendise=<?= $pr['kategori']; ?>"><?= $pr['kategori']; ?></a> -->
+                  <a class="dropdown-item" href="marchendise.php?marchendise=sajadah">Sajadah</a>
+                  <a class="dropdown-item" href="marchendise.php?marchendise=quran">Qur'an</a>
+                  <a class="dropdown-item" href="marchendise.php?marchendise=tasbih">Tasbih</a>
+                  <a class="dropdown-item" href="marchendise.php?marchendise=mukenah">Mukenah</a>
+                  <a class="dropdown-item" href="marchendise.php?marchendise=sarung">Sarung</a>
+                  <?php // endforeach; 
+                  ?>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="marchendise.php"><strong>Paket Bundle</strong></a>
-                  <a class="dropdown-item" href="marchendise.php"><strong>Custom Box</strong></a>
+                  <a class="dropdown-item" href="marchendise.php?marchendise=paketbundle"><strong>Paket Bundle</strong></a>
+                  <a class="dropdown-item" href="marchendise.php?marchendise=custombox"><strong>Custom Box</strong></a>
                </div>
             </li>
             <li class="nav-item">
@@ -47,7 +52,9 @@
                <?php if (isset($_SESSION['login'])) : ?>
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="profile" src="images/assets/profile.jpg" alt="profile">
+                  <?php foreach ($user as $usr) : ?>
+                     <img class="profile" src="images/assets/<?= $usr['username'] ?>/<?= $usr['foto_profil'] ?>.jpg" alt="profile">
+                  <?php endforeach; ?>
                </a>
                <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="riwayat_pemesanan.php">Riwayat Pemesanan</a>

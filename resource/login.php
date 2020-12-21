@@ -27,8 +27,9 @@
 
                <div class="modal-footer">
                   <button type="submit" name="login" class="btn btn-danger modal-button">LOGIN</button>
-                  <?php if (isset($error)) : ?>
-                     <p style="color: red; font-style: italic;">email / password salah</p>
+                  <?php if (isset($error) && !isset($_SESSION['login'])) : ?>
+                     <?php echo "<script> alert('Email / Password salah') </script>"; ?>
+                     <p style="color: salmon; font-style: italic;">email / password salah</p>
                   <?php endif; ?>
                </div>
             </form>

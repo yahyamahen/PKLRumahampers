@@ -3,11 +3,12 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['key'])) {
    $username = $_COOKIE['user'];
    $key = $_COOKIE['key'];
 
-   $result = mysqli_query($conn, "SELECT email FROM customers WHERE username = '$username';");
+   $result = mysqli_query($conn, "SELECT * FROM customers WHERE username = '$username';");
    $row = mysqli_fetch_assoc($result);
 
    if ($key === hash('sha256', $row['email'])) {
       $_SESSION['login'] = true;
+      $_SESSION['username'] = $row['username'];
    }
 }
 
@@ -31,6 +32,7 @@ if (isset($_POST["login"])) {
 
          // set session
          $_SESSION['login'] = true;
+         $_SESSION['username'] = $row['username'];
 
          // set remember me
          if (isset($_POST['remember'])) {

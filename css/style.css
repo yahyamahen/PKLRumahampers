@@ -35,28 +35,28 @@
   font-style: normal;
 }
 
-.red {
+.Merah {
   width: 1em;
   border-radius: 300em;
   background-color: red;
   color: red;
 }
 
-.green {
+.Hijau {
   width: 1em;
   border-radius: 300em;
   background-color: green;
   color: green;
 }
 
-.white {
+.Putih {
   width: 1em;
   border-radius: 300em;
   background-color: #d4d4d4;
   color: #d4d4d4;
 }
 
-.black {
+.Hitam {
   width: 1em;
   border-radius: 300em;
   background-color: black;

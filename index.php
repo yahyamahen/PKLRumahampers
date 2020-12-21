@@ -2,6 +2,7 @@
 session_start();
 require_once "function.php";
 require_once "resource/access.php";
+require_once "model.php";
 
 ?>
 
@@ -30,6 +31,11 @@ require_once "resource/access.php";
       <div class="hero col-md-12">
          <div class="container d-flex justify-content-center">
             <div class="head-promo">
+               <?php if (isset($_SESSION['login'])) : ?>
+                  <?php foreach ($user as $usr) : ?>
+                     <h3 style="color: white;">Selamat Datang <?= $usr['nama_lengkap'] ?> </h3>
+                  <?php endforeach; ?>
+               <?php endif; ?>
                <h1>Dapatkan paket terbaik</h1>
                <img src="images/assets/Logo.png" alt="">
                </p><a href="#" class="btn btn-primary order-now">ORDER SEKARANG</a>

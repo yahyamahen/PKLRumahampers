@@ -2,6 +2,8 @@
 session_start();
 require_once "function.php";
 require_once "resource/access.php";
+require_once "model.php";
+
 ?>
 
 <!doctype html>
@@ -54,51 +56,56 @@ require_once "resource/access.php";
 
                <img class="float-left image-order" src="images/assets/profile.jpg" alt="main_product">
 
-               <div class="product-description float-left ml-5">
-                  <h4 class="produk-title mt-2">Product Title</h4>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis quia numquam similique excepturi sequi, ducimus dicta eum animi perspiciatis libero dolores itaque sapiente distinctio, eos vel officia maiores autem neque!</p>
 
-                  <div class="color-variant">
-                     <p class="">Varian Warna</p>
-                     <a href="#" class="btn btn-rounded-outline">
-                        <span>Merah</span>
-                        <span class="rounded-circle red ml-1">.....</span>
-                     </a>
-                     <a href="#" class="btn btn-rounded-outline">
-                        <span>Hijau</span>
-                        <span class="rounded-circle green ml-1">.....</span>
-                     </a>
-                     <a href="#" class="btn btn-rounded-outline">
-                        <span>Putih</span>
-                        <span class="rounded-circle white ml-1">.....</span>
-                     </a>
-                     <a href="#" class="btn btn-rounded-outline">
-                        <span>Hitam</span>
-                        <span class="rounded-circle black ml-1">.....</span>
-                     </a>
-                  </div>
 
-                  <p class="mt-3">Stok tersedia : <strong>5</strong></p>
-                  <div class="input-group">
-                     <label>Jumlah</label>
-                     <button class="ml-2 btn btn-outline-secondary add_pcs" type="button">-</button>
-                     <input type="number" class="form-control form_pcs" placeholder="pcs" value="1">
-                     <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
-                  </div>
+               <?php foreach ($produk as $pr) : ?>
+                  <div class="product-description float-left ml-5">
+                     <h4 class="produk-title mt-2"><?= $pr['nama_produk']; ?></h4>
+                     <p><?= $pr['deskripsi_produk']; ?></p>
 
-                  <h4 class="mt-4 mb-4">Rp. 456.000</h4>
-                  <button class="btn product-action trolley-button mr-3" type="button">Tambahkan ke Trolley
-                     <i class="fa fa-shopping-cart"></i>
-                  </button>
-                  <button class="btn product-action wishlist-button" type="button">Tambahkan ke Wishlist
-                     <i class="fa fa-heart"></i>
-                  </button>
-                  <div class="input-group">
+                     <div class="color-variant">
+                        <p class="">Varian Warna</p>
+                        <a href="#" class="btn btn-rounded-outline">
+                           <span><?= $pr['warna_produk'] ?></span>
+                           <span class="rounded-circle <?= $pr['warna_produk'] ?> ml-1">.....</span>
+                        </a>
+                        <!-- <a href="#" class="btn btn-rounded-outline">
+                           <span>Hijau</span>
+                           <span class="rounded-circle Hijau ml-1">.....</span>
+                        </a>
+                        <a href="#" class="btn btn-rounded-outline">
+                           <span>Putih</span>
+                           <span class="rounded-circle Putih ml-1">.....</span>
+                        </a>
+                        <a href="#" class="btn btn-rounded-outline">
+                           <span>Hitam</span>
+                           <span class="rounded-circle Hitam ml-1">.....</span>
+                        </a> -->
+                     </div>
+
+                     <p class="mt-3">Stok tersedia : <strong><?= $pr['jumlah_produk'] ?></strong></p>
+                     <div class="input-group">
+                        <label>Jumlah</label>
+                        <button class="ml-2 btn btn-outline-secondary add_pcs" type="button">-</button>
+                        <input type="number" class="form-control form_pcs" placeholder="pcs" value="1">
+                        <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
+                     </div>
+
+                     <h4 class="mt-4 mb-4">Rp. <?= $pr['harga_produk'] ?></h4>
+                     <button class="btn product-action trolley-button mr-3" type="button">Tambahkan ke Trolley
+                        <i class="fa fa-shopping-cart"></i>
+                     </button>
+                     <button class="btn product-action wishlist-button" type="button">Tambahkan ke Wishlist
+                        <i class="fa fa-heart"></i>
+                     </button>
+                     <div class="input-group">
+                     </div>
                   </div>
-               </div>
+               <?php endforeach; ?>
             </div>
          </div>
       </div>
+
       <div class="panel-comment row">
          <div class="col-md-12">
             <hr>

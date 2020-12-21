@@ -26,6 +26,7 @@ function read($query)
    while ($data = mysqli_fetch_assoc($result))
       $record[] = $data;
 
+   echo mysqli_error($conn);
    return $record;
 }
 

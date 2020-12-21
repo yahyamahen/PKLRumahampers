@@ -1,85 +1,89 @@
 /*==============================================================*/
 /* Table: BARANG                                             */
 /*==============================================================*/
-CREATE OR REPLACE TABLE BARANG 
+CREATE OR REPLACE TABLE barang 
 (
-   ID_BARANG            CHAR(10)	PRIMARY KEY    	NOT NULL,
-   NAMA_BARANG          VARCHAR(100)                   	NOT NULL,
-   HARGA_BARANG         INTEGER                        	NOT NULL,
-   JUMLAH_BARANG        INTEGER                        	NOT NULL,
-   WARNA_BARANG         VARCHAR(20)                    	NULL
+   id_barang            CHAR(10) PRIMARY KEY       NOT NULL,
+   nama_barang          VARCHAR(100)                     NOT NULL,
+   harga_barang         INTEGER                          NOT NULL,
+   jumlah_barang        INTEGER                          NOT NULL,
+   warna_barang         VARCHAR(20)                      NULL
 );
 
 
 /*==============================================================*/
 /* Table: CUSTOMERS                                             */
 /*==============================================================*/
-CREATE OR REPLACE TABLE CUSTOMERS 
+CREATE OR REPLACE TABLE customers 
 (
-   USERNAME             CHAR(50)	PRIMARY KEY	NOT NULL,
-   PASSWORD             CHAR(50)                       	NOT NULL,
-   NAMA_LENGKAP         VARCHAR(100)                   	NOT NULL,
-   EMAIL                VARCHAR(50)                    	NOT NULL,
-   NO_TELEPON           CHAR(14)                       	NULL,
-   TEMPAT_LAHIR         VARCHAR(50)                    	NULL,
-   TANGGAL_LAHIR        DATE                           	NULL,
-   ALAMAT               VARCHAR(250)                   	NULL,
-   KECAMATAN            VARCHAR(50)                    	NULL,
-   KOTA                 VARCHAR(50)                    	NULL,
-   KODE_WILAYAH         CHAR(10)                       	NULL,
-   PROVINSI             VARCHAR(50)                    	NULL
+   username    CHAR(100)         PRIMARY KEY    NOT NULL,
+   pass              VARCHAR(100)            NOT NULL,
+   nama_lengkap         VARCHAR(100)                     NOT NULL,
+   email                VARCHAR(100)                 NOT NULL,
+   no_telp              CHAR(15)                         NULL,
+   tanggal_lahir        DATE                             NULL,
+   provinsi             VARCHAR(50)                      NULL,
+   kota                 VARCHAR(50)                      NULL,
+   kecamatan            VARCHAR(50)                      NULL,   
+   alamat_lengkap       VARCHAR(1024)                    NULL,
+   kodepos           CHAR(10)                         NULL,
+   foto_profil    VARCHAR(100)         NULL
 );
 
-
+SELECT * FROM `customers`;
+DELETE FROM customers WHERE username = '123';
+INSERT INTO customers (username, pass, nama_lengkap, email) 
+VALUES ('123', '123', '123', '123@123');
 /*==============================================================*/
 /* Table: KURIR                                                 */
 /*==============================================================*/
-CREATE OR REPLACE TABLE KURIR 
+CREATE OR REPLACE TABLE kurir 
 (
-   ID_KURIR		CHAR(10)	PRIMARY KEY    	NOT NULL,
-   NAMA_KURIR           VARCHAR(50)                    	NOT NULL,
-   TIPE_PENGIRIMAN      VARCHAR(50)                    	NULL,
-   HARGA_PENGIRIMAN     INTEGER                        	NULL
+   id_kurir    CHAR(10) PRIMARY KEY       NOT NULL,
+   nama_kurir           VARCHAR(50)                      NOT NULL,
+   tipe_pengiriman      VARCHAR(50)                      NULL,
+   harga_pengiriman     INTEGER                          NULL
 );
 
 
 /*==============================================================*/
 /* Table: PEMESANAN                                             */
 /*==============================================================*/
-CREATE OR REPLACE TABLE PEMESANAN 
+CREATE OR REPLACE TABLE pemesanan 
 (
-   ID_PEMESANAN         CHAR(10)	PRIMARY KEY	NOT NULL,
-   USERNAME             CHAR(50)                       	NULL,
-   ID_KURIR             CHAR(10)                       	NULL,
-   RESI_PENGIRIMAN      CHAR(50)                       	NULL,
-   ID_BARANG            CHAR(10)                       	NULL,
-   TOTAL                INTEGER                        	NOT NULL,
-   BANK_PEMBAYARAN      VARCHAR(20)                    	NULL,
-   BUKTI_PEMBAYARAN     VARCHAR(200)                   	NULL,
-   STATUS_PEMESANAN     VARCHAR(20)                    	NULL
+   id_pemesanan         CHAR(10) PRIMARY KEY NOT NULL,
+   username             CHAR(50)                         NULL,
+   id_kurir             CHAR(10)                         NULL,
+   resi_pengiriman      CHAR(50)                         NULL,
+   id_barang            CHAR(10)                         NULL,
+   total                INTEGER                          NOT NULL,
+   bank_pembayaran      VARCHAR(20)                      NULL,
+   bukti_pembayaran     VARCHAR(200)                     NULL,
+   status_pemesanan     VARCHAR(20)                      NULL,
+   catatan_pemesanan VARCHAR(255)         NULL
 );
 
 
 /*==============================================================*/
 /* Table: PENGIRIMAN                                            */
 /*==============================================================*/
-CREATE OR REPLACE TABLE PENGIRIMAN 
+CREATE OR REPLACE TABLE pengiriman 
 (
-   RESI_PENGIRIMAN      CHAR(50)	PRIMARY KEY	NOT NULL,
-   ID_KURIR             CHAR(10)                       	NULL,
-   TUJUAN_PENGIRIMAN    VARCHAR(250)                   	NULL,
-   JENIS_PENGIRIMAN     VARCHAR(25)                    	NULL
+   resi_pengiriman      CHAR(50) PRIMARY KEY NOT NULL,
+   id_kurir             CHAR(10)                         NULL,
+   tujuan_pengiriman    VARCHAR(250)                     NULL,
+   jenis_pengiriman     VARCHAR(25)                      NULL
 );
 
-ALTER TABLE PEMESANAN
-   ADD FOREIGN KEY (RESI_PENGIRIMAN) REFERENCES PENGIRIMAN (RESI_PENGIRIMAN),
-   ADD FOREIGN KEY (ID_BARANG) REFERENCES BARANG (ID_BARANG),
-   ADD FOREIGN KEY (USERNAME) REFERENCES CUSTOMERS (USERNAME),
-   ADD FOREIGN KEY (ID_KURIR) REFERENCES KURIR (ID_KURIR);
+ALTER TABLE pemesanan
+   ADD FOREIGN KEY (resi_pengiriman) REFERENCES pengiriman (resi_pengiriman),
+   ADD FOREIGN KEY (id_barang) REFERENCES barang (id_barang),
+   ADD FOREIGN KEY (email) REFERENCES customers (email),
+   ADD FOREIGN KEY (id_kurir) REFERENCES kurir (id_kurir);
 
-ALTER TABLE PENGIRIMAN
-   ADD FOREIGN KEY (ID_KURIR)
-REFERENCES KURIR (ID_KURIR);
+ALTER TABLE pengiriman
+   ADD FOREIGN KEY (id)kurir)
+REFERENCES kurir (id_kurir);
 
 INSERT INTO produk VALUES  
 ('PR1', 'Al-Qur\'an Madinah', '100000', '5', 'Hitam'),
@@ -91,5 +95,5 @@ INSERT INTO kurir VALUES
 ('K1', 'JNE', 'Cepat', '40000'),
 ('K2', 'SiCepat', 'Standar', '20000');
 
-INSERT INTO PENGIRIMAN VALUES 
+INSERT INTO pengiriman VALUES 
 ('PG01', 'K3', 'Jl. Jamabangan No.1 RT01 RW01', 'Cepat');
