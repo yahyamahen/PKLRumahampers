@@ -455,6 +455,11 @@
   font-size: 1.05em;
 }
 
+.image-bg .product-card .action-button button {
+  border: none;
+  background-color: transparent;
+}
+
 .image-bg .product-card .action-button .heart-wishtlist {
   color: #c5c5c5;
   font-size: 1.1em;

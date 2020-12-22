@@ -4,6 +4,25 @@ require_once "function.php";
 require_once "resource/access.php";
 require_once "model.php";
 
+if (isset($_GET["id_produk"])) {
+   $id_produk = $_GET['id_produk'];
+   $username = $_SESSION["username"];
+   if (delete($username, $id_produk) > 0) {
+      echo
+         "<script>
+		alert('Produk pada wishlist Terhapus');
+      </script>";
+      header("Location: wishlist.php?wishlist=$username");
+   } else {
+      echo
+         "<script>
+		alert('Produk pada wishlist Tidak Dapat Terhapus');
+	   </sciprt>";
+      echo "<br> Error : " . mysqli_error($conn);
+   }
+}
+
+
 ?>
 
 <!doctype html>
@@ -42,16 +61,18 @@ require_once "model.php";
                         <th scope="col">Nama Produk</th>
                         <th scope="col">Harga Produk</th>
                         <th scope="col">Status Stok</th>
+                        <th scope="col">Delete</th>
                      </tr>
                   </thead>
                   <tbody>
                      <?php $i = 1;
                      foreach ($wishlist as $ws) : ?>
                         <tr>
-                           <th scope="row"><?= $i ?></th>
+                           <th scope="row"><?= $ws['id_produk'] ?></th>
                            <td><img class="mr-3" src="images/assets/Product1.png"><a class="produk-title" href="produk_detail.php"><?= $ws['nama_produk']; ?></a></td>
                            <td class="harga" align="center">Rp. <?= $ws['harga_produk']; ?></td>
                            <td class="stok" align="center"><?= $ws['jumlah_produk']; ?></td>
+                           <td class="delete-wishlist" align="center"><a href="wishlist.php?id_produk=<?= $ws['id_produk'] ?>"><i class="far fa-trash-alt"></i></a></td>
                         </tr>
                      <?php $i++;
                      endforeach; ?>

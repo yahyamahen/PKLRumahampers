@@ -27,7 +27,7 @@ CREATE OR REPLACE TABLE foto_produk (
 /* Table: wishlist                                              */
 /*==============================================================*/
 CREATE OR REPLACE TABLE wishlist (
-   id			INTEGER		PRIMARY KEY	NOT NULL,
+   id			INTEGER		PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
    username		CHAR(10)			NULL,
    id_produk		CHAR(10)			NULL
 );
@@ -37,7 +37,7 @@ CREATE OR REPLACE TABLE wishlist (
 /* Table: trolley                                           */
 /*==============================================================*/
 CREATE OR REPLACE TABLE trolley (
-   id			INTEGER		PRIMARY KEY	NOT NULL,
+   id			INTEGER		PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
    username		CHAR(10)			NULL,
    id_produk		CHAR(10)			NULL
 );
@@ -135,6 +135,8 @@ DROP TABLE pemesanan;
 DROP TABLE produk;
 
 
+SELECT * FROM wishlist;
+SELECT * FROM wishlist WHERE username = 'yahyamahen' && id_produk = 'PR2';
 
 INSERT INTO customers VALUES 
 ('123', '$2y$10$9c0JVxlUE7BFwdgYxq/gVeOqt2YuWNz6y1Y4SWkRub68hnZPP/Pgm' ,'123' ,'123@123' ,'123' ,'2003-01-02' ,'Jawa Timur', 'Surabaya', 'Lakarsantri', 'Jl. Lakarsantri 1 No. 3 RT01 RW01', '123'),
@@ -152,11 +154,14 @@ INSERT INTO kurir VALUES
 ('K1', 'JNE', 'Cepat', '40000'),
 ('K2', 'SiCepat', 'Standar', '20000');
 
+
+DELETE FROM wishlist WHERE  id_produk = 'PR1' && username = 'yahyamahen';
 INSERT INTO wishlist VALUES
 ('0', '123', 'PR1'),
 ('1', '123','PR4'),
 ('2', 'yahyamahen', 'PR2'),
 ('3', 'yahyamahen','PR3');
+
 
 INSERT INTO trolley VALUES
 ('0', '123', 'PR1'),

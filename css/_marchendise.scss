@@ -18,6 +18,11 @@
       }
 
       .action-button {
+         button {
+            border: none;
+            background-color: transparent;
+         }
+
          .heart-wishtlist {
             color: #c5c5c5;
             font-size: 1.1em;

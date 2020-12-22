@@ -98,13 +98,28 @@ require_once "model.php";
                      <div class="card-body">
                         <a href="produk_detail.php?produk=<?= $mrc['id_produk'] ?>" class="card-title product-title"><?= $mrc['nama_produk'] ?></a>
                         <h5 class="card-text product-price">Rp. <?= $mrc['harga_produk'] ?></h5>
-                        <div class="action-button float-right">
-                           <a href="#"><i class="heart-wishtlist fa fa-heart"></i></a>
-                           <a href="#"><i class="cart-trolley fa fa-shopping-cart"></i></a>
+                        <div class="action-button float-right d-flex">
+
+                           <form action="" method="post">
+                              <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                              <input type="hidden" name="id_produk" id="id_produk" value="<?= $mrc['id_produk'] ?>">
+                              <button type="submit" name="add_wishlist" id="add_wishlist"><i class="heart-wishtlist fa fa-heart"></i></button>
+                           </form>
+
+                           <!-- NEXT PROJECT -->
+                           <!-- <a href="marchendise.php?id_produk=<?= $mrc['id_produk'] ?>"><i style="color: #e18a79;" class="heart-wishtlist fa fa-heart"></i></a> -->
+
+                           <form action="" method="post">
+                              <button type="submit" name="add_trolley" id="add_wishlist"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                           </form>
+
+                           <!-- NEXT PROJECT -->
+                           <!-- <a href="marchendise.php?id_produk=<?= $mrc['id_produk'] ?>"><i style="color: #98afbb;" class="cart-trolley fa fa-shopping-cart"></i></a> -->
                         </div>
                      </div>
                   </div>
                <?php endforeach; ?>
+               <?php wishlist_trolley_added_notice() ?>
             </div>
 
             <!-- <div class="marchendise-list d-flex justify-content-between">

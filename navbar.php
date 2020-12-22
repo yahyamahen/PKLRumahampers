@@ -68,7 +68,7 @@
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="profile" src="images/assets/<?= $usr['username'] ?>/<?= $usr['foto_profil'] ?>.jpg" alt="profile">
+                        <img class="profile" src="images/<?= $usr['username'] ?>/<?= $usr['foto_profil'] ?>" alt="profile">
                      </a>
                      <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="riwayat_pemesanan.php?username=<?= $usr['username'] ?>">Riwayat Pemesanan</a>

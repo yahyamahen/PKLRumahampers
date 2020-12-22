@@ -46,17 +46,19 @@ if (isset($_POST["edit"])) {
    <div class="container-main content">
       <div class="row">
          <div class="col-md-12">
-            <form action="" class="row g-3" method="POST">
+            <form action="" class="row g-3" method="POST" enctype="multipart/form-data">
                <div class="col-md-12 biodata-title mt-5">
                   <h3 class=" d-inline ml-4">BIODATA</h3>
                   <button type="submit" class="float-right mr-4 mt-n1 btn btn-outline-danger" type="submit" name="edit">Sunting</button>
                </div>
                <div class="row biodata-body">
                   <?php foreach ($user as $usr) : ?>
-                     <input type="hidden" class="form-control" name="username" id="username" placeholder="Nama Lengkap Kamu" autocomplete="off" value="<?= $usr['username']; ?>">
+                     <input type="hidden" class="form-control" name="username" id="username" autocomplete="off" value="<?= $usr['username']; ?>">
+                     <input type="hidden" class="form-control" name="gambar_lama" id="gambar_lama" autocomplete="off" value="<?= $usr['foto_profil']; ?>">
 
-                     <div class="m-auto pt-4">
-                        <a href="#"><input type="file" name="gambar" id="gambar"><img src="images/<?= $usr['username']; ?>/<?= $usr['foto_profile']; ?>.jpg" class="rounded-circle" alt="profile"></a>
+                     <div class="pt-4 m-auto">
+                        <p class="text-center ml-n4"><img class="rounded-circle" src=" images/<?= $usr['username']; ?>/<?= $usr['foto_profil']; ?>" alt="profile"></p>
+                        <input type="file" name="gambar" id="gambar" class=" align-self-center ml-5">
                      </div>
                      <div class="col-md-12 mt-3">
                         <label for="nama" class="form-label">Nama Lengkap *</label>
@@ -68,7 +70,7 @@ if (isset($_POST["edit"])) {
                      </div>
                      <div class="col-md-12 mt-3">
                         <label for="password" class="form-label">Password *</label><a class="float-right card-link" href="#">Ganti Password</a>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="**********" autocomplete="off">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="**********" autocomplete="off" disabled>
                      </div>
                      <div class="col-md-12 mt-3">
                         <label for="no_telp" class="form-label">No. Handphone *</label>
