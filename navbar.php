@@ -61,7 +61,7 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="trolley.php?wishlist=<?= $usr['username'] ?>" tabindex="-1" aria-disabled="true">
+                     <a class="nav-link" href="trolley.php?trolley=<?= $usr['username'] ?>" tabindex="-1" aria-disabled="true">
                         <i class="fa fa-shopping-cart"></i>
                         <span>3</span>
                      </a>
@@ -100,7 +100,9 @@
 </div>
 
 <?php if (isset($_SESSION['login'])) : ?>
-   <div class="total-body float-right">
-      <span class="total-cart-floated">Rp. 178000 <a href="detail_pemesanan.php" class="total-price"><i class="fa fa-shopping-cart"></i></a></span>
-   </div>
+   <?php foreach ($total_cart as $t_cart) : ?>
+      <div class="total-body float-right">
+         <span class="total-cart-floated">Rp. <?= $t_cart['total_cart'] ?> <a href="detail_pemesanan.php" class="total-price"><i class="fa fa-shopping-cart"></i></a></span>
+      </div>
+   <?php endforeach; ?>
 <?php endif; ?>

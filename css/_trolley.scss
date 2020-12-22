@@ -1,2 +1,39 @@
 .white-bg {
+   .harga {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: $dark-color;
+   }
+
+   .trolley-table {
+      background: #ffffff;
+      // padding: 1em;
+      border-radius: 2em;
+      .produk-title {
+         font-size: 1.1em;
+      }
+
+      .harga {
+         font-size: 1.1em;
+      }
+
+      .input-group {
+         width: 8em;
+         input [type="number"]::placeholder {
+            text-align: center;
+         }
+      }
+
+      th {
+         text-align: center;
+      }
+
+      td,
+      th {
+         vertical-align: middle;
+         img {
+            width: 7em;
+         }
+      }
+   }
 }

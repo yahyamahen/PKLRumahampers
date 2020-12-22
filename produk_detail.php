@@ -92,16 +92,21 @@ require_once "model.php";
                      </div>
 
                      <h4 class="mt-4 mb-4">Rp. <?= $pr['harga_produk'] ?></h4>
-                     <button class="btn product-action trolley-button mr-3" type="button">Tambahkan ke Trolley
-                        <i class="fa fa-shopping-cart"></i>
-                     </button>
-                     <button class="btn product-action wishlist-button" type="button">Tambahkan ke Wishlist
-                        <i class="fa fa-heart"></i>
-                     </button>
-                     <div class="input-group">
-                     </div>
+
+                     <form action="" method="post">
+                        <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                        <input type="hidden" name="id_produk" id="id_produk" value="<?= $pr['id_produk'] ?>">
+                        <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                        <button class="btn product-action trolley-button mr-3" type="submit" name="add_trolley" id="add_trolley">Tambahkan ke Trolley
+                           <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <button class="btn product-action wishlist-button" type="submit" name="add_wishlist" id="add_wishlist">Tambahkan ke Wishlist
+                           <i class="fa fa-heart"></i>
+                        </button>
+                     </form>
                   </div>
                <?php endforeach; ?>
+               <?php wishlist_trolley_added_notice() ?>
             </div>
          </div>
       </div>

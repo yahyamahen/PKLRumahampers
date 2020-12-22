@@ -862,6 +862,47 @@ body .modal-button:hover {
   width: 7em;
 }
 
+.white-bg .harga {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #a68d89;
+}
+
+.white-bg .trolley-table {
+  background: #ffffff;
+  border-radius: 2em;
+}
+
+.white-bg .trolley-table .produk-title {
+  font-size: 1.1em;
+}
+
+.white-bg .trolley-table .harga {
+  font-size: 1.1em;
+}
+
+.white-bg .trolley-table .input-group {
+  width: 8em;
+}
+
+.white-bg .trolley-table .input-group input [type="number"]::placeholder {
+  text-align: center;
+}
+
+.white-bg .trolley-table th {
+  text-align: center;
+}
+
+.white-bg .trolley-table td,
+.white-bg .trolley-table th {
+  vertical-align: middle;
+}
+
+.white-bg .trolley-table td img,
+.white-bg .trolley-table th img {
+  width: 7em;
+}
+
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

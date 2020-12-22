@@ -136,14 +136,6 @@ function wishlist_trolley_added_notice()
    }
 }
 
-function delete($username, $id_produk)
-{
-   global $conn;
-   $query = "DELETE FROM wishlist WHERE username = '$username' && id_produk = '$id_produk';";
-   mysqli_query($conn, $query);
-
-   return mysqli_affected_rows($conn);
-}
 
 function add_wishlist_trolley($data)
 {
@@ -157,7 +149,7 @@ function add_wishlist_trolley($data)
       if (mysqli_fetch_assoc($result)) {
          echo
             "<script>
-               alert('Wishlist sudah ada');
+               alert('Produk di wishlist sudah ada');
             </script>";
          return false;
       }
@@ -168,11 +160,50 @@ function add_wishlist_trolley($data)
       echo mysqli_error($conn);
       return mysqli_affected_rows($conn);
    }
-   // header("Refresh:0");
 
-   // if (isset($_POST['add_trolley'])) {
-   // }
+   if (isset($_POST['add_trolley'])) {
+      $username = htmlspecialchars($data['username']);
+      $id_produk = htmlspecialchars($data['id_produk']);
+      $total_pcs = htmlspecialchars($data['total_pcs']);
+
+      $result = mysqli_query($conn, "SELECT * FROM trolley WHERE username = '$username' && id_produk = '$id_produk';");
+
+      if (mysqli_fetch_assoc($result)) {
+         echo
+            "<script>
+               alert('Produk di trolley sudah ada');
+            </script>";
+         return false;
+      }
+
+      $insertsql = "INSERT INTO trolley (id, username, id_produk, total_pcs) VALUES ( '', '$username', '$id_produk', '$total_pcs');";
+      mysqli_query($conn, $insertsql);
+
+      echo mysqli_error($conn);
+      return mysqli_affected_rows($conn);
+   }
 }
+
+
+function delete_wishlist($username, $id_produk)
+{
+   global $conn;
+   $query = "DELETE FROM wishlist WHERE username = '$username' && id_produk = '$id_produk';";
+   mysqli_query($conn, $query);
+
+   return mysqli_affected_rows($conn);
+}
+
+
+function delete_trolley($username, $id_produk)
+{
+   global $conn;
+   $query = "DELETE FROM trolley WHERE username = '$username' && id_produk = '$id_produk';";
+   mysqli_query($conn, $query);
+
+   return mysqli_affected_rows($conn);
+}
+
 
 function registration($data)
 {

@@ -7,7 +7,7 @@ require_once "model.php";
 if (isset($_GET["id_produk"])) {
    $id_produk = $_GET['id_produk'];
    $username = $_SESSION["username"];
-   if (delete($username, $id_produk) > 0) {
+   if (delete_wishlist($username, $id_produk) > 0) {
       echo
          "<script>
 		alert('Produk pada wishlist Terhapus');
@@ -21,7 +21,6 @@ if (isset($_GET["id_produk"])) {
       echo "<br> Error : " . mysqli_error($conn);
    }
 }
-
 
 ?>
 
@@ -61,7 +60,7 @@ if (isset($_GET["id_produk"])) {
                         <th scope="col">Nama Produk</th>
                         <th scope="col">Harga Produk</th>
                         <th scope="col">Status Stok</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col"></th>
                      </tr>
                   </thead>
                   <tbody>
@@ -69,8 +68,14 @@ if (isset($_GET["id_produk"])) {
                      foreach ($wishlist as $ws) : ?>
                         <tr>
                            <th scope="row"><?= $ws['id_produk'] ?></th>
-                           <td><img class="mr-3" src="images/assets/Product1.png"><a class="produk-title" href="produk_detail.php"><?= $ws['nama_produk']; ?></a></td>
-                           <td class="harga" align="center">Rp. <?= $ws['harga_produk']; ?></td>
+                           <td class="d-flex">
+                              <div class="float-left">
+                                 <img class="mr-3" src="images/assets/Product1.png">
+                              </div>
+                              <a class="produk-title text-color align-self-center" href="produk_detail.php?produk=<?= $ws['id_produk'] ?>"><?= $ws['nama_produk']; ?></a>
+                           </td>
+                           <td class=" harga" align="center">Rp. <?= $ws['harga_produk']; ?>
+                           </td>
                            <td class="stok" align="center"><?= $ws['jumlah_produk']; ?></td>
                            <td class="delete-wishlist" align="center"><a href="wishlist.php?id_produk=<?= $ws['id_produk'] ?>"><i class="far fa-trash-alt"></i></a></td>
                         </tr>
@@ -83,14 +88,12 @@ if (isset($_GET["id_produk"])) {
       </div>
 
       <div class="row">
-         <div class="col-md-12">
+         <div class="col-md-12 image-bg">
             <p class="ml-3 mt-5 sub-title bt">Rekomendasi untuk kamu</p>
             <?php require_once "resource/recommended.php" ?>
          </div>
       </div>
    </div>
-
-
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
