@@ -438,8 +438,21 @@
   }
 }
 
+.image-bg .marchendise-list {
+  margin: auto;
+  margin-top: 2em;
+}
+
+.image-bg .filter-harga input {
+  width: 7.5em;
+}
+
+.image-bg .product-card {
+  margin: 0.3em;
+}
+
 .image-bg .product-card .product-title {
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: 600;
   color: #e18a79;
   text-decoration: none;
@@ -452,7 +465,12 @@
 .image-bg .product-card .product-price {
   color: #4d4d4d;
   font-weight: 700;
-  font-size: 1.05em;
+  font-size: 1em;
+}
+
+.image-bg .product-card img {
+  width: 14.2em;
+  overflow: hidden;
 }
 
 .image-bg .product-card .action-button button {
@@ -474,7 +492,6 @@
 }
 
 .image-bg .product-card .action-button .cart-trolley {
-  margin-left: 1em;
   color: #c5c5c5;
   font-size: 1.1em;
 }

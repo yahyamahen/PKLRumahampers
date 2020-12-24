@@ -1,7 +1,19 @@
 .image-bg {
+   .marchendise-list {
+      margin: auto;
+      margin-top: 2em;
+   }
+
+   .filter-harga {
+      input {
+         width: 7.5em;
+      }
+   }
+
    .product-card {
+      margin: 0.3em;
       .product-title {
-         font-size: 1.3em;
+         font-size: 1.1em;
          font-weight: 600;
          color: $primary-color;
          text-decoration: none;
@@ -14,7 +26,12 @@
       .product-price {
          color: $text-color;
          font-weight: 700;
-         font-size: 1.05em;
+         font-size: 1em;
+      }
+
+      img {
+         width: 14.2em;
+         overflow: hidden;
       }
 
       .action-button {
@@ -35,7 +52,6 @@
          }
 
          .cart-trolley {
-            margin-left: 1em;
             color: #c5c5c5;
             font-size: 1.1em;
             &:active {

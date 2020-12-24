@@ -3,13 +3,14 @@ session_start();
 require_once "function.php";
 require_once "resource/access.php";
 require_once "model.php";
+if_not_login_back_to_home();
 
 if (isset($_POST["edit"])) {
    if (update($_POST) > 0) {
       echo
          "<script>
          alert('Data Customers Terupdate');
-         document.location.href = 'edit_biodata.php';
+         document.location.href = 'edit_biodata';
 		</script>";
    } else {
       echo
@@ -108,7 +109,7 @@ if (isset($_POST["edit"])) {
          </div>
       </div>
    </div>
-   </div>
+   <!-- </div> -->
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>

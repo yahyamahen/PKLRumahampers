@@ -1,8 +1,10 @@
 <?php
 session_start();
+
 require_once "function.php";
 require_once "resource/access.php";
 require_once "model.php";
+if_not_login_back_to_home();
 
 if (isset($_GET["id_produk"])) {
    $id_produk = $_GET['id_produk'];
@@ -10,14 +12,15 @@ if (isset($_GET["id_produk"])) {
    if (delete_wishlist($username, $id_produk) > 0) {
       echo
          "<script>
-		alert('Produk pada wishlist Terhapus');
-      </script>";
-      header("Location: wishlist.php?wishlist=$username");
+            alert('Produk pada wishlist Terhapus');
+            document.location.href='wishlist?wishlist=$username';
+         </script>";
    } else {
       echo
          "<script>
-		alert('Produk pada wishlist Tidak Dapat Terhapus');
-	   </sciprt>";
+            alert('Produk pada wishlist Tidak Dapat Terhapus');
+            document.location.href='wishlist?wishlist=$username';
+         </sciprt>";
       echo "<br> Error : " . mysqli_error($conn);
    }
 }
@@ -52,7 +55,7 @@ if (isset($_GET["id_produk"])) {
                <p class="sub-title align-self-center text-center">My Wishlist on Rumahampers</p>
             </div>
 
-            <div class="wishlist-table">
+            <div class="table-responsive wishlist-table">
                <table class="table">
                   <thead>
                      <tr>
@@ -72,12 +75,12 @@ if (isset($_GET["id_produk"])) {
                               <div class="float-left">
                                  <img class="mr-3" src="images/assets/Product1.png">
                               </div>
-                              <a class="produk-title text-color align-self-center" href="produk_detail.php?produk=<?= $ws['id_produk'] ?>"><?= $ws['nama_produk']; ?></a>
+                              <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $ws['id_produk'] ?>"><?= $ws['nama_produk']; ?></a>
                            </td>
                            <td class=" harga" align="center">Rp. <?= $ws['harga_produk']; ?>
                            </td>
                            <td class="stok" align="center"><?= $ws['jumlah_produk']; ?></td>
-                           <td class="delete-wishlist" align="center"><a href="wishlist.php?id_produk=<?= $ws['id_produk'] ?>"><i class="far fa-trash-alt"></i></a></td>
+                           <td class="delete-wishlist" align="center"><a href="wishlist?id_produk=<?= $ws['id_produk'] ?>"><i class="far fa-trash-alt"></i></a></td>
                         </tr>
                      <?php $i++;
                      endforeach; ?>

@@ -1,8 +1,18 @@
 <?php
 session_start();
+if (!isset($_SESSION['login'])) {
+   echo
+      "<script>
+         alert('Login terlebih dahulu!');
+         document.location.href='home';
+      </script>";
+   exit;
+}
+
 require_once "function.php";
 require_once "resource/access.php";
 require_once "model.php";
+
 
 if (isset($_GET["id_produk"])) {
    $id_produk = $_GET['id_produk'];
@@ -10,13 +20,14 @@ if (isset($_GET["id_produk"])) {
    if (delete_trolley($username, $id_produk) > 0) {
       echo
          "<script>
-		alert('Produk pada trolley Terhapus');
-      </script>";
-      header("Location: trolley.php?trolley=$username");
+            alert('Produk pada trolley Terhapus');
+            document.location.href='trolley?trolley=$username';
+         </script>";
    } else {
       echo
          "<script>
-		alert('Produk pada trolley Tidak Dapat Terhapus');
+      alert('Produk pada trolley Tidak Dapat Terhapus');
+      document.location.href='trolley?trolley=$username';
 	   </sciprt>";
       echo "<br> Error : " . mysqli_error($conn);
    }
@@ -73,7 +84,7 @@ if (isset($_GET["id_produk"])) {
                               <div class="float-left">
                                  <img class="mr-3" src="images/assets/Product1.png">
                               </div>
-                              <a class="produk-title text-color align-self-center" href="produk_detail.php?produk=<?= $tr['id_produk']; ?>"><?= $tr['nama_produk']; ?></a>
+                              <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $tr['id_produk']; ?>"><?= $tr['nama_produk']; ?></a>
                            </td>
                            <td class="harga" align="center">Rp. <?= $tr['harga_produk']; ?></td>
                            <td class="stok-trolley" align="center">
@@ -83,7 +94,7 @@ if (isset($_GET["id_produk"])) {
                                  <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
                               </div>
                            <td class="jumlah-trolley harga" align="center">Rp. <?= $tr['total_pcs'] * $tr['harga_produk']; ?></td>
-                           <td class="delete-trolley" align="center"><a href="trolley.php?id_produk=<?= $tr['id_produk'] ?>" onclick="confirm('Ingin menghapus dari trolley?');"><i class="far fa-trash-alt"></i></a></td>
+                           <td class="delete-trolley" align="center"><a href="trolley?id_produk=<?= $tr['id_produk'] ?>" onclick="confirm('Ingin menghapus dari trolley?');"><i class="far fa-trash-alt"></i></a></td>
                         </tr>
                      <?php $i++;
                      endforeach; ?>

@@ -1,4 +1,28 @@
 <?php
+function if_not_login_back_to_home()
+{
+   if (!isset($_SESSION['login'])) {
+      echo
+         "<script>
+            alert('Login terlebih dahulu!');
+            document.location.href='home';
+         </script>";
+      exit;
+   }
+}
+
+function if_not_login()
+{
+   if (!isset($_SESSION['login'])) {
+      echo
+         "<script>
+            alert('Login terlebih dahulu!');
+         </script>";
+      exit;
+   }
+}
+
+
 if (isset($_GET['wishlist'])) {
    $wishlist = $_GET['wishlist'];
    $query = "SELECT customers.username, produk.id_produk, produk.nama_produk, produk.harga_produk, produk.jumlah_produk 
@@ -12,8 +36,8 @@ if (isset($_GET['produk'])) {
    $produk = read("SELECT * FROM produk WHERE id_produk = '$id_produk'");
 }
 
-if (isset($_GET['marchendise'])) {
-   $kategori = $_GET['marchendise'];
+if (isset($_GET['kategori'])) {
+   $kategori = $_GET['kategori'];
    $marchendise = read("SELECT * FROM produk WHERE kategori = '$kategori'");
 }
 

@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once "function.php";
+require_once "model.php";
+if_not_login_back_to_home();
+
 echo $_SESSION["login"] . "<br>";
 $_SESSION = [];
 session_unset();
@@ -12,5 +16,5 @@ echo $_COOKIE["user"] . "<br>";
 echo $_COOKIE["key"];
 
 
-header("Location: index.php");
+header("Location: home");
 exit;

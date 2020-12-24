@@ -3,6 +3,7 @@ session_start();
 require_once "function.php";
 require_once "resource/access.php";
 require_once "model.php";
+if_not_login_back_to_home();
 
 ?>
 
@@ -47,9 +48,9 @@ require_once "model.php";
                      PG13451
                      <a href="#" class="card-link d-block upload-bukti-pembayaran">Upload Bukti <br> Pembayaran</a></th>
                   <td>
-                     <a href="produk_detail.php" class="produk-title">produk1</a>
-                     <a href="produk_detail.php" class="produk-title">produk1</a>
-                     <a href="produk_detail.php" class="produk-title">produk1</a>
+                     <a href="produk_detail" class="produk-title">produk1</a>
+                     <a href="produk_detail" class="produk-title">produk1</a>
+                     <a href="produk_detail" class="produk-title">produk1</a>
                   </td>
                   <td align="center" class="total-riwayat-pembelian">Rp. 467.000</td>
                   <td align="center">
