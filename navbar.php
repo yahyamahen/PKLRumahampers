@@ -41,43 +41,48 @@
                <li class="nav-item">
                   <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" data-toggle="modal" data-target="#form-input">
                      <i class="far fa-heart"></i>
-                     <span>5</span>
+                     <span>0</span>
                   </a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" data-toggle="modal" data-target="#form-input">
                      <i class="fa fa-shopping-cart"></i>
-                     <span>3</span>
+                     <span>0</span>
                   </a>
                </li>
             <?php endif; ?>
 
             <?php if (isset($_SESSION['login'])) : ?>
-               <?php foreach ($user as $usr) : ?>
+               <?php foreach ($user as $data) : ?>
                   <li class="nav-item">
-                     <a class="nav-link" href="wishlist?wishlist=<?= $usr['username'] ?>" tabindex="-1" aria-disabled="true">
+                     <a class="nav-link" href="wishlist?wishlist=<?= $data['username'] ?>" tabindex="-1" aria-disabled="true">
                         <i class="far fa-heart"></i>
-                        <span>5</span>
+                        <span><?= count($wishlist) ?></span>
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="trolley?trolley=<?= $usr['username'] ?>" tabindex="-1" aria-disabled="true">
+                     <a class="nav-link" href="trolley?trolley=<?= $data['username'] ?>" tabindex="-1" aria-disabled="true">
                         <i class="fa fa-shopping-cart"></i>
-                        <span>3</span>
+                        <span><?= count($trolley) ?></span>
                      </a>
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="profile" src="images/<?= $usr['username'] ?>/<?= $usr['foto_profil'] ?>" alt="profile">
+                        <?php if ($data['foto_profil'] == NULL) : ?>
+                           <img class="profile" src="images/assets/guest_user.png" alt="profile">
+                        <?php else : ?>
+                           <img class="profile" src="images/<?= $data['username'] ?>/<?= $data['foto_profil'] ?>" alt="profile">
+                        <?php endif; ?>
                      </a>
                      <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="riwayat_pemesanan?username=<?= $usr['username'] ?>">Riwayat Pemesanan</a>
-                        <a class="dropdown-item" href="edit_biodata?username=<?= $usr['username'] ?>">Edit Bidoata</a>
+                        <a class="dropdown-item" href="riwayat_pemesanan?username=<?= $data['username'] ?>">Riwayat Pemesanan</a>
+                        <a class="dropdown-item" href="edit_biodata?username=<?= $data['username'] ?>">Edit Bidoata</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout">Log Out</a>
                      </div>
                   </li>
-               <?php endforeach; ?>
+               <?php break;
+               endforeach; ?>
             <?php endif; ?>
 
             <?php if (!isset($_SESSION['login'])) : ?>
@@ -100,9 +105,9 @@
 </div>
 
 <?php if (isset($_SESSION['login'])) : ?>
-   <?php foreach ($total_cart as $t_cart) : ?>
+   <?php foreach ($total_cart as $data) : ?>
       <div class="total-body float-right">
-         <span class="total-cart-floated">Rp. <?= $t_cart['total_cart'] ?> <a href="detail_pemesanan" class="total-price"><i class="fa fa-shopping-cart"></i></a></span>
+         <span class="total-cart-floated">Rp. <?= number_format($data['total_cart']) ?> <a href="detail_pemesanan?id_kurir" class=" total-price"><i class="fa fa-shopping-cart"></i></a></span>
       </div>
    <?php endforeach; ?>
 <?php endif; ?>

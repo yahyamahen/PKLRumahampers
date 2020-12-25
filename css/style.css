@@ -451,6 +451,22 @@
   margin: 0.3em;
 }
 
+.image-bg .product-card .square {
+  width: 15em;
+  height: 15em;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-bg .product-card .square img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: cover;
+  flex-shrink: 0;
+}
+
 .image-bg .product-card .product-title {
   font-size: 1.1em;
   font-weight: 600;
@@ -918,6 +934,23 @@ body .modal-button:hover {
 .white-bg .trolley-table td img,
 .white-bg .trolley-table th img {
   width: 7em;
+}
+
+.white-bg .sub-total {
+  font-weight: 600;
+  color: #4d4d4d;
+  background-color: white;
+  border: 3px solid #e18a79;
+  padding: 0.5em 0em 0.5em 0.5em;
+  border-radius: 100em;
+}
+
+.white-bg .total-harga {
+  font-weight: 700;
+  background-color: #e18a79;
+  color: white;
+  border-radius: 100px;
+  padding: 0.5em 1.5em 0.5em 1.5em;
 }
 
 html {

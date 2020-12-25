@@ -37,26 +37,21 @@ require_once "model.php";
          <div class="col-md-12">
             <div class="product d-flex over">
                <ul class="product-image-list float-left">
-                  <a href="# ">
-                     <li><img src="images/assets/profile.jpg " alt="img1"></li>
-                  </a>
-                  <a href="# ">
-                     <li><img src="images/assets/profile.jpg " alt="img1"></li>
-                  </a>
-                  <a href="# ">
-                     <li><img src="images/assets/profile.jpg " alt="img1"></li>
-                  </a>
-                  <a href="# ">
-                     <li><img src="images/assets/profile.jpg " alt="img1"></li>
-                  </a>
-                  <a href="# ">
-                     <li><img src="images/assets/profile.jpg " alt="img1"></li>
-                  </a>
+                  <?php $i = 1;
+                  foreach ($produk as $data) : ?>
+                     <?php for ($i; $i <= 5; $i++) { ?>
+                        <a href="# ">
+                           <li><img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg" alt="<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg"></li>
+                        </a>
+                     <?php } ?>
+                  <?php endforeach; ?>
                </ul>
 
-               <img class="float-left image-order" src="images/assets/profile.jpg" alt="main_product">
-
-
+               <?php foreach ($produk as $data) : ?>
+                  <div class="main-square d-flex justify-content-center overflow-hidden">
+                     <img class="float-left image-order flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>" alt="main_product">
+                  </div>
+               <?php endforeach; ?>
 
                <?php foreach ($produk as $pr) : ?>
                   <div class="product-description float-left ml-5">
@@ -83,26 +78,28 @@ require_once "model.php";
                         </a> -->
                      </div>
 
-                     <p class="mt-3">Stok tersedia : <strong><?= $pr['jumlah_produk'] ?></strong></p>
-                     <div class="input-group">
-                        <label>Jumlah</label>
-                        <button class="ml-2 btn btn-outline-secondary add_pcs" type="button">-</button>
-                        <input type="number" class="form-control form_pcs" placeholder="pcs" value="1">
-                        <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
-                     </div>
-
-                     <h4 class="mt-4 mb-4">Rp. <?= $pr['harga_produk'] ?></h4>
+                     <p class="mt-3 d-inline mr-5">Stok tersedia : <strong><?= $pr['jumlah_produk'] ?></strong></p>
+                     <p class="mt-3 d-inline">Berat Produk : <strong><?= $pr['berat_produk'] ?> Kg</strong></p>
 
                      <form action="" method="post">
-                        <input type="hidden" name="username" id="username" value="<?= $username ?>">
-                        <input type="hidden" name="id_produk" id="id_produk" value="<?= $pr['id_produk'] ?>">
-                        <input type="hidden" name="total_pcs" id="total_pcs" value="1">
-                        <button class="btn product-action trolley-button mr-3" type="submit" name="add_trolley" id="add_trolley">Tambahkan ke Trolley
-                           <i class="fa fa-shopping-cart"></i>
-                        </button>
-                        <button class="btn product-action wishlist-button" type="submit" name="add_wishlist" id="add_wishlist">Tambahkan ke Wishlist
-                           <i class="fa fa-heart"></i>
-                        </button>
+                        <div class="input-group mt-4">
+                           <label>Jumlah</label>
+                           <button class="ml-2 btn btn-outline-secondary add_pcs" type="button">-</button>
+                           <input type="number" class="form-control form_pcs" placeholder="pcs" name="total_pcs" id="total_pcs" value="1" min="1">
+                           <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
+                        </div>
+
+                        <h4 class="mt-4 mb-4">Rp. <?= number_format($pr['harga_produk']) ?></h4>
+
+                        <?php if (!isset($_SESSION['login'])) : ?>
+                           <button class="btn product-action trolley-button mr-3" type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input">Tambahkan ke Trolley<i class="ml-2 fa fa-shopping-cart"></i></button>
+                           <button class="btn product-action wishlist-button" type="button" name="add_wishlist" id="add_wishlist" data-toggle="modal" data-target="#form-input">Tambahkan ke Wishlist<i class="ml-2 fa fa-heart"></i></button>
+                        <?php else :  ?>
+                           <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                           <input type="hidden" name="id_produk" id="id_produk" value="<?= $pr['id_produk'] ?>">
+                           <button class="btn product-action trolley-button mr-3" type="submit" name="add_trolley" id="add_trolley">Tambahkan ke Trolley<i class="ml-2 fa fa-shopping-cart"></i></button>
+                           <button class="btn product-action wishlist-button" type="submit" name="add_wishlist" id="add_wishlist">Tambahkan ke Wishlist<i class="ml-2 fa fa-heart"></i></button>
+                        <?php endif; ?>
                      </form>
                   </div>
                <?php endforeach; ?>

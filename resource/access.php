@@ -13,7 +13,7 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['key'])) {
 }
 
 // if (isset($_SESSION['login'])) {
-//    header("Location: marchendise.php");
+//    header('Refresh: 0');
 //    exit;
 // }
 
@@ -40,7 +40,7 @@ if (isset($_POST["login"])) {
             setcookie('key', hash('sha256', $row['email']));
          }
 
-         header("Refresh:0");
+         header("Refresh: 0");
          exit;
       }
    }

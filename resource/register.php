@@ -9,7 +9,7 @@ function userCreated()
          echo "User berhasil ditambahkan";
          echo
             "<script>
-				   alert('User berhasil ditambahkan');
+               alert('User berhasil ditambahkan');
 			   </script>";
       } else {
          echo "<script> alert('Error :  " . mysqli_error($conn) . "'</script>;";

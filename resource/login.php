@@ -16,12 +16,11 @@
                   <label for="email">Email</label>
                   <input type="email" class="form-control mb-3" id="email" name="email" placeholder="email">
 
-                  <label for="password">Password</label>
+                  <label class="d-inline" for="password">Password</label>
+                  <a class=" d-inline float-right card-link" href="lupa_password" class="card-link d-block mb-1 mt-1">Lupa Password?</a>
                   <input type="password" class="form-control" id="password" name="password" placeholder="*******">
 
-                  <a href="lupa_password.php" class="card-link d-block mb-1 mt-1">Lupa Password?</a>
-
-                  <input type="checkbox" name="remember" id="remember">
+                  <input class="mt-3" type="checkbox" name="remember" id="remember">
                   <label for="remember">Remember Me</label>
                </div>
 

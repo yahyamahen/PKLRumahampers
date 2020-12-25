@@ -18,10 +18,9 @@ if (isset($_GET["id_produk"])) {
    } else {
       echo
          "<script>
-            alert('Produk pada wishlist Tidak Dapat Terhapus');
+            alert('Produk pada wishlist Tidak Dapat Terhapus " . "<br> Error : " . mysqli_error($conn) . "');
             document.location.href='wishlist?wishlist=$username';
          </sciprt>";
-      echo "<br> Error : " . mysqli_error($conn);
    }
 }
 
@@ -68,19 +67,19 @@ if (isset($_GET["id_produk"])) {
                   </thead>
                   <tbody>
                      <?php $i = 1;
-                     foreach ($wishlist as $ws) : ?>
+                     foreach ($wishlist as $data) : ?>
                         <tr>
-                           <th scope="row"><?= $ws['id_produk'] ?></th>
+                           <th scope="row"><?= $data['id_produk'] ?></th>
                            <td class="d-flex">
                               <div class="float-left">
                                  <img class="mr-3" src="images/assets/Product1.png">
                               </div>
-                              <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $ws['id_produk'] ?>"><?= $ws['nama_produk']; ?></a>
+                              <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $data['id_produk'] ?>"><?= $data['nama_produk']; ?></a>
                            </td>
-                           <td class=" harga" align="center">Rp. <?= $ws['harga_produk']; ?>
+                           <td class=" harga" align="center">Rp. <?= number_format($data['harga_produk']); ?>
                            </td>
-                           <td class="stok" align="center"><?= $ws['jumlah_produk']; ?></td>
-                           <td class="delete-wishlist" align="center"><a href="wishlist?id_produk=<?= $ws['id_produk'] ?>"><i class="far fa-trash-alt"></i></a></td>
+                           <td class="stok" align="center"><?= $data['jumlah_produk']; ?></td>
+                           <td class="delete-wishlist" align="center"><a href="wishlist?id_produk=<?= $data['id_produk'] ?>"><i class="far fa-trash-alt"></i></a></td>
                         </tr>
                      <?php $i++;
                      endforeach; ?>
