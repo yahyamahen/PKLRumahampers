@@ -115,7 +115,7 @@ require_once "model.php";
                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, nesciunt?</p>
             </div>
 
-            <div class="article">
+            <!-- <div class="article">
                <div class="heading-article d-flex justify-content-between">
                   <div class="slide-button align-self-center">
                      <a href="#"><i class="fa fa-chevron-left"></i></a>
@@ -132,7 +132,7 @@ require_once "model.php";
                   <h5>Mau acara bingung milih souvenir yang berguna?</h5>
                </a>
                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, beatae numquam? Consequatur amet veritatis eveniet aliquid, inventore totam officia repellat illum officiis quibusdam, praesentium fugiat repellendus adipisci assumenda voluptas! Laudantium.</p>
-            </div>
+            </div> -->
 
             <div class="sidebar-quick-info">
                <div class="marketplace-info">

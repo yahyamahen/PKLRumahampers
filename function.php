@@ -220,7 +220,7 @@ function upload()
 
    $namaFileBaru = $_POST['username'] . "_" . date('d-M-Y', time()) . "_" . uniqid() . "." . $ekstensiGambar;
 
-   $path = "images/" . $_POST['username'];
+   $path = "images/customers/" . $_POST['username'];
    if (file_exists($path)) {
       move_uploaded_file($tmpName, 'images/customers/' . $_POST['username'] . "/" . $namaFileBaru);
    } else {

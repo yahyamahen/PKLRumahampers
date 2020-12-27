@@ -11,24 +11,22 @@
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Marchendise</a>
                <div class="dropdown-menu marchendise-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
-                  <?php // foreach ($produk as $pr) : 
-                  ?>
-                  <!-- <a class="dropdown-item" href="marchendise?marchendise=<?= $pr['kategori']; ?>"><?= $pr['kategori']; ?></a> -->
-                  <a class="dropdown-item" href="marchendise?kategori=sajadah">Sajadah</a>
-                  <a class="dropdown-item" href="marchendise?kategori=quran">Qur'an</a>
-                  <a class="dropdown-item" href="marchendise?kategori=tasbih">Tasbih</a>
-                  <a class="dropdown-item" href="marchendise?kategori=mukenah">Mukenah</a>
-                  <a class="dropdown-item" href="marchendise?kategori=sarung">Sarung</a>
-                  <?php // endforeach; 
-                  ?>
+                  <?php foreach ($marchendise_list as $data) : ?>
+                     <a class="dropdown-item" href="marchendise?kategori=<?= $data['kategori']; ?>"><?= $data['kategori']; ?></a>
+                     <!-- <a class="dropdown-item" href="marchendise?kategori=sajadah">Sajadah</a>
+                     <a class="dropdown-item" href="marchendise?kategori=quran">Qur'an</a>
+                     <a class="dropdown-item" href="marchendise?kategori=tasbih">Tasbih</a>
+                     <a class="dropdown-item" href="marchendise?kategori=mukenah">Mukenah</a>
+                     <a class="dropdown-item" href="marchendise?kategori=sarung">Sarung</a> -->
+                  <?php endforeach; ?>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="marchendise?marchendise=paketbundle"><strong>Paket Bundle</strong></a>
                   <a class="dropdown-item" href="marchendise?marchendise=custombox"><strong>Custom Box</strong></a>
                </div>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                <a class="nav-link" href="artikel" tabindex="-1" aria-disabled="true">Artikel</a>
-            </li>
+            </li> -->
          </ul>
          <ul class="navbar-nav mr-auto">
             <li>
