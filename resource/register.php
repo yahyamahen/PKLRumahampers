@@ -1,5 +1,4 @@
 <?php
-// require_once "function.php";
 function userCreated()
 {
    global $conn;
@@ -33,48 +32,48 @@ function userCreated()
                <div class="row">
                   <div class="col-md-12">
                      <label for="nama_lengkap" class="form-label">Nama Lengkap *</label>
-                     <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap Kamu" autocomplete="off">
+                     <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap Kamu" autocomplete="off" required>
                   </div>
                   <div class="col-md-12 mt-2">
                      <label for="username" class="form-label">Username *</label>
-                     <input type="text" class="form-control" name="username" id="username" placeholder="Buat Username" autocomplete="off">
+                     <input type="text" class="form-control" name="username" id="username" placeholder="Buat Username" autocomplete="off" required>
                   </div>
                   <div class="col-md-12 mt-2">
                      <label for="email" class="form-label">Email *</label>
-                     <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off">
+                     <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off" required>
                   </div>
                   <div class="col-md-12 mt-2">
                      <label for="pass" class="form-label">Password *</label>
-                     <input type="password" class="form-control" name="pass" id="pass" placeholder="**********" autocomplete="off">
+                     <input type="password" class="form-control" name="pass" id="pass" placeholder="**********" autocomplete="off" required>
                   </div>
                   <div class="col-md-12 mt-2">
                      <label for="pass2" class="form-label">Konfirmasi Password *</label>
-                     <input type="password" class="form-control" name="pass2" id="pass2" placeholder="**********" autocomplete="off">
+                     <input type="password" class="form-control" name="pass2" id="pass2" placeholder="**********" autocomplete="off" required>
                   </div>
                   <div class="col-md-12 mt-2">
                      <label for="no_telp" class="form-label">No. Handphone *</label>
-                     <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off">
+                     <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off" required>
                   </div>
-                  <div class="col-md-12 mt-2">
+                  <!-- <div class="col-md-12 mt-2">
                      <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
                      <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="16-10-2000" autocomplete="off">
-                  </div>
+                  </div> -->
                   <div class="col-md-12 mt-2">
                      <label class="form-label">Alamat *</label>
                   </div>
                   <div class="col-md-4">
-                     <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Provinsi">
+                     <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Provinsi *" required>
                   </div>
                   <div class="col-md-4">
-                     <input type="text" class="form-control" name="kota" id="kota" placeholder="Kota/Kabupaten">
+                     <input type="text" class="form-control" name="kota" id="kota" placeholder="Kota/Kabupaten *" required>
                   </div>
                   <div class="col-md-4">
-                     <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="Kecamatan">
+                     <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="Kecamatan *" required>
                   </div>
-                  <div class="col-md-12 mt-2">
-                     <input type="textarea" class="form-control alamat-lengkap" name="alamat_lengkap" id="alamat_lengkap" placeholder="Alamat Lengkap">
+                  <div class="col-md-8 mt-2">
+                     <textarea rows="4" type="textarea" class="form-control alamat-lengkap" name="alamat_lengkap" id="alamat_lengkap" placeholder="Alamat Lengkap *" autocomplete="off" required></textarea>
                   </div>
-                  <div class="col-md-12 mt-2">
+                  <div class="col-md-4 mt-2">
                      <input type="number" class="form-control" name="kodepos" id="kodepos" placeholder="Kode Pos" autocomplete="off">
                   </div>
                </div>

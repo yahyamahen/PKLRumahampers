@@ -64,7 +64,7 @@ if_not_login_back_to_home();
                      </form>
                      <td>
                         <?php
-                        $produk_pemesanan = read("SELECT produk.nama_produk FROM produk, pemesanan WHERE pemesanan.id_produk = produk.id_produk && pemesanan.username = 'yahyamahen' && pemesanan.id_pemesanan = '" . $data['id_pemesanan'] . "';");
+                        $produk_pemesanan = read("SELECT produk.nama_produk FROM produk, pemesanan WHERE pemesanan.id_produk = produk.id_produk && pemesanan.username = '$username' && pemesanan.id_pemesanan = '" . $data['id_pemesanan'] . "';");
                         ?>
                         <?php foreach ($produk_pemesanan as $prd) : ?>
                            <a href=" produk_detail?produk=<?= $data['id_produk'] ?>" class="produk-title"><?= $prd['nama_produk'] ?></a>

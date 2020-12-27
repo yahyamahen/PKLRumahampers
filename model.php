@@ -21,13 +21,6 @@ if (isset($_GET['kategori'])) {
    $marchendise = read("SELECT * FROM produk WHERE kategori = '$kategori'");
 }
 
-// if (isset($_GET['pemesanan'])) {
-//    $id_pemesanan = $_GET['pemesanan'];
-//    $pemesanan = read("SELECT pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
-//    FROM pemesanan, produk 
-//    WHERE pemesanan.id_produk = produk.id_produk && username = '$username' && pemesanan.id_pemesanan = '$id_pemesanan' LIMIT 1");
-// }
-
 if (isset($_SESSION['login']) && isset($_SESSION['username'])) {
    $username = $_SESSION['username'];
 
@@ -49,7 +42,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['username'])) {
    FROM produk, trolley, customers 
    WHERE produk.id_produk = trolley.id_produk && customers.username = trolley.username && customers.username = '$username'; ");
 
-   $harga_pengiriman = read("SELECT list_tujuan_pengiriman.id_tujuan, customers.kota, list_tujuan_pengiriman.harga_pengiriman FROM customers, list_tujuan_pengiriman WHERE customers.username = '$username' && list_tujuan_pengiriman.kota = customers.kota;");
+   $harga_pengiriman = read("SELECT list_tujuan_pengiriman.id_tujuan, customers.kota as 'kota_customers', list_tujuan_pengiriman.kota as 'kota_pengiriman', list_tujuan_pengiriman.harga_pengiriman FROM customers, list_tujuan_pengiriman WHERE customers.username = '$username' && list_tujuan_pengiriman.kota = customers.kota;");
 
    $pemesanan = read("SELECT pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
    FROM pemesanan, produk 

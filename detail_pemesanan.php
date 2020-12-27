@@ -5,6 +5,22 @@ require_once "resource/access.php";
 require_once "model.php";
 if_not_login_back_to_home();
 
+if (isset($_POST["edit_alamat"])) {
+   if (update_alamat($_POST) > 0) {
+      echo
+         "<script>
+            alert('Data Alamat Customers Diperbarui');
+            document.location.href = 'detail_pemesanan?id_kurir';
+         </script>";
+   } else {
+      echo
+         "<script>
+            alert('Data Customers Tidak Berhasil Diupdate');
+         </script>";
+      echo "<br> Error : " . mysqli_error($conn);
+   }
+}
+
 if (isset($_GET["cart"])) {
    $id_produk = $_GET['cart'];
    $username = $_SESSION["username"];
@@ -103,50 +119,64 @@ if (isset($_POST["submit_pesan"])) {
          <a class="col-md-12 sub-title mb-3 mt-4" href="#">Detail Pemesanan</a>
       </div>
 
-      <div class="row informasi-transaksi d-flex justify-content-between">
-         <form action="" class="row g-3" method="POST">
+      <form action="" class="" method="POST">
+         <div class="row informasi-transaksi d-flex justify-content-between">
             <div class="col-md-6 detail-pemesanan p-4">
                <h5>Alamat Pengiriman</h5>
-               <?php foreach ($user as $data) : ?>
-                  <input type="hidden" name="username" id="username" value="<?= $data['username'] ?>">
-                  <div class="col-md-12">
-                     <label for="nama" class="form-label">Nama Lengkap *</label>
-                     <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap Kamu" autocomplete="off" value="<?= $data['nama_lengkap'] ?>" required>
-                  </div>
+               <form action="" class="row g-3" method="POST">
+                  <?php foreach ($user as $data) : ?>
+                     <input type="hidden" name="id_user" id="id_user" value="<?= $data['username'] ?>">
+                     <div class="col-md-12">
+                        <label for="nama" class="form-label">Nama Lengkap *</label>
+                        <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap Kamu" autocomplete="off" value="<?= $data['nama_lengkap'] ?>" required>
+                     </div>
 
-                  <div class="col-md-12 mt-3">
-                     <label for="email" class="form-label">Email *</label>
-                     <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off" value="<?= $data['email'] ?>" required>
-                  </div>
+                     <div class="col-md-12 mt-3">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off" value="<?= $data['email'] ?>" required>
+                     </div>
 
-                  <div class="col-md-12 mt-3">
-                     <label for="no_telp" class="form-label">No. Handphone *</label>
-                     <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off" value="<?= $data['no_telp'] ?>" required min="0">
-                  </div>
+                     <div class="col-md-12 mt-3">
+                        <label for="no_telp" class="form-label">No. Handphone *</label>
+                        <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off" value="<?= $data['no_telp'] ?>" required min="0">
+                     </div>
 
-                  <div class="col-md-12 mt-3">
-                     <label class="form-label">Alamat Pengiriman *</label>
-                  </div>
+                     <div class="col-md-12 mt-3">
+                        <label class="form-label">Alamat Pengiriman *</label>
+                     </div>
 
-                  <div class="col-md-12 d-flex">
-                     <input type="text" class="form-control ml-1 mr-1" name="provinsi" id="provinsi" placeholder="Provinsi" value="<?= $data['provinsi'] ?>" required>
+                     <div class="col-md-12 d-flex">
+                        <input type="text" class="form-control ml-1 mr-1" name="provinsi" id="provinsi" placeholder="Provinsi" value="<?= $data['provinsi'] ?>" required>
 
-                     <input type="text" class="form-control ml-1 mr-1" name="kota" id="kota" placeholder="Kota/Kabupaten" value="<?= $data['kota'] ?>" required>
+                        <input type="text" class="form-control ml-1 mr-1" name="kota" id="kota" placeholder="Kota/Kabupaten" value="<?= $data['kota'] ?>" required>
 
-                     <input type="text" class="form-control ml-1 mr-1" name="kecamatan" id="kecamatan" placeholder="Kecamatan" value="<?= $data['kecamatan'] ?>" required>
-                  </div>
+                        <input type="text" class="form-control ml-1 mr-1" name="kecamatan" id="kecamatan" placeholder="Kecamatan" value="<?= $data['kecamatan'] ?>" required>
+                     </div>
 
-                  <div class="col-md-12 mt-3 d-flex">
-                     <textarea required rows="4" type="text" class="form-control alamat-lengkap ml-1 mr-1" name="alamat" id="alamat" placeholder="Alamat Lengkap"><?= $data['alamat_lengkap'] ?></textarea>
+                     <div class="col-md-12 mt-3 d-flex">
+                        <textarea rows="4" class="form-control alamat-lengkap ml-1 mr-1" name="alamat_lengkap" id="alamat_lengkap" placeholder="Alamat Lengkap"><?= $data['alamat_lengkap'] ?></textarea>
 
-                     <input type="number" class="form-control w-25 ml-1 mr-1" name="kode_pos" id="kode_pos" placeholder="Kode Pos" autocomplete="off" value="<?= $data['kodepos'] ?>" min="0">
-                  </div>
+                        <input type="number" class="form-control w-25 ml-1 mr-1" name="kodepos" id="kodepos" placeholder="Kode Pos" autocomplete="off" value="<?= $data['kodepos'] ?>" min="0">
+                     </div>
 
-                  <div class="col-md-12 mt-3">
-                     <label for="catatan" class="form-label">Catatan Pemesanan</label>
-                     <textarea rows="4" type="textarea" class="form-control catatan-pemesanan" name="catatan_pemesanan" id="catatan_pemesanan"></textarea>
-                  </div>
-               <?php endforeach; ?>
+                     <div class="col-md-12 mt-3">
+                        <label for="catatan" class="form-label">Catatan Pemesanan</label>
+                        <textarea rows="4" class="form-control catatan-pemesanan" name="catatan_pemesanan" id="catatan_pemesanan" placeholder="Catatan Pemesanan"></textarea>
+                     </div>
+
+                     <?php if (trim($data['kota']) == "") : ?>
+                        <div class="col-md-12 mt-3 d-flex">
+                           <p style="font-size: 0.8em;">Data alamat akan otomatis diperbarui diprofil</p>
+                           <button type="submit" name="edit_alamat" class="btn btn-outline-secondary float-right">PERBARUI BIODATA PENGIRIMAN</button>
+                        </div>
+                     <?php else : ?>
+                        <div class="col-md-12 mt-3 d-flex justify-content-between">
+                           <p style="font-size: 0.8em;">Data alamat akan otomatis diperbarui diprofil</p>
+                           <button type="submit" name="edit_alamat" class="btn btn-outline-secondary float-right">PERBARUI BIODATA PENGIRIMAN</button>
+                        </div>
+                     <?php endif; ?>
+                  <?php endforeach; ?>
+               </form>
             </div>
 
             <div class="col-md-6 cart-detail p-4">
@@ -193,30 +223,38 @@ if (isset($_POST["submit_pesan"])) {
                </form>
                <div class="kurir-pengiriman mt-3">
                   <?php foreach ($harga_pengiriman as $total) : ?>
-                     <p>Tujuan Pengiriman : <strong><?= $total['kota'] ?></strong> </p>
-                  <?php $harga_kirim_kota = $total['harga_pengiriman'];
-                  endforeach; ?>
-                  <p class="float-left mr-3">kurir pengiriman : </p>
-
-                  <ul class=" list-group mb-3">
-                     <?php foreach ($kurir as $data) : ?>
-                        <li class="list-inline mb-2">
-                           <!-- <input type="hidden" name="id_kurir" id="id_kurir" value="<?= $data['id_kurir'] ?>"> -->
-                           <a href="detail_pemesanan?id_kurir=<?= $data['id_kurir'] ?>" class="text-decoration-none mt-1"> <strong><?= $data['nama_kurir'] ?></strong> - <?= $data['tipe_pengiriman'] ?> (Rp.
-                              <?php
-                              $harga_kirim = $harga_kirim_kota + ($data['harga_per_4_kg']);
-                              // if ($berat_total > 4 && $berat_total < 8) {
-                              //    $harga_kirim = $harga_kirim + ($data['harga_per_4_kg']);
-                              // } else if ($berat_total > 8 && $berat_total < 12) {
-                              //    $harga_kirim = $harga_kirim + ($data['harga_per_4_kg']) * 2;
-                              // }
-                              ?>
-                              <?= $harga_kirim ?>)
-                              <!-- <input type="submit" class="btn" name="select_kurir" name="select_kurir" value=""> -->
-                           </a>
-                        </li>
+                     <?php if ($total['kota_customers'] == '') : ?>
+                        <p>Masukan Kota Pengiriman</p>
+                     <?php else : ?>
+                        <?php if (strcmp($total['kota_pengiriman'], $total['kota_customers']) == 1) {
+                           $harga_kirim_kota = 0; ?>
+                           <p>Tujuan Pengiriman : <strong><?= $total['kota_customers'] ?></strong> Belum Tersedia</p>
+                        <?php } else {
+                           $harga_kirim_kota = $total['harga_pengiriman']; ?>
+                           <p>Tujuan Pengiriman : <strong><?= $total['kota_customers'] ?></strong></p>
+                           <p class="float-left mr-3">kurir pengiriman : </p>
+                           <ul class=" list-group mb-3">
+                              <?php foreach ($kurir as $data) : ?>
+                                 <li class="list-inline mb-2">
+                                    <!-- <input type="hidden" name="id_kurir" id="id_kurir" value="<?= $data['id_kurir'] ?>"> -->
+                                    <a href="detail_pemesanan?id_kurir=<?= $data['id_kurir'] ?>" class="text-decoration-none mt-1"> <strong><?= $data['nama_kurir'] ?></strong> - <?= $data['tipe_pengiriman'] ?> (Rp.
+                                       <?php
+                                       $harga_kirim = $harga_kirim_kota + ($data['harga_per_4_kg']);
+                                       // if ($berat_total > 4 && $berat_total < 8) {
+                                       //    $harga_kirim = $harga_kirim + ($data['harga_per_4_kg']);
+                                       // } else if ($berat_total > 8 && $berat_total < 12) {
+                                       //    $harga_kirim = $harga_kirim + ($data['harga_per_4_kg']) * 2;
+                                       // }
+                                       ?>
+                                       <?= $harga_kirim ?>)
+                                       <!-- <input type="submit" class="btn" name="select_kurir" name="select_kurir" value=""> -->
+                                    </a>
+                                 </li>
+                              <?php endforeach; ?>
+                           <?php } ?>
+                        <?php endif; ?>
                      <?php endforeach; ?>
-                  </ul>
+                           </ul>
                </div>
                <?php foreach ($total_cart as $data) : ?>
                   <?php foreach ($total_checkout as $checkout) : ?>
@@ -235,7 +273,7 @@ if (isset($_POST["submit_pesan"])) {
                <?php endforeach; ?>
 
                <div class="pembayaran mt-3 ml-4">
-                  <input class="d-block form-check-input mt-2 mr-2" type="radio" value="Transfer Bank" name="bank_pembayaran" id="bank_pembayaran" checked>
+                  <input class="d-block form-check-input mt-2 mr-2" type="radio" value="Transfer Bank" name="bank_pembayaran" id="transfer-bank" checked>
                   <label for="transfer-bank">Pembayaran via transfer bank</label>
                   <p class="pembayaran-text mt-n1">Lakukan pembayaran via transfer bank yang tersedia dan lakukan konfirmasi pembayaran. Selesaikan pembayaran sebelum 24 Jam atau pemesanan akan dibatalkan.</p>
                </div>
@@ -247,7 +285,7 @@ if (isset($_POST["submit_pesan"])) {
 
                <div class="text-center">
                   <?php foreach ($user as $data) : ?>
-                     <input type="hidden" name="username[]" id="username" value="<?= $data['username'] ?>">
+                     <input type="hidden" name="username" id="username" value="<?= $data['username'] ?>">
                   <?php endforeach; ?>
 
                   <?php foreach ($trolley as $data) : ?>
@@ -274,8 +312,8 @@ if (isset($_POST["submit_pesan"])) {
                   </button>
                </div>
             </div>
-         </form>
-      </div>
+      </form>
+   </div>
    </div>
 
    <!-- ======================================= FOOTER ======================================== -->

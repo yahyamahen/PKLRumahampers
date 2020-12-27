@@ -43,8 +43,8 @@ function insert_pemesanan($data)
 
    for ($i = 0; $i < $total_data_cart; $i++) {
       // $id_pemesanan = htmlspecialchars($data['id_pemeesanan']);
-      $username = htmlspecialchars($data['username'][$i]);
-      $id_produk = htmlspecialchars($data['id_produk'][$i]);
+      $username = htmlspecialchars($data['username']);
+      $id_produk = htmlspecialchars($data['id_produk_pesan'][$i]);
       $total_pcs = htmlspecialchars($data['total_pcs'][$i]);
       $id_kurir = htmlspecialchars($data['id_kurir']);
       $nama_kurir = htmlspecialchars($data['nama_kurir']);
@@ -126,6 +126,28 @@ function update($data)
    }
 
    $query = "UPDATE customers SET nama_lengkap = '$nama_lengkap', email = '$email', no_telp = '$no_telp', tanggal_lahir = '$tanggal_lahir', provinsi = '$provinsi', kota = '$kota', kecamatan = '$kecamatan', alamat_lengkap = '$alamat_lengkap', kodepos = '$kodepos', foto_profil = '$gambar' WHERE username = '$key';";
+
+   mysqli_query($conn, $query);
+   return mysqli_affected_rows($conn);
+}
+
+function update_alamat($data)
+{
+   global $conn;
+   $key = $data["id_user"];
+
+   $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
+   $email = htmlspecialchars($data['email']);
+   $no_telp = htmlspecialchars($data['no_telp']);
+   $provinsi = htmlspecialchars($data['provinsi']);
+   $kota = htmlspecialchars($data['kota']);
+   $kecamatan = htmlspecialchars($data['kecamatan']);
+   $alamat_lengkap = htmlspecialchars($data['alamat_lengkap']);
+   $kodepos = htmlspecialchars($data['kodepos']);
+   // var_dump($data);
+
+
+   $query = "UPDATE customers SET nama_lengkap = '$nama_lengkap', email = '$email', no_telp = '$no_telp', provinsi = '$provinsi', kota = '$kota', kecamatan = '$kecamatan', alamat_lengkap = '$alamat_lengkap', kodepos = '$kodepos' WHERE username = '$key';";
 
    mysqli_query($conn, $query);
    return mysqli_affected_rows($conn);
@@ -337,6 +359,16 @@ function registration($data)
       echo
          "<script>
 			   alert('Username sudah digunakan');
+		   </script>";
+      return false;
+   }
+
+   $result = mysqli_query($conn, "SELECT email FROM customers WHERE email = '$email';");
+
+   if (mysqli_fetch_assoc($result)) {
+      echo
+         "<script>
+			   alert('Email sudah digunakan');
 		   </script>";
       return false;
    }

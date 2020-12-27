@@ -14,11 +14,11 @@
             <form action="" method="post">
                <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control mb-3" id="email" name="email" placeholder="email">
+                  <input type="email" class="form-control mb-3" id="email" name="email" placeholder="email" required>
 
                   <label class="d-inline" for="password">Password</label>
                   <a class=" d-inline float-right card-link" href="lupa_password" class="card-link d-block mb-1 mt-1">Lupa Password?</a>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="*******">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="*******" required>
 
                   <input class="mt-3" type="checkbox" name="remember" id="remember">
                   <label for="remember">Remember Me</label>
