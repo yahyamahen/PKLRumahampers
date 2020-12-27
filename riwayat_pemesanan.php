@@ -16,8 +16,8 @@ if_not_login_back_to_home();
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.css">
-   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
    <title>Riwayat Pemesanan</title>
 
@@ -47,10 +47,19 @@ if_not_login_back_to_home();
                   <tbody>
                      <form action="" method="post" enctype="multipart/form-data">
                         <th scope="row">
-                           <?= $data['id_pemesanan'] ?>
-                           <label for="bukti_pembayaran" class="card-link d-block upload-bukti-pembayaran">Upload Bukti <br> Pembayaran
-                              <br><input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="ml-5 d-none"></label>
-
+                           <?php if ($data['status_pemesanan'] == 'Menunggu Pembayaran') : ?>
+                              <?= $data['id_pemesanan'] ?>
+                              <?php
+                              $timestamp = strtotime($data['waktu_pemesanan']);
+                              $limitdate = date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1);
+                              $curdate = date("d M Y H:i", time());
+                              ?>
+                              <?php if ($limitdate > $curdate) : ?>
+                                 <label for="bukti_pembayaran" class="card-link d-block upload-bukti-pembayaran">Upload Bukti <br> Pembayaran<br><input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="ml-5 d-none"></label>
+                              <?php else : ?>
+                                 <!-- <p class="status-pembayaran">Expired</p> -->
+                              <?php endif; ?>
+                           <?php endif; ?>
                         </th>
                      </form>
                      <td>
@@ -63,7 +72,21 @@ if_not_login_back_to_home();
                      </td>
                      <td align="center" class="total-riwayat-pembelian">Rp. <?= number_format($data['total'], 0, ".", ".") ?></td>
                      <td align="center">
-                        <p class="status-pembayaran"><?= $data['status_pemesanan'] ?></p>
+                        <?php if ($data['status_pemesanan'] == 'Menunggu Pembayaran') : ?>
+                           <?php
+                           $timestamp = strtotime($data['waktu_pemesanan']);
+                           $curdate = date("d M Y H:i", time());
+                           $limitdate = date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1);
+                           ?>
+                           <?php if ($limitdate > $curdate) : ?>
+                              <div class="status-pembayaran mt-3"><a class="card-link" href="detail_pembayaran?pemesanan=<?= $data['id_pemesanan'] ?>"><?= $data['status_pemesanan'] ?></a></div>
+                              <p>Sebelum <?= $limitdate ?></p>
+                           <?php else : ?>
+                              <p class="status-pembayaran mt-3">Expired</p>
+                           <?php endif; ?>
+                        <?php else : ?>
+                           <p class="status-pembayaran mt-3"><?= $data['status_pemesanan'] ?> </p>
+                        <?php endif; ?>
                      </td>
                      </tr>
                   </tbody>
@@ -75,13 +98,14 @@ if_not_login_back_to_home();
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="js/jquery-3.5.1.min.js"></script>
-   <script src="js/bootstrap.js"></script>
-   <script src="js/bootstrap.min.js"></script>
-   <!-- <script src="bootstrap.bundle.js"></script> -->
-   <!-- <script src="bootstrap.bundle.min.js"></script> -->
-   <script src="js/font-awesome.min.js"></script>
+   <script src="js/js/jquery-3.5.1.js"></script>
+   <script src="js/js/jquery-3.5.1.min.js"></script>
+   <script src="js/js/popper.min.js"></script>
+   <script src="js/js/bootstrap.js"></script>
+   <script src="js/js/bootstrap.min.js"></script>
+   <!-- <script src="js/js/bootstrap.bundle.js"></script> -->
+   <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
+   <script src="js/js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
 </body>
 

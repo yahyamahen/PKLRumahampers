@@ -1,5 +1,5 @@
 DROP TABLE pemesanan;
-DROP TABLE pengiriman;
+-- DROP TABLE pengiriman;
 DROP TABLE trolley;
 DROP TABLE wishlist;
 DROP TABLE foto_produk;

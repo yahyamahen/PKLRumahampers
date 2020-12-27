@@ -23,8 +23,8 @@ if (isset($_GET['pemesanan'])) {
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.css">
-   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
    <title>Detail Pembayaran</title>
 
@@ -41,26 +41,42 @@ if (isset($_GET['pemesanan'])) {
             <h3 class="sub-title mt-4">Pembayaran</h3>
             <div class="detail-pembayaran text-center">
                <?php if (isset($_GET['pemesanan']) && trim($_GET['pemesanan'] != "")) : ?>
-                  <?php foreach ($pemesanan as $data) : ?>
+                  <?php foreach ($pemesanan_terakhir as $data) : ?>
                      <p><strong>KODE PEMESANAN</strong></p>
                      <h5 class="kode-pemesanan"><?= $data['id_pemesanan'] ?></h5>
-                     <p>Lakukan transfer sebelum <strong><?php
-                                                         $timestamp = strtotime($data['waktu_pemesanan']);
-                                                         echo date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1) ?></strong><br> Pada salah satu rekening bank dibawah sejumlah </p>
-                     <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
+                     <?php
+                     $timestamp = strtotime($data['waktu_pemesanan']);
+                     $limitdate = date("d M Y H:i", strtotime($data['waktu_pemesanan']) + 60 * 60 * 24 * 1);
+                     $curdate = date("d M Y H:i", time());
+                     ?>
+                     <?php if ($limitdate > $curdate) : ?>
+                        <p>Lakukan pembayaran sebelum <br><strong style="font-size: 1.1em;"><?= $limitdate ?></strong> <br> Pada salah satu rekening bank dibawah sejumlah </p>
+                        <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
+                        <a href="" class=" card-link">SALIN NOMINAL</a>
+                     <?php elseif (time() > date("d M Y H:i", strtotime($data['waktu_pemesanan']) + 60 * 60 * 24 * 1)) : ?>
+                        <p>Waktu pembayaran <br> <strong style="font-size:1.1em; color:red;"> Expired </strong></p>
+                     <?php endif; ?>
                   <?php endforeach; ?>
                <?php else : ?>
                   <?php foreach ($pembayaran as $data) : ?>
                      <p><strong>KODE PEMESANAN</strong></p>
                      <h5 class="kode-pemesanan"><?= $data['id_pemesanan'] ?></h5>
-                     <p>Lakukan transfer sebelum <strong><?php
-                                                         $timestamp = strtotime($data['waktu_pemesanan']);
-                                                         echo date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1) ?></strong><br> Pada salah satu rekening bank dibawah sejumlah </p>
-                     <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
+                     <?php
+                     $timestamp = strtotime($data['waktu_pemesanan']);
+                     $limitdate = date("d M Y H:i", strtotime($data['waktu_pemesanan']) + 60 * 60 * 24 * 1);
+                     $curdate = date("d M Y H:i", time());
+                     ?>
+                     <?php if ($limitdate > $curdate) : ?>
+                        <p>Lakukan pembayaran sebelum <br><strong style="font-size: 1.1em;"><?= $limitdate ?></strong> <br> Pada salah satu rekening bank dibawah sejumlah </p>
+                        <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
+                        <a href="" class=" card-link">SALIN NOMINAL</a>
+                     <?php elseif ($limitdate > time()) :  ?>
+                        <p>Waktu pembayaran <br> <strong style="font-size:1.1em; color:red;"> Expired </strong></p>
+                     <?php endif ?>
                   <?php endforeach; ?>
                <?php endif; ?>
 
-               <a href="" class=" card-link">SALIN NOMINAL</a>
+
                <div class="bank-list d-flex justify-content-center mt-4">
                   <li class="list-inline mr-5 ml-5 d-flex flex-column">
                      <img src="images/assets/bca.png" alt="bca">
@@ -95,13 +111,14 @@ if (isset($_GET['pemesanan'])) {
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="js/jquery-3.5.1.min.js"></script>
-   <script src="js/bootstrap.js"></script>
-   <script src="js/bootstrap.min.js"></script>
-   <!-- <script src="bootstrap.bundle.js"></script> -->
-   <!-- <script src="bootstrap.bundle.min.js"></script> -->
-   <script src="js/font-awesome.min.js"></script>
+   <script src="js/js/jquery-3.5.1.js"></script>
+   <script src="js/js/jquery-3.5.1.min.js"></script>
+   <script src="js/js/popper.min.js"></script>
+   <script src="js/js/bootstrap.js"></script>
+   <script src="js/js/bootstrap.min.js"></script>
+   <!-- <script src="js/js/bootstrap.bundle.js"></script> -->
+   <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
+   <script src="js/js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
 </body>
 

@@ -38,8 +38,8 @@ if (isset($_GET['filter-harga-btn'])) {
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.css">
-   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
    <title>Marchendise</title>
 
@@ -123,10 +123,10 @@ if (isset($_GET['filter-harga-btn'])) {
                <?php if (isset($_GET['filter-harga-btn'])) : ?>
                   <?php foreach ($marchendise_filter as $data) : ?>
                      <div class="card product-card" style="width: 15.4rem;">
-                        <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>" class="card-img-top m-2 mb-n2" alt="product1">
+                        <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" class="card-img-top m-2 mb-n2" alt="product1">
                         <div class="card-body">
                            <a href="produk_detail?produk=<?= $data['id_produk'] ?>" class="card-title product-title"><?= $data['nama_produk'] ?></a>
-                           <h5 class="card-text product-price">Rp. <?= number_format($data['harga_produk']) ?></h5>
+                           <h5 class="card-text product-price">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
                            <div class="action-button float-right d-flex">
                               <?php if (!isset($_SESSION['login'])) : ?>
                                  <form action="" method="post">
@@ -157,11 +157,11 @@ if (isset($_GET['filter-harga-btn'])) {
                   <?php foreach ($marchendise as $data) : ?>
                      <div class="card product-card" style="width: 15.2rem;">
                         <div class="square mb-n2">
-                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>" class="card-img-top mt-2" alt="product1">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" class="card-img-top mt-2" alt="product1">
                         </div>
                         <div class="card-body">
                            <a href="produk_detail?produk=<?= $data['id_produk'] ?>" class="card-title product-title ml-n2"><?= $data['nama_produk'] ?></a>
-                           <h5 class="card-text product-price ml-n2">Rp. <?= number_format($data['harga_produk']) ?></h5>
+                           <h5 class="card-text product-price ml-n2">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
                            <div class="action-button float-right d-flex">
                               <?php if (!isset($_SESSION['login'])) : ?>
                                  <form action="" method="post">
@@ -217,14 +217,14 @@ if (isset($_GET['filter-harga-btn'])) {
 
    <!-- ====================================== FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="js/jquery-3.5.1.min.js"></script>
-   <script src="js/popper.min.js"></script>
-   <script src="js/bootstrap.js"></script>
-   <script src="js/bootstrap.min.js"></script>
-   <!-- <script src="bootstrap.bundle.js"></script> -->
-   <!-- <script src="bootstrap.bundle.min.js"></script> -->
-   <script src="js/font-awesome.min.js"></script>
+   <script src="js/js/jquery-3.5.1.js"></script>
+   <script src="js/js/jquery-3.5.1.min.js"></script>
+   <script src="js/js/popper.min.js"></script>
+   <script src="js/js/bootstrap.js"></script>
+   <script src="js/js/bootstrap.min.js"></script>
+   <!-- <script src="js/js/bootstrap.bundle.js"></script> -->
+   <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
+   <script src="js/js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
 </body>
 

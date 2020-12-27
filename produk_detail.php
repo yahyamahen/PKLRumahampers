@@ -17,8 +17,8 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.css">
-   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
    <title>Nama Produk</title>
 
@@ -41,9 +41,9 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
          <div class="col-md-12">
             <div class="product d-flex over">
                <ul class="product-image-list float-left">
-                  <?php $i = 1;
+                  <?php $i = 0;
                   foreach ($produk as $data) : ?>
-                     <?php for ($i; $i <= 5; $i++) { ?>
+                     <?php for ($i; $i < 5; $i++) { ?>
                         <a href="# ">
                            <li><img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg" alt="<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg"></li>
                         </a>
@@ -53,7 +53,7 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
 
                <?php foreach ($produk as $data) : ?>
                   <div class="main-square d-flex justify-content-center overflow-hidden">
-                     <img class="float-left image-order flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>" alt="main_product">
+                     <img class="float-left image-order flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="main_product">
                   </div>
                <?php endforeach; ?>
 
@@ -173,13 +173,14 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="js/jquery-3.5.1.min.js"></script>
-   <script src="js/bootstrap.js"></script>
-   <script src="js/bootstrap.min.js"></script>
-   <!-- <script src="bootstrap.bundle.js"></script> -->
-   <!-- <script src="bootstrap.bundle.min.js"></script> -->
-   <script src="js/font-awesome.min.js"></script>
+   <script src="js/js/jquery-3.5.1.js"></script>
+   <script src="js/js/jquery-3.5.1.min.js"></script>
+   <script src="js/js/popper.min.js"></script>
+   <script src="js/js/bootstrap.js"></script>
+   <script src="js/js/bootstrap.min.js"></script>
+   <!-- <script src="js/js/bootstrap.bundle.js"></script> -->
+   <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
+   <script src="js/js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
 </body>
 

@@ -112,7 +112,7 @@
          <?php if ($data['total_cart'] == 0) : ?>
             <span class="total-cart-floated" style="font-size: 1em;">Yuk Tambah Hampers di Trolleymu! <a class=" total-price"><i class="fa fa-shopping-cart"></i></a></span>
          <?php else : ?>
-            <span class="total-cart-floated">Rp. <?= number_format($data['total_cart']) ?> <a href="detail_pemesanan?id_kurir" class=" total-price"><i class="fa fa-shopping-cart"></i></a></span>
+            <span class="total-cart-floated">Rp. <?= number_format($data['total_cart'], 0, ".", ".") ?> <a href="detail_pemesanan?id_kurir" class=" total-price"><i class="fa fa-shopping-cart"></i></a></span>
          <?php endif; ?>
       </div>
    <?php endforeach; ?>

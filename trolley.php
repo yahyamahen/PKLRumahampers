@@ -52,8 +52,8 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="css/bootstrap.css">
-   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
    <title>Trolley</title>
 
@@ -96,7 +96,7 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
                               <th scope="row"><?= $data['id_produk'] ?></th>
                               <td class="d-flex">
                                  <div class="float-left d-flex justify-content-center square">
-                                    <img class="mr-3 flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>">
+                                    <img class="mr-3 flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>">
                                  </div>
                                  <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $data['id_produk']; ?>"><?= $data['nama_produk']; ?><p class="" style="font-size: 0.9em; color:grey"> Stok <= <?= $data['jumlah_produk'] ?></p> </a> </td> <td class="harga" align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", "."); ?>
                               </td>
@@ -135,13 +135,14 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="js/jquery-3.5.1.min.js"></script>
-   <script src="js/bootstrap.js"></script>
-   <script src="js/bootstrap.min.js"></script>
-   <!-- <script src="bootstrap.bundle.js"></script> -->
-   <!-- <script src="bootstrap.bundle.min.js"></script> -->
-   <script src="js/font-awesome.min.js"></script>
+   <script src="js/js/jquery-3.5.1.js"></script>
+   <script src="js/js/jquery-3.5.1.min.js"></script>
+   <script src="js/js/popper.min.js"></script>
+   <script src="js/js/bootstrap.js"></script>
+   <script src="js/js/bootstrap.min.js"></script>
+   <!-- <script src="js/js/bootstrap.bundle.js"></script> -->
+   <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
+   <script src="js/js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
 </body>
 

@@ -53,17 +53,17 @@ if (isset($_SESSION['login']) && isset($_SESSION['username'])) {
 
    $pemesanan = read("SELECT pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
    FROM pemesanan, produk 
-   WHERE pemesanan.id_produk = produk.id_produk && username = '$username' GROUP BY pemesanan.id_pemesanan");
+   WHERE pemesanan.id_produk = produk.id_produk && username = '$username' GROUP BY pemesanan.id_pemesanan ORDER BY pemesanan.waktu_pemesanan DESC");
 
    if (isset($_GET['pemesanan'])) {
       $id_pemesanan = $_GET['pemesanan'];
       $username = $_SESSION['username'];
-      $pemesanan = read("SELECT pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
+      $pemesanan_terakhir = read("SELECT pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
       FROM pemesanan, produk 
       WHERE pemesanan.id_produk = produk.id_produk && username = '$username' && pemesanan.id_pemesanan = '$id_pemesanan' LIMIT 1");
    }
 
    $pembayaran = read("SELECT pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
    FROM pemesanan, produk 
-   WHERE pemesanan.id_produk = produk.id_produk && username = '$username' ORDER BY pemesanan.waktu_pemesanan DESC LIMIT 1");
+   WHERE pemesanan.id_produk = produk.id_produk && username = '$username' GROUP BY pemesanan.id_pemesanan ORDER BY pemesanan.waktu_pemesanan DESC LIMIT 1");
 }

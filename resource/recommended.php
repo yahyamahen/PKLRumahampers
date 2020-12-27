@@ -4,11 +4,11 @@
    foreach ($marchendise as $data) : ?>
       <div class="card product-card" style="width: 15.2rem;">
          <div class="square mb-n2">
-            <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>" class=" card-img-top m-2 mb-n2" alt="product<?= $i ?>">
+            <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" class=" card-img-top m-2 mb-n2" alt="product<?= $i ?>">
          </div>
          <div class="card-body">
             <a href="produk_detail?produk=<?= $data['id_produk'] ?>" class="card-title product-title ml-n2"><?= $data['nama_produk'] ?></a>
-            <h5 class="card-text product-price ml-n2">Rp. <?= number_format($data['harga_produk']) ?></h5>
+            <h5 class="card-text product-price ml-n2">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
             <div class="action-button d-flex justify-content-end">
                <?php if (!isset($_SESSION['login'])) : ?>
                   <form action="" method="post">
