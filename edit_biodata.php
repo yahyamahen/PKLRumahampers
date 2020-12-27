@@ -48,7 +48,7 @@ if (isset($_POST["edit"])) {
       <div class="row">
          <div class="col-md-12">
             <form action="" class="row g-3" method="POST" enctype="multipart/form-data">
-               <div class="col-md-12 biodata-title mt-5">
+               <div class="col-md-12 biodata-title mt-5 mb-4">
                   <h3 class=" d-inline ml-4">BIODATA</h3>
                   <button type="submit" class="float-right mr-4 mt-n1 btn btn-outline-danger" type="submit" name="edit">Sunting</button>
                </div>
@@ -57,9 +57,11 @@ if (isset($_POST["edit"])) {
                      <input type="hidden" class="form-control" name="username" id="username" autocomplete="off" value="<?= $usr['username']; ?>">
                      <input type="hidden" class="form-control" name="gambar_lama" id="gambar_lama" autocomplete="off" value="<?= $usr['foto_profil']; ?>">
 
-                     <div class="pt-4 m-auto">
-                        <p class="text-center ml-n4"><img class="rounded-circle" src=" images/<?= $usr['username']; ?>/<?= $usr['foto_profil']; ?>" alt="profile"></p>
-                        <input type="file" name="gambar" id="gambar" class=" align-self-center ml-5">
+                     <div class="square m-auto">
+                        <img class="" src=" images/customers/<?= $usr['username']; ?>/<?= $usr['foto_profil']; ?>" alt="profile">
+                     </div>
+                     <div class="col-md-12 mt-4 ml-3 d-flex justify-content-center">
+                        <input type="file" name="gambar" id="gambar" class="align-self-center ml-5">
                      </div>
                      <div class="col-md-12 mt-3">
                         <label for="nama" class="form-label">Nama Lengkap *</label>

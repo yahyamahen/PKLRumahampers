@@ -43,21 +43,31 @@ if_not_login_back_to_home();
                      <th scope="col">Status Pemesanan </th>
                   </tr>
                </thead>
-               <tbody>
-                  <th scope="row">
-                     PG13451
-                     <a href="#" class="card-link d-block upload-bukti-pembayaran">Upload Bukti <br> Pembayaran</a></th>
-                  <td>
-                     <a href="produk_detail" class="produk-title">produk1</a>
-                     <a href="produk_detail" class="produk-title">produk1</a>
-                     <a href="produk_detail" class="produk-title">produk1</a>
-                  </td>
-                  <td align="center" class="total-riwayat-pembelian">Rp. 467.000</td>
-                  <td align="center">
-                     <p class="status-pembayaran">Menunggu Pembayaran</p>
-                  </td>
-                  </tr>
-               </tbody>
+               <?php foreach ($pemesanan as $data) : ?>
+                  <tbody>
+                     <form action="" method="post" enctype="multipart/form-data">
+                        <th scope="row">
+                           <?= $data['id_pemesanan'] ?>
+                           <label for="bukti_pembayaran" class="card-link d-block upload-bukti-pembayaran">Upload Bukti <br> Pembayaran
+                              <br><input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="ml-5 d-none"></label>
+
+                        </th>
+                     </form>
+                     <td>
+                        <?php
+                        $produk_pemesanan = read("SELECT produk.nama_produk FROM produk, pemesanan WHERE pemesanan.id_produk = produk.id_produk && pemesanan.username = 'yahyamahen' && pemesanan.id_pemesanan = '" . $data['id_pemesanan'] . "';");
+                        ?>
+                        <?php foreach ($produk_pemesanan as $prd) : ?>
+                           <a href=" produk_detail?produk=<?= $data['id_produk'] ?>" class="produk-title"><?= $prd['nama_produk'] ?></a>
+                        <?php endforeach; ?>
+                     </td>
+                     <td align="center" class="total-riwayat-pembelian">Rp. <?= number_format($data['total'], 0, ".", ".") ?></td>
+                     <td align="center">
+                        <p class="status-pembayaran"><?= $data['status_pemesanan'] ?></p>
+                     </td>
+                     </tr>
+                  </tbody>
+               <?php endforeach; ?>
             </table>
          </div>
       </div>

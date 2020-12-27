@@ -4,6 +4,8 @@ require_once "function.php";
 require_once "resource/access.php";
 require_once "model.php";
 
+$kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk'");
+
 ?>
 
 <!doctype html>
@@ -29,7 +31,9 @@ require_once "model.php";
    <!-- ==============================(WRITE YOUR) BODY (HERE)================================ -->
 
    <div class="container-main content row">
-      <a class="ml-4 mt-4 mb-3 sub-title" href="#">Sajadah</a>
+      <?php foreach ($kategori_list as $data) : ?>
+         <a class="ml-4 mt-4 mb-3 sub-title" href="#"><?= $data['kategori'] ?></a>
+      <?php endforeach; ?>
    </div>
 
    <div class="product-details mb-4">
@@ -53,16 +57,16 @@ require_once "model.php";
                   </div>
                <?php endforeach; ?>
 
-               <?php foreach ($produk as $pr) : ?>
+               <?php foreach ($produk as $data) : ?>
                   <div class="product-description float-left ml-5">
-                     <h4 class="produk-title mt-2"><?= $pr['nama_produk']; ?></h4>
-                     <p><?= $pr['deskripsi_produk']; ?></p>
+                     <h4 class="produk-title mt-2"><?= $data['nama_produk']; ?></h4>
+                     <p><?= $data['deskripsi_produk']; ?></p>
 
                      <div class="color-variant">
                         <p class="">Varian Warna</p>
                         <a href="#" class="btn btn-rounded-outline">
-                           <span><?= $pr['warna_produk'] ?></span>
-                           <span class="rounded-circle <?= $pr['warna_produk'] ?> ml-1">.....</span>
+                           <span><?= $data['warna_produk'] ?></span>
+                           <span class="rounded-circle <?= $data['warna_produk'] ?> ml-1">.....</span>
                         </a>
                         <!-- <a href="#" class="btn btn-rounded-outline">
                            <span>Hijau</span>
@@ -78,8 +82,12 @@ require_once "model.php";
                         </a> -->
                      </div>
 
-                     <p class="mt-3 d-inline mr-5">Stok tersedia : <strong><?= $pr['jumlah_produk'] ?></strong></p>
-                     <p class="mt-3 d-inline">Berat Produk : <strong><?= $pr['berat_produk'] ?> Kg</strong></p>
+                     <?php if (($data['jumlah_produk']) == 0) :  ?>
+                        <p class="mt-3 d-inline mr-5" style="color: red;"><strong>Stok Kosong</strong></p>
+                     <?php else :  ?>
+                        <p class="mt-3 d-inline mr-5">Stok tersedia : <strong><?= $data['jumlah_produk'] ?></strong></p>
+                     <?php endif; ?>
+                     <p class="mt-3 d-inline">Berat Produk : <strong><?= $data['berat_produk'] ?> Kg</strong></p>
 
                      <form action="" method="post">
                         <div class="input-group mt-4">
@@ -89,14 +97,16 @@ require_once "model.php";
                            <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
                         </div>
 
-                        <h4 class="mt-4 mb-4">Rp. <?= number_format($pr['harga_produk']) ?></h4>
+                        <h4 class="mt-4 mb-4">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h4>
 
                         <?php if (!isset($_SESSION['login'])) : ?>
                            <button class="btn product-action trolley-button mr-3" type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input">Tambahkan ke Trolley<i class="ml-2 fa fa-shopping-cart"></i></button>
                            <button class="btn product-action wishlist-button" type="button" name="add_wishlist" id="add_wishlist" data-toggle="modal" data-target="#form-input">Tambahkan ke Wishlist<i class="ml-2 fa fa-heart"></i></button>
                         <?php else :  ?>
                            <input type="hidden" name="username" id="username" value="<?= $username ?>">
-                           <input type="hidden" name="id_produk" id="id_produk" value="<?= $pr['id_produk'] ?>">
+                           <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                           <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                           <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
                            <button class="btn product-action trolley-button mr-3" type="submit" name="add_trolley" id="add_trolley">Tambahkan ke Trolley<i class="ml-2 fa fa-shopping-cart"></i></button>
                            <button class="btn product-action wishlist-button" type="submit" name="add_wishlist" id="add_wishlist">Tambahkan ke Wishlist<i class="ml-2 fa fa-heart"></i></button>
                         <?php endif; ?>

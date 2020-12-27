@@ -22,8 +22,19 @@
       .biodata-body {
          background-color: white;
          padding-bottom: 3em;
-         img {
-            width: 7em;
+         .square {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            width: 10em;
+            height: 10em;
+            flex-direction: column;
+            border-radius: 100em;
+            img {
+               align-self: center;
+               margin: auto;
+               width: 10em;
+            }
          }
 
          .alamat-lengkap {

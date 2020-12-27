@@ -71,14 +71,18 @@ if (isset($_GET["id_produk"])) {
                         <tr>
                            <th scope="row"><?= $data['id_produk'] ?></th>
                            <td class="d-flex">
-                              <div class="float-left">
-                                 <img class="mr-3" src="images/assets/Product1.png">
+                              <div class="float-left d-flex justify-content-center square">
+                                 <img class="mr-3 flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>">
                               </div>
                               <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $data['id_produk'] ?>"><?= $data['nama_produk']; ?></a>
                            </td>
                            <td class=" harga" align="center">Rp. <?= number_format($data['harga_produk']); ?>
                            </td>
-                           <td class="stok" align="center"><?= $data['jumlah_produk']; ?></td>
+                           <?php if ($data['jumlah_produk'] == 0) :  ?>
+                              <td style="color: red;"><strong>Stok Kosong</strong></td>
+                           <?php else : ?>
+                              <td class="stok" align="center"><?= $data['jumlah_produk']; ?></td>
+                           <?php endif; ?>
                            <td class="delete-wishlist" align="center"><a href="wishlist?id_produk=<?= $data['id_produk'] ?>"><i class="far fa-trash-alt"></i></a></td>
                         </tr>
                      <?php $i++;

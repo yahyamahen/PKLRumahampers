@@ -12,13 +12,13 @@ if (isset($_GET["cart"])) {
       echo
          "<script>
             alert('Produk pada cart Terhapus');
-            document.location.href='detail_pemesanan';
+            document.location.href='detail_pemesanan?id_kurir';
          </script>";
    } else {
       echo
          "<script>
             alert('Produk pada cart Tidak Dapat Terhapus');
-            document.location.href='detail_pemesanan';
+            document.location.href='detail_pemesanan?id_kurir'';
          </sciprt>";
       echo "<br> Error : " . mysqli_error($conn);
    }
@@ -34,7 +34,7 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
    } else {
       echo
          "<script>
-            alert('Cart diperbarui');
+            alert('Cart tidak diperbarui');
             document.location.href = 'detail_pemesanan?id_kurir';
          </script>";
    }
@@ -45,19 +45,35 @@ if (isset($_GET['id_kurir'])) {
    $total_checkout = read("SELECT id_kurir, nama_kurir, harga_per_4_kg FROM kurir WHERE id_kurir = '$id_kurir'");
 }
 
-
-if (isset($_POST["submit_pesan"]) && isset($_GET['id_kurir'])) {
-   if (insert_pemesanan($_POST) > 0) {
+if (isset($_POST["submit_pesan"])) {
+   if (!isset($_POST['setuju'])) {
       echo
          "<script>
-            alert('Terimakasih telah berbelanja di Rumahampers');
-            document.location.href = 'detail_pembayaran?kode_pemesanan';
+            alert('Checklist setuju persyaratan dan ketentuan');
+            document.location.href = 'detail_pemesanan?id_kurir';
          </script>";
    } else {
-      echo
-         "<script>
-            alert('Pilih kurir terlebih dahulu');
-         </script>";
+      if (trim($_GET['id_kurir']) == "") {
+         echo
+            "<script>
+               alert('Pilih kurir pengiriman');
+               document.location.href = 'detail_pemesanan?id_kurir';
+            </script>";
+      } else {
+         if (insert_pemesanan($_POST) > 0) {
+            echo
+               "<script>
+                  alert('Terimakasih telah berbelanja di Rumahampers');
+                  document.location.href = 'detail_pembayaran?pemesanan=';
+               </script>";
+         } else {
+            echo
+               "<script>
+                  alert('Pemesanan tidak dapat dilakukan');
+                  document.location.href = 'detail_pemesanan?id_kurir';
+               </script>";
+         }
+      }
    }
 }
 ?>
@@ -97,21 +113,21 @@ if (isset($_POST["submit_pesan"]) && isset($_GET['id_kurir'])) {
                      <label for="nama" class="form-label">Nama Lengkap *</label>
                      <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap Kamu" autocomplete="off" value="<?= $data['nama_lengkap'] ?>" required>
                   </div>
+
                   <div class="col-md-12 mt-3">
                      <label for="email" class="form-label">Email *</label>
                      <input type="email" class="form-control" name="email" id="email" placeholder="email@mail.com" autocomplete="off" value="<?= $data['email'] ?>" required>
                   </div>
-                  <!-- <div class="col-md-12 mt-3">
-                  <label for="password" class="form-label">Password *</label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="**********" autocomplete="off">
-               </div> -->
+
                   <div class="col-md-12 mt-3">
                      <label for="no_telp" class="form-label">No. Handphone *</label>
                      <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off" value="<?= $data['no_telp'] ?>" required min="0">
                   </div>
+
                   <div class="col-md-12 mt-3">
                      <label class="form-label">Alamat Pengiriman *</label>
                   </div>
+
                   <div class="col-md-12 d-flex">
                      <input type="text" class="form-control ml-1 mr-1" name="provinsi" id="provinsi" placeholder="Provinsi" value="<?= $data['provinsi'] ?>" required>
 
@@ -119,11 +135,13 @@ if (isset($_POST["submit_pesan"]) && isset($_GET['id_kurir'])) {
 
                      <input type="text" class="form-control ml-1 mr-1" name="kecamatan" id="kecamatan" placeholder="Kecamatan" value="<?= $data['kecamatan'] ?>" required>
                   </div>
+
                   <div class="col-md-12 mt-3 d-flex">
                      <textarea required rows="4" type="text" class="form-control alamat-lengkap ml-1 mr-1" name="alamat" id="alamat" placeholder="Alamat Lengkap"><?= $data['alamat_lengkap'] ?></textarea>
 
                      <input type="number" class="form-control w-25 ml-1 mr-1" name="kode_pos" id="kode_pos" placeholder="Kode Pos" autocomplete="off" value="<?= $data['kodepos'] ?>" min="0">
                   </div>
+
                   <div class="col-md-12 mt-3">
                      <label for="catatan" class="form-label">Catatan Pemesanan</label>
                      <textarea rows="4" type="textarea" class="form-control catatan-pemesanan" name="catatan_pemesanan" id="catatan_pemesanan"></textarea>
@@ -146,6 +164,9 @@ if (isset($_POST["submit_pesan"]) && isset($_GET['id_kurir'])) {
                      <tbody>
                         <?php foreach ($trolley as $data) : ?>
                            <input type="hidden" name="id[]" id="id" value="<?= $data['id'] ?>">
+                           <input type="hidden" name="id_produk[]" value="<?= $data['id_produk'] ?>">
+                           <input type="hidden" name="nama_produk[]" value="<?= $data['nama_produk'] ?>">
+                           <input type="hidden" name="jumlah_produk[]" value="<?= $data['jumlah_produk'] ?>">
                            <input type="hidden" name="username[]" id="username" value="<?= $data['username'] ?>">
                            <tr>
                               <td><a href="produk_detail?produk=<?= $data['id_produk'] ?>" class="produk-title" style="font-size: 1em;"><?= $data['nama_produk'] ?></a> <br> (Rp. <?= number_format($data['harga_produk']) ?>)</td>
@@ -220,7 +241,7 @@ if (isset($_POST["submit_pesan"]) && isset($_GET['id_kurir'])) {
                </div>
 
                <div class="persetujuan mt-3 ml-4 mb-2">
-                  <input class="form-check-input mt-2" type="checkbox" id="setuju">
+                  <input class="form-check-input mt-2" type="checkbox" name="setuju" id="setuju">
                   <label for="setuju">Saya menyetujui ketentuan & Syarat</label>
                </div>
 
@@ -230,7 +251,8 @@ if (isset($_POST["submit_pesan"]) && isset($_GET['id_kurir'])) {
                   <?php endforeach; ?>
 
                   <?php foreach ($trolley as $data) : ?>
-                     <input type="hidden" name="id_produk[]" id="id_produk" value="<?= $data['id_produk'] ?>">
+                     <input type="hidden" name="id_produk_pesan[]" id="id_produk_pesan" value="<?= $data['id_produk'] ?>">
+                     <input type="hidden" name="total_pcs[]" id="total_pcs" value="<?= $data['total_pcs'] ?>">
                   <?php endforeach; ?>
 
                   <?php foreach ($total_checkout as $data) : ?>

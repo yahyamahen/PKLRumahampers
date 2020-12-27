@@ -66,13 +66,15 @@
                         <span><?= count($trolley) ?></span>
                      </a>
                   </li>
-                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <li class="nav-item dropdown d-flex justify-content-center">
+                     <a class="nav-link dropdown-toggle square align-self-center ml-2 mr-n1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php if ($data['foto_profil'] == NULL) : ?>
                            <img class="profile" src="images/assets/guest_user.png" alt="profile">
                         <?php else : ?>
-                           <img class="profile" src="images/<?= $data['username'] ?>/<?= $data['foto_profil'] ?>" alt="profile">
+                           <img class="profile" src="images/customers/<?= $data['username'] ?>/<?= $data['foto_profil'] ?>" alt="profile">
                         <?php endif; ?>
+                     </a>
+                     <a class="nav-link dropdown-toggle align-self-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      </a>
                      <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="riwayat_pemesanan?username=<?= $data['username'] ?>">Riwayat Pemesanan</a>
@@ -86,11 +88,11 @@
             <?php endif; ?>
 
             <?php if (!isset($_SESSION['login'])) : ?>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <img class="profile" src="images/assets/guest_user.png" alt="profile">
+               <li class="nav-item dropdown d-flex justify-content-center">
+                  <a class="nav-link dropdown-toggle align-self-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <label class="mb-n1">LOGIN</label>
                   </a>
-                  <div class="dropdown-menu profile-dropdown dropdown-animation" aria-labelledby="navbarDropdown">
+                  <div class="dropdown-menu profile-dropdown-unlogin dropdown-animation" aria-labelledby="navbarDropdown">
                      <input type="button" class="btn dropdown-item tombolLogin" data-toggle="modal" data-target="#form-input" value="Login">
                      <input type="button" class="btn dropdown-item tombolRegister" data-toggle="modal" data-target="#form-register" value="Register">
                   </div>
@@ -107,7 +109,11 @@
 <?php if (isset($_SESSION['login'])) : ?>
    <?php foreach ($total_cart as $data) : ?>
       <div class="total-body float-right">
-         <span class="total-cart-floated">Rp. <?= number_format($data['total_cart']) ?> <a href="detail_pemesanan?id_kurir" class=" total-price"><i class="fa fa-shopping-cart"></i></a></span>
+         <?php if ($data['total_cart'] == 0) : ?>
+            <span class="total-cart-floated" style="font-size: 1em;">Yuk Tambah Hampers di Trolleymu! <a class=" total-price"><i class="fa fa-shopping-cart"></i></a></span>
+         <?php else : ?>
+            <span class="total-cart-floated">Rp. <?= number_format($data['total_cart']) ?> <a href="detail_pemesanan?id_kurir" class=" total-price"><i class="fa fa-shopping-cart"></i></a></span>
+         <?php endif; ?>
       </div>
    <?php endforeach; ?>
 <?php endif; ?>

@@ -34,53 +34,50 @@ function insert_pemesanan($data)
 {
    global $conn;
 
-   static $pemesanan;
-   $kode_pemesanan = "PG" . $pemesanan++;
-   $total_data = count($data['id_produk']);
+   $var_pemesanan = rand(1, 10000);
+   $id_pemesanan = "PG" . $var_pemesanan;
+   $total_data_cart = count($data['id_produk_pesan']);
+   // echo "Total Data : " . $total_data_cart . "<br>";
 
-   for ($i = 0; $i < $total_data; $i++) {
-      $id_pemesanan = htmlspecialchars($data['id_pemeesanan']);
+   for ($i = 0; $i < $total_data_cart; $i++) {
+      // $id_pemesanan = htmlspecialchars($data['id_pemeesanan']);
       $username = htmlspecialchars($data['username'][$i]);
       $id_produk = htmlspecialchars($data['id_produk'][$i]);
+      $total_pcs = htmlspecialchars($data['total_pcs'][$i]);
       $id_kurir = htmlspecialchars($data['id_kurir']);
       $nama_kurir = htmlspecialchars($data['nama_kurir']);
       $id_tujuan = htmlspecialchars($data['id_tujuan']);
       $tujuan_pengiriman = htmlspecialchars($data['tujuan_pengiriman']);
       $total_harga_pengiriman = htmlspecialchars($data['total_harga_pengiriman']);
-      $resi_pengiriman =  $kode_pemesanan . "/" . $id_produk . "/" . $nama_kurir . "_" . $id_kurir . "/" . $id_tujuan . "/" . date('d_M_Y', time());
+      $resi_pengiriman =  $id_pemesanan . "/" . $id_produk . "/" . $nama_kurir . "_" . $id_kurir . "/" . $id_tujuan . "/" . date('d_M_Y', time());
       $total = htmlspecialchars($data['total']);
       $bank_pembayaran = htmlspecialchars($data['bank_pembayaran']);
       $waktu_pemesanan = date("Y-m-d H:i:s", time());
       $status_pemesanan = "Menunggu Pembayaran";
       $catatan_pemesanan = htmlspecialchars($data['catatan_pemesanan']);
 
-      echo "Data - $i <br>";
-      echo "ID Pemesanan : " . $id_pemesanan . " <br>";
-      echo "Username : " . $username . " <br>";
-      echo "ID Produk : " . $id_produk . "<br>";
-      echo "ID Kurir : " . $id_kurir . "<br>";
-      echo "Nama Kurir : " . $nama_kurir . "<br>";
-      echo "ID Tujuan : " . $id_tujuan . "<br>";
-      echo "Tujuan Pengiriman : " . $tujuan_pengiriman . "<br>";
-      echo "Biaya Pengiriman : " . $total_harga_pengiriman . "<br>";
-      echo "Resi Pengiriman : " . $resi_pengiriman . "<br>";
-      echo "Kode Pemesanan : " . $kode_pemesanan . "<br>";
-      echo "Total : " . $total . "<br>";
-      echo "Bank Pembayarab : " . $bank_pembayaran . "<br>";
-      echo "Waktu Pemesanan : " . $waktu_pemesanan . "<br>";
-      echo "Status Pemesanan : " . $status_pemesanan . "<br>";
-      echo "Catatan Pemesanan : " . $catatan_pemesanan . "<br>";
-      echo "<br>";
+      // echo "Data - $i <br>";
+      // echo "ID Pemesanan : " . $id_pemesanan . " <br>";
+      // echo "Username : " . $username . " <br>";
+      // echo "ID Produk : " . $id_produk . "<br>";
+      // echo "Total Diambil : " . $total_pcs . "<br>";
+      // echo "ID Kurir : " . $id_kurir . "<br>";
+      // echo "Nama Kurir : " . $nama_kurir . "<br>";
+      // echo "ID Tujuan : " . $id_tujuan . "<br>";
+      // echo "Tujuan Pengiriman : " . $tujuan_pengiriman . "<br>";
+      // echo "Biaya Pengiriman : " . $total_harga_pengiriman . "<br>";
+      // echo "Resi Pengiriman : " . $resi_pengiriman . "<br>";
+      // echo "Total : " . $total . "<br>";
+      // echo "Bank Pembayarab : " . $bank_pembayaran . "<br>";
+      // echo "Waktu Pemesanan : " . $waktu_pemesanan . "<br>";
+      // echo "Status Pemesanan : " . $status_pemesanan . "<br>";
+      // echo "Catatan Pemesanan : " . $catatan_pemesanan . "<br>";
+      // echo "<br>";
 
-      $result = mysqli_query($conn, "SELECT * FROM pemesanan WHERE id_pemesanan = '$id_pemesanan'");
-
-      if (mysqli_fetch_assoc($result)) {
-         echo
-            "<script>
-            alert('Pemesanan sudah dilakukan');
-         </script>";
-         return false;
-      }
+      // $result = mysqli_query($conn, "SELECT id_pemesanan FROM pemesanan WHERE id_pemesanan = '$id_pemesanan'");
+      // if (mysqli_fetch_assoc($result)) {
+      //    $id_pemesanan = "PG" . rand();
+      // }
 
       $insertsql = "
       INSERT INTO pemesanan 
@@ -88,9 +85,14 @@ function insert_pemesanan($data)
       VALUES 
       ('$id_pemesanan', '$username', '$id_produk', '$id_kurir', '$resi_pengiriman', '$id_tujuan', '$total_harga_pengiriman', '$total', '$bank_pembayaran', '$waktu_pemesanan', '$status_pemesanan', '$catatan_pemesanan')";
       mysqli_query($conn, $insertsql);
-   }
 
-   $pemesanan++;
+      $updatesql = "UPDATE produk SET jumlah_produk = jumlah_produk - '$total_pcs' WHERE id_produk = '$id_produk';";
+      mysqli_query($conn, $updatesql);
+   }
+   $deletesql = "DELETE FROM trolley WHERE username = '$username';";
+   mysqli_query($conn, $deletesql);
+   // exit;
+
    echo mysqli_error($conn);
    return mysqli_affected_rows($conn);
 }
@@ -137,7 +139,19 @@ function update_cart($data)
    for ($i = 0; $i < $total_data; $i++) {
       $id = $data['id'][$i];
       $username = $data['username'][$i];
+      $id_produk = $data['id_produk'][$i];
+      $nama_produk = htmlspecialchars($data['nama_produk'][$i]);
       $total_pcs = htmlspecialchars($data['total_pcs'][$i]);
+      $jumlah_produk = htmlspecialchars($data['jumlah_produk'][$i]);
+
+      if ($total_pcs > $jumlah_produk) {
+         echo
+            "<script>
+               alert('Stok " . $nama_produk . " hanya " . $jumlah_produk . " ');   
+            </script>";
+         break;
+         exit;
+      }
 
       $query = "UPDATE trolley SET total_pcs = '$total_pcs' WHERE username = '$username' && id = '$id';";
       mysqli_query($conn, $query);
@@ -155,9 +169,9 @@ function upload()
 
    if ($error === 4) {
       echo
-         "<script>
+         "<scrip?>
    		alert('Pilih gambar terlebih dahulu');
-   	</script>";
+   	</scrip?>";
       return false;
    }
 
@@ -184,10 +198,10 @@ function upload()
 
    $path = "images/" . $_POST['username'];
    if (file_exists($path)) {
-      move_uploaded_file($tmpName, 'images/' . $_POST['username'] . "/" . $namaFileBaru);
+      move_uploaded_file($tmpName, 'images/customers/' . $_POST['username'] . "/" . $namaFileBaru);
    } else {
       mkdir($path, 0777, true);
-      move_uploaded_file($tmpName, 'images/' . $_POST['username'] . "/" . $namaFileBaru);
+      move_uploaded_file($tmpName, 'images/customers/' . $_POST['username'] . "/" . $namaFileBaru);
    }
 
    return $namaFileBaru;
@@ -204,7 +218,7 @@ function wishlist_trolley_added_notice()
                alert('Produk berhasil ditambahkan pada wishlist');
             </script>";
       } else {
-         echo "<script> alert('Error :  " . mysqli_error($conn) . "'</script>;";
+         // echo "<script> document.location.reload(); </script>";
       }
    }
 
@@ -215,7 +229,7 @@ function wishlist_trolley_added_notice()
                alert('Produk berhasil ditambahkan pada trolley');
             </script>";
       } else {
-         echo "<script> alert('Error :  " . mysqli_error($conn) . "'</script>;";
+         // echo "<script> document.location.reload(); </script>";
       }
    }
 }
@@ -246,6 +260,8 @@ function add_wishlist_trolley($data)
    if (isset($_POST['add_trolley'])) {
       $username = htmlspecialchars($data['username']);
       $id_produk = htmlspecialchars($data['id_produk']);
+      $nama_produk = htmlspecialchars($data['nama_produk']);
+      $jumlah_produk = htmlspecialchars($data['jumlah_produk']);
       $total_pcs = htmlspecialchars($data['total_pcs']);
 
       $result = mysqli_query($conn, "SELECT * FROM trolley WHERE username = '$username' && id_produk = '$id_produk';");
@@ -254,6 +270,14 @@ function add_wishlist_trolley($data)
          echo
             "<script>
                alert('Produk di trolley sudah ada');
+            </script>";
+         return false;
+      }
+
+      if ($total_pcs > $jumlah_produk) {
+         echo
+            "<script>
+               alert('Produk " . $nama_produk . " hanya " . $jumlah_produk . "');
             </script>";
          return false;
       }

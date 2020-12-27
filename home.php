@@ -33,7 +33,7 @@ require_once "model.php";
             <div class="head-promo">
                <?php if (isset($_SESSION['login'])) : ?>
                   <?php foreach ($user as $usr) : ?>
-                     <h3 style="color: white;">Selamat Datang <?= $usr['nama_lengkap'] ?> </h3>
+                     <h3 class="greeting-customers">Selamat Datang <?= $usr['nama_lengkap'] ?> </h3>
                   <?php endforeach; ?>
                <?php endif; ?>
                <h1>Dapatkan paket terbaik</h1>

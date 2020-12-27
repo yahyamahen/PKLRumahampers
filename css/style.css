@@ -104,6 +104,18 @@
   text-align: center;
 }
 
+.image-bg .hero .head-promo .greeting-customers {
+  color: white;
+  font-size: 1.6em;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+  text-shadow: 1px 1px 10px rgba(54, 54, 54, 0.9);
+  background-color: rgba(152, 175, 187, 0.6);
+  padding: 0.4em 1em 0.4em 1em;
+  border: 3px solid rgba(121, 151, 167, 0.8);
+  border-radius: 100em;
+}
+
 .image-bg .hero .head-promo h1 {
   margin-bottom: 0.5em;
   color: white;
@@ -431,13 +443,6 @@
   margin: 0.4em;
 }
 
-@media screen and (max-width: 992px) {
-  .image-bg .hero {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .image-bg .marchendise-list {
   margin: auto;
   margin-top: 2em;
@@ -718,20 +723,20 @@ body .cart-detail .pesan-button:hover, body .cart-detail .pesan-button:active, b
   background-color: #e5998a;
 }
 
-.white-bg .detail-pembayaran {
+.image-bg .detail-pembayaran {
   padding: 2em;
   background-color: white;
 }
 
-.white-bg .detail-pembayaran a {
+.image-bg .detail-pembayaran a {
   color: #a68d89;
 }
 
-.white-bg .detail-pembayaran a:hover {
+.image-bg .detail-pembayaran a:hover {
   color: #816661;
 }
 
-.white-bg .detail-pembayaran W .total-pembayaran {
+.image-bg .detail-pembayaran W .total-pembayaran {
   color: #e18a79;
   font-size: 1.5em;
   font-weight: 700;
@@ -741,23 +746,23 @@ body .cart-detail .pesan-button:hover, body .cart-detail .pesan-button:active, b
   border-radius: 100em;
 }
 
-.white-bg .detail-pembayaran .kode-pemesanan {
+.image-bg .detail-pembayaran .kode-pemesanan {
   font-size: 1.5em;
   margin: 0em 22em 0em 22em;
   padding: 0.5em 1em 0.5em 1em;
   border: 1px solid #b6b6b6;
 }
 
-.white-bg .bank-list img {
+.image-bg .bank-list img {
   width: 10em;
   vertical-align: middle;
 }
 
-.white-bg .bank-list span {
+.image-bg .bank-list span {
   font-size: 0.8em;
 }
 
-.white-bg .bank-list a {
+.image-bg .bank-list a {
   font-size: 0.9em;
 }
 
@@ -829,8 +834,20 @@ body .riwayat-pemesanan table td {
   padding-bottom: 3em;
 }
 
-.white-bg form .biodata-body img {
-  width: 7em;
+.white-bg form .biodata-body .square {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 10em;
+  height: 10em;
+  flex-direction: column;
+  border-radius: 100em;
+}
+
+.white-bg form .biodata-body .square img {
+  align-self: center;
+  margin: auto;
+  width: 10em;
 }
 
 .white-bg form .biodata-body .alamat-lengkap {
@@ -890,9 +907,16 @@ body .modal-button:hover {
   vertical-align: middle;
 }
 
+.white-bg .wishlist-table td .square,
+.white-bg .wishlist-table th .square {
+  width: 7em;
+  height: 7em;
+}
+
 .white-bg .wishlist-table td img,
 .white-bg .wishlist-table th img {
-  width: 7em;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .white-bg .harga {
@@ -931,9 +955,16 @@ body .modal-button:hover {
   vertical-align: middle;
 }
 
-.white-bg .trolley-table td img,
-.white-bg .trolley-table th img {
+.white-bg .trolley-table td .square,
+.white-bg .trolley-table th .square {
   width: 7em;
+  height: 7em;
+}
+
+.white-bg .trolley-table td .square img,
+.white-bg .trolley-table th .square img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .white-bg .sub-total {
@@ -993,6 +1024,10 @@ body .navbar-main {
 }
 
 body .navbar-main .profile-dropdown {
+  margin-left: -8em;
+}
+
+body .navbar-main .profile-dropdown-unlogin {
   margin-left: -7.2em;
 }
 
@@ -1001,9 +1036,17 @@ body .navbar-main .logo-home {
   margin-left: -9em;
 }
 
-body .navbar-main .profile {
-  width: 2em;
-  border-radius: 50%;
+body .navbar-main .square {
+  overflow: hidden;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 100em;
+}
+
+body .navbar-main .square .profile {
+  align-self: center;
+  margin: -1em 0em 0em -0.6em;
+  width: 2.4em;
 }
 
 body .navbar-main .motto-bar {
@@ -1079,14 +1122,26 @@ body .footer .pembayaran ul li img {
     text-align: center;
     border-bottom: 0.3px solid white;
   }
-  body .navbar-main li .profile-dropdown {
+  body .navbar-main li .profile-dropdown,
+  body .navbar-main li .profile-dropdown-unlogin {
     margin-left: 0em;
+  }
+  body .navbar-main li .square {
+    overflow: hidden;
+    width: 2.2em;
+    height: 2.2em;
+    border-radius: 100em;
+  }
+  body .navbar-main li .square .profile {
+    align-self: center;
+    margin: -1em 0em 0em 0em;
+    width: 2.4em;
   }
   body .hero {
     height: 23em;
   }
   body .hero .head-promo {
-    margin-top: -2em;
+    margin-top: -10em;
   }
   body .hero .head-promo h1 {
     font-size: 2em;

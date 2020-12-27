@@ -6,6 +6,12 @@ require_once "resource/access.php";
 require_once "model.php";
 if_not_login_back_to_home();
 
+if (isset($_GET['pemesanan'])) {
+   if (trim($_GET['pemesanan'] != "")) {
+      $id_pemesanan = $_GET['pemesanan'];
+   }
+}
+
 ?>
 
 <!doctype html>
@@ -24,7 +30,7 @@ if_not_login_back_to_home();
 
 </head>
 
-<body class="white-bg">
+<body class="image-bg">
    <!-- ====================================== NAVBAR ======================================== -->
    <?php require_once "navbar.php" ?>
 
@@ -34,10 +40,26 @@ if_not_login_back_to_home();
          <div class="col-md-12">
             <h3 class="sub-title mt-4">Pembayaran</h3>
             <div class="detail-pembayaran text-center">
-               <p><strong>KODE PEMESANAN</strong></p>
-               <h5 class="kode-pemesanan">PG13451</h5>
-               <p>Lakukan transfer pada salah satu rekening bank dibawah sejumlah</p>
-               <h5 class="total-pembayaran">RP. 476.000</h5>
+               <?php if (isset($_GET['pemesanan']) && trim($_GET['pemesanan'] != "")) : ?>
+                  <?php foreach ($pemesanan as $data) : ?>
+                     <p><strong>KODE PEMESANAN</strong></p>
+                     <h5 class="kode-pemesanan"><?= $data['id_pemesanan'] ?></h5>
+                     <p>Lakukan transfer sebelum <strong><?php
+                                                         $timestamp = strtotime($data['waktu_pemesanan']);
+                                                         echo date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1) ?></strong><br> Pada salah satu rekening bank dibawah sejumlah </p>
+                     <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
+                  <?php endforeach; ?>
+               <?php else : ?>
+                  <?php foreach ($pembayaran as $data) : ?>
+                     <p><strong>KODE PEMESANAN</strong></p>
+                     <h5 class="kode-pemesanan"><?= $data['id_pemesanan'] ?></h5>
+                     <p>Lakukan transfer sebelum <strong><?php
+                                                         $timestamp = strtotime($data['waktu_pemesanan']);
+                                                         echo date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1) ?></strong><br> Pada salah satu rekening bank dibawah sejumlah </p>
+                     <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
+                  <?php endforeach; ?>
+               <?php endif; ?>
+
                <a href="" class=" card-link">SALIN NOMINAL</a>
                <div class="bank-list d-flex justify-content-center mt-4">
                   <li class="list-inline mr-5 ml-5 d-flex flex-column">
@@ -67,7 +89,6 @@ if_not_login_back_to_home();
                </div>
                <p class="mt-4">Jika pembayaran tidak otomatis terproses lakukan konfirmasi pembayaran pada riwayat pemesanan</p>
             </div>
-
          </div>
       </div>
    </div>

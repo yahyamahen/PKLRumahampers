@@ -29,13 +29,13 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
    if (update_cart($_POST) > 0) {
       echo
          "<script>
-            alert('Trolley diperbarui');
+            // alert('Trolley diperbarui');
             document.location.href='trolley?trolley=" . $username . "';
          </script>";
    } else {
       echo
          "<script>
-            alert('Trolley diperbarui');
+            // alert('Trolley diperbarui');
             document.location.href='trolley?trolley=" . $username . "';
          </script>";
    }
@@ -90,21 +90,23 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
                            <tr>
                               <input type="hidden" name="id[]" id="id" value="<?= $data['id'] ?>">
                               <input type="hidden" name="username[]" id="username" value="<?= $data['username'] ?>">
+                              <input type="hidden" name="id_produk[]" id="id_produk" value="<?= $data['id_produk'] ?>">
+                              <input type="hidden" name="nama_produk[]" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                              <input type="hidden" name="jumlah_produk[]" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
                               <th scope="row"><?= $data['id_produk'] ?></th>
                               <td class="d-flex">
-                                 <div class="float-left">
-                                    <img class="mr-3" src="images/assets/Product1.png">
+                                 <div class="float-left d-flex justify-content-center square">
+                                    <img class="mr-3 flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>">
                                  </div>
-                                 <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $data['id_produk']; ?>"><?= $data['nama_produk']; ?></a>
+                                 <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $data['id_produk']; ?>"><?= $data['nama_produk']; ?><p class="" style="font-size: 0.9em; color:grey"> Stok <= <?= $data['jumlah_produk'] ?></p> </a> </td> <td class="harga" align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", "."); ?>
                               </td>
-                              <td class="harga" align="center">Rp. <?= number_format($data['harga_produk']); ?></td>
                               <td class="stok-trolley" align="center">
                                  <div class="input-group">
                                     <button class="ml-2 btn btn-outline-secondary add_pcs" type="button">-</button>
                                     <input type="number" class="form-control form_pcs" placeholder="<?= $data['total_pcs'] ?>" value="<?= $data['total_pcs'] ?>" name="total_pcs[]" min="1">
                                     <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
                                  </div>
-                              <td class="jumlah-trolley harga" align="center">Rp. <?= number_format($data['total_pcs'] * $data['harga_produk']); ?></td>
+                              <td class="jumlah-trolley harga" align="center">Rp. <?= number_format($data['total_pcs'] * $data['harga_produk'], 0, ".", "."); ?></td>
                               <td class="delete-trolley" align="center"><a href="trolley?id_produk=<?= $data['id_produk'] ?>" onclick="confirm('Ingin menghapus dari trolley?');"><i class="far fa-trash-alt"></i></a></td>
                            </tr>
                         <?php $i++;
@@ -114,7 +116,7 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
                   <a class="nav-link ml-4 d-inline"><input style="font-weight: 700;" type="submit" class="btn" name="update_cart2" id="update_cart2" value="Update Cart"></a>
                   <div class="subtotal-body float-right mr-4">
                      <?php foreach ($total_cart as $data) : ?>
-                        <span class="sub-total pl-3">SUB-TOTAL<button type="submit" class="btn total-harga mt-n1 mr-n1 ml-2" name="update_cart" id="update_cart">Rp. <?= $data['total_cart'] ?></button></span>
+                        <span class="sub-total pl-3">SUB-TOTAL<button type="submit" class="btn total-harga mt-n1 mr-n1 ml-2" name="update_cart" id="update_cart">Rp. <?= number_format($data['total_cart'], 0, ".", ".") ?></button></span>
                      <?php endforeach; ?>
                   </div>
                </form>

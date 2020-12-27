@@ -155,13 +155,13 @@ if (isset($_GET['filter-harga-btn'])) {
                   <?php endforeach; ?>
                <?php else : ?>
                   <?php foreach ($marchendise as $data) : ?>
-                     <div class="card product-card" style="width: 15.4rem;">
-                        <div class="square">
-                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>" class="card-img-top m-2 mb-n2" alt="product1">
+                     <div class="card product-card" style="width: 15.2rem;">
+                        <div class="square mb-n2">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['foto_produk'] ?>" class="card-img-top mt-2" alt="product1">
                         </div>
                         <div class="card-body">
-                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>" class="card-title product-title"><?= $data['nama_produk'] ?></a>
-                           <h5 class="card-text product-price">Rp. <?= number_format($data['harga_produk']) ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>" class="card-title product-title ml-n2"><?= $data['nama_produk'] ?></a>
+                           <h5 class="card-text product-price ml-n2">Rp. <?= number_format($data['harga_produk']) ?></h5>
                            <div class="action-button float-right d-flex">
                               <?php if (!isset($_SESSION['login'])) : ?>
                                  <form action="" method="post">
@@ -175,6 +175,8 @@ if (isset($_GET['filter-harga-btn'])) {
                                  <form action="" method="post">
                                     <input type="hidden" name="username" id="username" value="<?= $username ?>">
                                     <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                    <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                    <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
                                     <input type="hidden" name="total_pcs" id="total_pcs" value="1">
                                     <button type="submit" name="add_wishlist" id="add_wishlist"><i class="heart-wishtlist fa fa-heart"></i></button>
                                     <button type="submit" name="add_trolley" id="add_trolley"><i class="cart-trolley fa fa-shopping-cart"></i></button>
