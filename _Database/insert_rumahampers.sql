@@ -30,6 +30,19 @@ INSERT INTO produk VALUES
 ('SR3', 'Sarung', 'Sarung Madinah', '80000', '4', '0.4', 'Sarung Dari Madinah', 'SR3_0.jpg', 'Merah'),
 ('SR4', 'Sarung', 'Sarung Istanbul', '140000', '3', '0.4', 'Sarung Dari Istanbul', 'SR4_0.jpg', 'Hitam'),
 ('SR5', 'Sarung', 'Sarung Al-Aqsa', '200000', '3', '0.4', 'Sarung Dari Al-Aqsa', 'SR5_0.jpg', 'Hijau');
+
+
+INSERT INTO produk VALUES 
+('PB1', 'Paket Bundle', 'Paket Almahira', '120000', '5', '0.5', 'Quran A5 dan Tasbih 33 Biji', 'PB1_0.jpg', 'Pink'), 
+('PB2', 'Paket Bundle', 'Paket Azzahra', '170000', '5', '0.5', 'Quran A5, Sajadah Madinah dan Tasbih 33 Biji', 'PB2_0.jpg', 'Pink'),
+('PB3', 'Paket Bundle', 'Paket Aaliyah', '300000', '5', '0.6', 'Quran A5, Mukenah Makkah dan Tasbih 33 Biji', 'PB3_0.jpg', 'Pink'),
+('PB4', 'Paket Bundle', 'Paket Ahsan', '250000', '5', '0.6', 'Quran A5, Sajadah Turki dan Tasbih 33 Biji (Free Kopyah Putih)', 'PB4_0.jpg', 'Coklat'),
+('PB5', 'Paket Bundle', 'Paket Dhiya', '200000', '5', '0.6', 'Quran A5, Sajadah Turki dan Tasbih 33 Biji', 'PB5_0.jpg', 'Putih'),
+('PB6', 'Paket Bundle', 'Paket Hanaa', '350000', '5', '0.6', 'Mukenah Turki, Sajadah Turki dan Tasbih 33 Biji', 'PB6_0.jpg', 'Silver'),
+('PB7', 'Paket Bundle', 'Paket Jazeera', '400000', '5', '0.7', 'Quran A5, Sajadah Madinah, Mukenah Makkah dan Tasbih 33 Biji', 'PB7_0.jpg', 'Coklat'),
+('PB8', 'Paket Bundle', 'Paket Balqis', '150000', '5', '0.5', 'Sajadah Turki dan Tasbih 33 Biji', 'PB8_0.jpg', 'Coklat');
+
+
 SELECT * FROM produk;
 -- DELETE FROM produk;
 
