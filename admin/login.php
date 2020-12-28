@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
+   <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <title>Admin Rumahampers</title>
+
+</head>
+
+<body class="login-body">
+   <div class="row login-frame">
+      <div class="col-md-5 d-flex flex-column justify-content-center">
+         <div class="header-title mb-4 ml-4 align-self-center">
+            <h1>SiPesan</h1>
+            <h5>(Sistem Informasi Surat Pengantar Perusahaan)</h5>
+         </div>
+         <div class="form-login-body align-self-center">
+            <h3>Masuk</h3>
+            <form action="" method="POST" class="row g-1" id="form-login">
+               <div class="form-group col-md-12">
+                  <label for="npm">NPM</label>
+                  <input class="form-control" type="text" id="npm" name="npm" placeholder="NPM">
+               </div>
+
+               <div class="form-group col-md-12">
+                  <label for="pass">Password</label>
+                  <input class="form-control" type="password" id="password" name="password" placeholder="*********">
+               </div>
+
+               <div class="col-12">
+                  <div class="form-check text-center">
+                     <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                     <label class="form-check-label" for="remember"> Remember Me</label>
+                  </div>
+               </div>
+
+               <div class=" form-group col-md-12 mt-2">
+                  <button type="submit" name="login" id="login" class="form-control btn btn-primary"> MASUK </button>
+               </div>
+               <!-- <?php if (isset($error)) : ?>
+                  <div class="form-group col-md-12">
+                     <p class="text-center" style="color: red; font-style: italic;">NPM / password salah</p>
+                  </div>
+               <?php endif; ?> -->
+            </form>
+            <div class="text-center mb-2 col-md-12"><a href="register">Register Akun</a></div>
+            <div class="text-center col-md-12">Lupa Password? <a href="#">Hubungi Admin</a></div>
+         </div>
+      </div>
+
+      <div class="col-md-7">
+         <div class="hero">
+            <!-- <img src="images/login-bg.png" alt="bg"> -->
+         </div>
+      </div>
+   </div>
+
+   <script src="../js/js/jquery-3.5.1.js"></script>
+   <script src="../js/js/jquery-3.5.1.min.js"></script>
+   <script src="../js/js/popper.min.js"></script>
+   <script src="../js/js/bootstrap.js"></script>
+   <script src="../js/js/bootstrap.min.js"></script>
+   <!-- <script src="../js/js/bootstrap.bundle.js"></script> -->
+   <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
+   <script src="../js/js/font-awesome.min.js"></script>
+   <script src="js/script.js"></script>
+</body>
+
+</html>

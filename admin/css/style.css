@@ -1,0 +1,160 @@
+.login-body {
+  background-color: white;
+}
+
+.login-body .login-frame {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.login-body .login-frame .form-login-body {
+  width: 70%;
+}
+
+.login-body a {
+  text-decoration: none;
+}
+
+.login-body ul li {
+  list-style-type: none;
+}
+
+.login-body .hero {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #eaeaea;
+  background-image: url("../images/login-bg.png");
+}
+
+.register-body {
+  background-color: white;
+}
+
+.register-body .register-frame {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.register-body .register-frame .form-register-body {
+  width: 70%;
+}
+
+.register-body a {
+  text-decoration: none;
+}
+
+.register-body ul li {
+  list-style-type: none;
+}
+
+.register-body .hero {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../images/register-bg.png");
+}
+
+.register-body .hero .header-title {
+  padding-top: 3em;
+  padding-left: 5em;
+  color: white;
+  text-shadow: 2px 2px 10px #444444;
+}
+
+body .akun-body {
+  background-color: white;
+  margin: 2em 2em 2em 1em;
+  padding-bottom: 2em;
+}
+
+body .profile-details img {
+  width: 8em;
+}
+
+body .modal .modal-title {
+  margin-left: 7.6em;
+}
+
+body .modal form {
+  padding: 0em 1.5em 0em 1.5em;
+}
+
+body .modal form input {
+  margin-bottom: 0.5em;
+}
+
+body .modal form input [type="file"] {
+  margin-top: 0.3em;
+}
+
+body .modal form img {
+  margin-right: 0.7em;
+}
+
+body .modal form .profile-photo {
+  width: 2.5em;
+}
+
+body {
+  background-color: #dfdfdf;
+}
+
+body .sidebar {
+  height: 100%;
+  background-color: white;
+  padding: 2em 1.5em 2em 2em;
+}
+
+body .sidebar .profile {
+  border-bottom: 1px solid #999999;
+}
+
+body .sidebar .profile img {
+  align-self: center;
+  width: 5em;
+}
+
+body .sidebar .profile a,
+body .sidebar .profile p {
+  align-self: center;
+}
+
+body .sidebar .menu-bar .hub-admin-btn {
+  margin-top: 14em;
+}
+
+body .content {
+  padding: 2em 3em 2em 3em;
+  margin: 2em 2em 2em 1em;
+  background-color: white;
+}
+
+body .content .profile-details img {
+  width: 7em;
+}
+
+body .content .table-main table th {
+  text-align: center;
+}
+
+body .content .table-main table th,
+body .content .table-main table td {
+  vertical-align: middle;
+}
+
+body .content .table-main table th img,
+body .content .table-main table td img {
+  width: 4em;
+}
+
+body .modal .modal-title {
+  margin-left: 16.5em;
+}
+/*# sourceMappingURL=style.css.map */

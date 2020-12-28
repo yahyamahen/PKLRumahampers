@@ -58,23 +58,23 @@ function insert_pemesanan($data)
       $status_pemesanan = "Menunggu Pembayaran";
       $catatan_pemesanan = htmlspecialchars($data['catatan_pemesanan']);
 
-      // echo "Data - $i <br>";
-      // echo "ID Pemesanan : " . $id_pemesanan . " <br>";
-      // echo "Username : " . $username . " <br>";
-      // echo "ID Produk : " . $id_produk . "<br>";
-      // echo "Total Diambil : " . $total_pcs . "<br>";
-      // echo "ID Kurir : " . $id_kurir . "<br>";
-      // echo "Nama Kurir : " . $nama_kurir . "<br>";
-      // echo "ID Tujuan : " . $id_tujuan . "<br>";
-      // echo "Tujuan Pengiriman : " . $tujuan_pengiriman . "<br>";
-      // echo "Biaya Pengiriman : " . $total_harga_pengiriman . "<br>";
-      // echo "Resi Pengiriman : " . $resi_pengiriman . "<br>";
-      // echo "Total : " . $total . "<br>";
-      // echo "Bank Pembayarab : " . $bank_pembayaran . "<br>";
-      // echo "Waktu Pemesanan : " . $waktu_pemesanan . "<br>";
-      // echo "Status Pemesanan : " . $status_pemesanan . "<br>";
-      // echo "Catatan Pemesanan : " . $catatan_pemesanan . "<br>";
-      // echo "<br>";
+      echo "Data - $i <br>";
+      echo "ID Pemesanan : " . $id_pemesanan . " <br>";
+      echo "Username : " . $username . " <br>";
+      echo "ID Produk : " . $id_produk . "<br>";
+      echo "Total Diambil : " . $total_pcs . "<br>";
+      echo "ID Kurir : " . $id_kurir . "<br>";
+      echo "Nama Kurir : " . $nama_kurir . "<br>";
+      echo "ID Tujuan : " . $id_tujuan . "<br>";
+      echo "Tujuan Pengiriman : " . $tujuan_pengiriman . "<br>";
+      echo "Biaya Pengiriman : " . $total_harga_pengiriman . "<br>";
+      echo "Resi Pengiriman : " . $resi_pengiriman . "<br>";
+      echo "Total : " . $total . "<br>";
+      echo "Bank Pembayarab : " . $bank_pembayaran . "<br>";
+      echo "Waktu Pemesanan : " . $waktu_pemesanan . "<br>";
+      echo "Status Pemesanan : " . $status_pemesanan . "<br>";
+      echo "Catatan Pemesanan : " . $catatan_pemesanan . "<br>";
+      echo "<br>";
 
       // $result = mysqli_query($conn, "SELECT id_pemesanan FROM pemesanan WHERE id_pemesanan = '$id_pemesanan'");
       // if (mysqli_fetch_assoc($result)) {
@@ -91,9 +91,10 @@ function insert_pemesanan($data)
       $updatesql = "UPDATE produk SET jumlah_produk = jumlah_produk - '$total_pcs' WHERE id_produk = '$id_produk';";
       mysqli_query($conn, $updatesql);
    }
+
+   // exit;
    $deletesql = "DELETE FROM trolley WHERE username = '$username';";
    mysqli_query($conn, $deletesql);
-   // exit;
 
    echo mysqli_error($conn);
    return mysqli_affected_rows($conn);

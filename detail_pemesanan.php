@@ -300,7 +300,7 @@ if (isset($_POST["submit_pesan"])) {
 
                   <?php foreach ($harga_pengiriman as $data) : ?>
                      <input type="hidden" name="id_tujuan" id="id_tujuan" value="<?= $data['id_tujuan'] ?>">
-                     <input type="hidden" name="tujuan_pengiriman" id="tujuan_pengiriman" value="<?= $data['kota'] ?>">
+                     <input type="hidden" name="tujuan_pengiriman" id="tujuan_pengiriman" value="<?= $data['kota_customers'] ?>">
                   <?php endforeach; ?>
 
                   <input type="hidden" name="id_pemesanan" id="id_pemesanan">

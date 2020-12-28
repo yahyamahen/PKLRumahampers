@@ -10,6 +10,7 @@ function if_not_login_back_to_home()
       exit;
    }
 }
+
 $marchendise_list = read("SELECT kategori FROM produk GROUP BY kategori ORDER BY kategori ASC;");
 
 if (isset($_GET['produk'])) {
