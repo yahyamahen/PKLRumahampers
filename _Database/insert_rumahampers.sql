@@ -1,7 +1,12 @@
-INSERT INTO customers VALUES 
-('123', '$2y$10$9c0JVxlUE7BFwdgYxq/gVeOqt2YuWNz6y1Y4SWkRub68hnZPP/Pgm' ,'123' ,'123@123' ,'123' ,'2003-01-02' ,'Jawa Timur', 'Surabaya', 'Lakarsantri', 'Jl. Lakarsantri 1 No. 3 RT01 RW01', '123'),
-('yahyamahen', '$2y$10$9c0JVxlUE7BFwdgYxq/gVeOqt2YuWNz6y1Y4SWkRub68hnZPP/Pgm' ,'Rizqi Yahya Mahendra' ,'kiky.mahendra21@gmail.com' ,'085649572121' ,'2000-07-11' ,'Jawa Timur', 'Surabaya', 'Lakarsantri', 'Jl. Lakarsantri 1 No. 3 RT01 RW01', '60211');
-SELECT * FROM customers;
+-- INSERT INTO admin VALUES 
+-- ('','admin1','123','admin@admin','foto_admin1.jpg');
+-- SELECT * FROM admin;
+-- DELETE FROM admin;
+
+-- INSERT INTO customers VALUES 
+-- ('123', '$2y$10$9c0JVxlUE7BFwdgYxq/gVeOqt2YuWNz6y1Y4SWkRub68hnZPP/Pgm' ,'123' ,'123@123' ,'123' ,'2003-01-02' ,'Jawa Timur', 'Surabaya', 'Lakarsantri', 'Jl. Lakarsantri 1 No. 3 RT01 RW01', '123'),
+-- ('yahyamahen', '$2y$10$9c0JVxlUE7BFwdgYxq/gVeOqt2YuWNz6y1Y4SWkRub68hnZPP/Pgm' ,'Rizqi Yahya Mahendra' ,'kiky.mahendra21@gmail.com' ,'085649572121' ,'2000-07-11' ,'Jawa Timur', 'Surabaya', 'Lakarsantri', 'Jl. Lakarsantri 1 No. 3 RT01 RW01', '60211');
+-- SELECT * FROM customers;
 -- DELETE FROM customers;
 
 INSERT INTO produk VALUES  
@@ -73,21 +78,21 @@ INSERT INTO list_tujuan_pengiriman VALUES
 SELECT * FROM list_tujuan_pengiriman;
 -- DELETE FROM list_tujuan_pengiriman;
 
-INSERT INTO wishlist VALUES
-('', '123', 'QR1'),
-('', '123','SJ4'),
-('', 'yahyamahen', 'SJ2'),
-('', 'yahyamahen','TB3');
-SELECT * FROM wishlist;
+-- INSERT INTO wishlist VALUES
+-- ('', '123', 'QR1'),
+-- ('', '123','SJ4'),
+-- ('', 'yahyamahen', 'SJ2'),
+-- ('', 'yahyamahen','TB3');
+-- SELECT * FROM wishlist;
 -- DELETE FROM wishlist;
 
-INSERT INTO trolley VALUES
-('', '123', 'SJ3', '2'),
-('', '123','SR2', '1'),
-('', 'yahyamahen', 'TB1', '1'),
-('', 'yahyamahen','QR3', '1');
-SELECT * FROM trolley;
+-- INSERT INTO trolley VALUES
+-- ('', '123', 'SJ3', '2'),
+-- ('', '123','SR2', '1'),
+-- ('', 'yahyamahen', 'TB1', '1'),
+-- ('', 'yahyamahen','QR3', '1');
+-- SELECT * FROM trolley;
 -- DELETE FROM trolley;
 
-SELECT * FROM pemesanan;
+-- SELECT * FROM pemesanan;
 -- DELETE FROM pemesanan;

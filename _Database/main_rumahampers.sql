@@ -1,6 +1,18 @@
 /*==============================================================*/
 /* Table: CUSTOMERS                                             */
 /*==============================================================*/
+CREATE TABLE admin (
+   id 			INT 		PRIMARY KEY 	NOT NULL 	AUTO_INCREMENT,
+   id_admin 		VARCHAR(255) 			NOT NULL,
+   pass 		VARCHAR(255) 			NOT NULL,
+   email 		VARCHAR(255) 			NULL,
+   foto_admin		VARCHAR(255)			NULL
+);
+
+
+/*==============================================================*/
+/* Table: CUSTOMERS                                             */
+/*==============================================================*/
 CREATE OR REPLACE TABLE customers 
 (
    username    		CHAR(100)	PRIMARY KEY      NOT NULL,
