@@ -5,6 +5,23 @@ require_once "resource/access.php";
 require_once "model.php";
 if_not_login_back_to_home();
 
+if (isset($_POST["upload_bukti_pembayaran_btn"])) {
+   if (update_pemesanan($_POST) > 0) {
+      echo
+         "<script>
+            alert('Berhasil upload bukti pembayaran');
+            document.location.href = 'riwayat_pemesanan?username=" . $username . "';
+		</script>";
+   } else {
+      echo
+         "<script>
+         alert('Tidak berhasil upload bukti pembayaran');
+			document.location.href = 'riwayat_pemesanan?username=" . $username . "';
+		</script>";
+      echo "<br> Error : " . mysqli_error($conn);
+   }
+}
+
 ?>
 
 <!doctype html>
@@ -47,18 +64,28 @@ if_not_login_back_to_home();
                   <tbody>
                      <form action="" method="post" enctype="multipart/form-data">
                         <th scope="row">
+                           <?= $data['id_pemesanan'] ?>
                            <?php if ($data['status_pemesanan'] == 'Menunggu Pembayaran') : ?>
-                              <?= $data['id_pemesanan'] ?>
                               <?php
                               $timestamp = strtotime($data['waktu_pemesanan']);
                               $limitdate = date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1);
                               $curdate = date("d M Y H:i", time());
                               ?>
                               <?php if ($limitdate > $curdate) : ?>
-                                 <label for="bukti_pembayaran" class="card-link d-block upload-bukti-pembayaran">Upload Bukti <br> Pembayaran<br><input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="ml-5 d-none"></label>
+                                 <input type="hidden" name="username" id="username" value="<?= $data['username'] ?>">
+                                 <input type="hidden" name="id_pemesanan" id="id_pemesanan" value="<?= $data['id_pemesanan'] ?>">
+                                 <input type="hidden" name="status_pemesanan" id="status_pemesanan" value="<?= $data['status_pemesanan'] ?>">
+                                 <input type="hidden" name="bukti_pembayaran_lama" id="bukti_pembayaran_lama" value="<?= $data['bukti_pembayaran'] ?>">
+                                 <label for="gambar" class="card-link d-block upload-bukti-pembayaran" style="font-size: 0.8em;" style="font-size:0.8em;">Upload Bukti<br> Pembayaran<br><input type="file" name="gambar" id="gambar" class="ml-5 d-none"></label>
+                                 <?php if (trim($data['bukti_pembayaran']) == "") : ?>
+                                    <button type="submit" name="upload_bukti_pembayaran_btn" id="upload_bukti_pembayaran_btn" class="btn mt-n4" style="font-size: 1em;">Upload</button>
+
+                                 <?php endif; ?>
                               <?php else : ?>
-                                 <!-- <p class="status-pembayaran">Expired</p> -->
+                                 <p style="color: red; font-size:0.8em; font-weight:500;">Expired</p>
                               <?php endif; ?>
+                           <?php else : ?>
+                              <p style="font-size:0.8em; font-weight:500;"><?= $data['bukti_pembayaran'] ?></p>
                            <?php endif; ?>
                         </th>
                      </form>

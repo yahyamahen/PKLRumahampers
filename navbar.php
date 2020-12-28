@@ -20,8 +20,8 @@
                      <a class="dropdown-item" href="marchendise?kategori=sarung">Sarung</a> -->
                   <?php endforeach; ?>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="marchendise?marchendise=paketbundle"><strong>Paket Bundle</strong></a>
-                  <a class="dropdown-item" href="marchendise?marchendise=custombox"><strong>Custom Box</strong></a>
+                  <a class="dropdown-item" href="marchendise?kategori=Paket Bundle"><strong>Paket Bundle</strong></a>
+                  <a class="dropdown-item" href="marchendise?kategori=Custom Box"><strong>Custom Box</strong></a>
                </div>
             </li>
             <!-- <li class="nav-item">
