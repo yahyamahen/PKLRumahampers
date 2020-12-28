@@ -131,6 +131,27 @@ function update($data)
    return mysqli_affected_rows($conn);
 }
 
+function update_pemesanan($data)
+{
+   global $conn;
+   $username = $data["username"];
+   $id_pemesanan = $data['id_pemesanan'];
+
+   $status_pemesanan = "Pemesanan Diproses";
+   $bukti_pembayaran_lama = $data['bukti_pembayaran_lama'];
+
+   if ($_FILES['gambar']['error'] === 4) {
+      $gambar = $bukti_pembayaran_lama;
+   } else {
+      $gambar = upload_bukti_pembayaran();
+   }
+
+   $query = "UPDATE pemesanan SET status_pemesanan = '$status_pemesanan', bukti_pembayaran = '$gambar' WHERE username = '$username' && id_pemesanan = '$id_pemesanan';";
+
+   mysqli_query($conn, $query);
+   return mysqli_affected_rows($conn);
+}
+
 function update_alamat($data)
 {
    global $conn;
@@ -193,9 +214,9 @@ function upload()
 
    if ($error === 4) {
       echo
-         "<scrip?>
+         "<script>
    		alert('Pilih gambar terlebih dahulu');
-   	</scrip?>";
+   	</script>";
       return false;
    }
 
@@ -224,7 +245,54 @@ function upload()
    if (file_exists($path)) {
       move_uploaded_file($tmpName, 'images/customers/' . $_POST['username'] . "/" . $namaFileBaru);
    } else {
-      mkdir($path, 0777, true);
+      mkdir($path, 7777, true);
+      move_uploaded_file($tmpName, 'images/customers/' . $_POST['username'] . "/" . $namaFileBaru);
+   }
+
+   return $namaFileBaru;
+}
+
+function upload_bukti_pembayaran()
+{
+   $namaFile = $_FILES['gambar']['name'];
+   $ukuranFile = $_FILES['gambar']['size'];
+   $error = $_FILES['gambar']['error'];
+   $tmpName = $_FILES['gambar']['tmp_name'];
+
+   if ($error === 4) {
+      echo
+         "<script>
+   		alert('Pilih gambar terlebih dahulu');
+   	</script>";
+      return false;
+   }
+
+   $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'pdf'];
+   $ekstensiGambar = explode('.', $namaFile);
+   $ekstensiGambar = strtolower(end($ekstensiGambar));
+   if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+      echo
+         "<script>
+			alert('Yang diupload harus gambar atau pdf');
+		</script>";
+      return false;
+   }
+
+   if ($ukuranFile > 5000000) {
+      echo
+         "<script>
+			alert('File minimal berukuran 4096kb');
+		</script>";
+      return false;
+   }
+
+   $namaFileBaru = $_POST['id_pemesanan'] . "_" . date('d-M-Y', time()) . "." . $ekstensiGambar;
+
+   $path = "images/customers/" . $_POST['username'];
+   if (file_exists($path)) {
+      move_uploaded_file($tmpName, 'images/customers/' . $_POST['username'] . "/" . $namaFileBaru);
+   } else {
+      mkdir($path, 7777, true);
       move_uploaded_file($tmpName, 'images/customers/' . $_POST['username'] . "/" . $namaFileBaru);
    }
 
