@@ -310,12 +310,11 @@ if (isset($_POST["update"])) {
                      </div>
 
                      <div class="list-gambar d-flex list-inline justify-content-center flex-row">
-                        <?php for ($i = 1; $i < 5; $i++) : 1 ?>
+                        <?php for ($i = 1; $i < 5; $i++) : ?>
                            <p class="text-center d-inline align-self-center"><?= $i; ?></p>
                            <li class="d-flex justify-content-center flex-column overflow-hidden" style="margin:auto; width: 5em; height:5em;">
-                              <img style="width: 5em;" class="img<?= $i; ?>" src="" alt="<?= $i ?>">
+                              <img style="width: 5em;" class="img<?= $i; ?>" src="">
                            </li>
-
                         <?php endfor; ?>
                      </div>
                      <div class="form-group mt-4">
@@ -413,7 +412,7 @@ if (isset($_POST["update"])) {
                $('#formModal-input-gambar .modal-body #kategori').val(kategori);
                for (let i = 1; i < 5; i++) {
                   $("#formModal-input-gambar .modal-body .img" + i).attr('src', '../images/produk/' + kategori + '/' + id_produk + '/' + id_produk + '_' + i + '.jpg');
-                  $("#formModal-input-gambar .modal-body .img" + i).attr('alt', '../images/produk/' + kategori + '/' + id_produk + '/' + id_produk + '_' + i + '.jpg');
+                  // $("#formModal-input-gambar .modal-body .img" + i).attr('alt', '../images/produk/' + kategori + '/' + id_produk + '/' + id_produk + '_' + i + '.jpg');
                }
             });
          });
