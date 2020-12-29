@@ -1,10 +1,10 @@
 <?php
 session_start();
 require_once "function.php";
+require_once "model.php";
 
 $kategori = read("SELECT kategori FROM produk GROUP BY kategori ORDER BY kategori ASC;");
 $produk = read("SELECT * FROM produk;");
-$admin = read("SELECT * FROM admin");
 
 if (isset($_GET['kategori'])) {
    $ktg = $_GET['kategori'];
@@ -48,7 +48,7 @@ if (isset($_GET['kategori'])) {
                   <button type="button" class="btn btn-info tombolTambahData mt-4" data-toggle="modal" data-target="#formModal-input">Tambah Produk</button>
                </div>
                <div class="col-md-4 d-flex">
-                  <a class="card-link" href="home" class=" d-inline" for=""> <strong>Kategori</strong> </a>
+                  <a class="card-link" href="produk" class=" d-inline" for=""> <strong>Kategori</strong> </a>
                   <ul class="">
                      <?php foreach ($kategori as $data) : ?>
                         <li class="d-inline mr-4"><a class=" card-link" href="produk?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a></li>
@@ -109,12 +109,19 @@ if (isset($_GET['kategori'])) {
                         foreach ($produk as $data) : ?>
                            <tr>
                               <th><?= $i; ?></th>
-                              <td><?= $data['id_produk'] ?></td>
-                              <td align="center"><?= $data['nama_produk'] ?></td>
+                              <td align="center" width="3%"><strong><?= $data['id_produk'] ?></strong></td>
+                              <td align="center" class="d-flex">
+                                 <div class="square mr-3">
+                                    <img src="../images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>">
+                                 </div>
+                                 <div class="nama-produk mt-n2    align-self-center">
+                                    <strong><?= $data['nama_produk'] ?></strong>
+                                 </div>
+                              </td>
                               <td align="center"><?= $data['kategori'] ?></td>
                               <td align="center"><?= $data['jumlah_produk'] ?></td>
-                              <td align="center"><?= $data['harga_produk'] ?></td>
-                              <td class=" text-center">
+                              <td align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></td>
+                              <td width="5%" class=" text-center">
                                  <!-- <a class="badge badge-pill badge-primary ml-1" href="detail?id=<?= $data['id_produk'] ?>">Detail</a> -->
                                  <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="home?update=<?= $data['id_produk']  ?>">Update</a>
                                  <a class="badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="home?delete=<?= $data['id_produk'] ?>">Hapus</a>
