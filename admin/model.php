@@ -1,16 +1,17 @@
 <?php
 
-// if (!isset($_SESSION["login"])) {
-//    echo "<script>
-//          alert('Login terlebih dahulu');
-//          document.location.href= 'login';
-//    </script>";
-//    exit;
-// }
-
-// if (isset($_SESSION['login']) && isset($_SESSION['npm'])) {
-//    $npm = $_SESSION['npm'];
-//    $mahasiswa = read("SELECT * FROM mahasiswa WHERE npm = '$npm'");
-// }
+function if_not_login_back_to_login()
+{
+   if (!isset($_SESSION['login'])) {
+      echo
+         "<script>
+            alert('Login terlebih dahulu!');
+            document.location.href='login';
+         </script>";
+      exit;
+   }
+}
 
 $user = read("SELECT * FROM user");
+// if (isset($_SESSION['login'])) {
+// }

@@ -2,13 +2,14 @@
 session_start();
 require_once "function.php";
 require_once "model.php";
+if_not_login_back_to_login();
 
 $kategori = read("SELECT kategori FROM produk GROUP BY kategori ORDER BY kategori ASC;");
 $produk = read("SELECT * FROM produk;");
 
 if (isset($_POST['search_btn'])) {
    $key = $_POST['keyword'];
-   $produk = read("SELECT * FROM produk WHERE nama_produk LIKE '%$key%'");
+   $produk = read("SELECT * FROM produk WHERE nama_produk LIKE '%$key%' OR id_produk LIKE '%$key%'");
 }
 
 if (isset($_GET['kategori'])) {
@@ -20,8 +21,6 @@ if (isset($_GET['kategori'])) {
    	nama_produk LIKE '%$key%'");
    }
 }
-
-$conn = mysqli_connect("localhost", "root", "", "rumahampers");
 
 //cek apakah tombol submit sudah ditekan ato blm
 if (isset($_POST["submit"])) {
@@ -39,6 +38,17 @@ if (isset($_POST["submit"])) {
 					alert('data gagal ditambahkan');
 				</script>
 			";
+   }
+}
+
+if (isset($_POST['submit_gambar'])) {
+   if (upload_gambar($_POST)) {
+      echo
+         "<script>
+            alert('Gambar berhasil ditambahkan');
+            document.location.reload();
+         </script>";
+      header('Refresh: 0');
    }
 }
 
@@ -156,6 +166,7 @@ if (isset($_POST["update"])) {
                               <td align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></td>
                               <td width="5%" class=" text-center">
                                  <!-- <a class="badge badge-pill badge-primary ml-1" href="detail?id=<?= $data['id_produk'] ?>">Detail</a> -->
+                                 <a class="badge badge-pill badge-primary ml-1 tombolTambahGambar" data-toggle="modal" data-target="#formModal-input-gambar" data-id_produk="<?= $data['id_produk']; ?>" data-kategori="<?= $data['kategori']; ?>">Gambar</a>
                                  <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="produk?update=<?= $data['id_produk']  ?>" data-id_produk="<?= $data['id_produk'] ?>" data-kategori="<?= $data['kategori'] ?>" data-nama_produk="<?= $data['nama_produk'] ?>" data-harga_produk="<?= $data['harga_produk'] ?>" data-jumlah_produk="<?= $data['jumlah_produk'] ?>" data-berat_produk="<?= $data['berat_produk'] ?>" data-deskripsi_produk="<?= $data['deskripsi_produk'] ?>" data-foto_produk_lama="<?= $data['foto_produk'] ?>" data-warna_produk="<?= $data['warna_produk'] ?>">Update</a>
                                  <a class="badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="produk?delete=<?= $data['id_produk'] ?>">Hapus</a>
                               </td>
@@ -181,6 +192,7 @@ if (isset($_POST["update"])) {
                               <td align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></td>
                               <td width="5%" class=" text-center">
                                  <!-- <a class="badge badge-pill badge-primary ml-1" href="detail?id=<?= $data['id_produk'] ?>">Detail</a> -->
+                                 <a class="badge badge-pill badge-primary ml-1 tombolTambahGambar" data-toggle="modal" data-target="#formModal-input-gambar" data-id_produk="<?= $data['id_produk']; ?>" data-kategori="<?= $data['kategori']; ?>">Gambar</a>
                                  <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="produk?update=<?= $data['id_produk']  ?>" data-id_produk="<?= $data['id_produk'] ?>" data-kategori="<?= $data['kategori'] ?>" data-nama_produk="<?= $data['nama_produk'] ?>" data-harga_produk="<?= $data['harga_produk'] ?>" data-jumlah_produk="<?= $data['jumlah_produk'] ?>" data-berat_produk="<?= $data['berat_produk'] ?>" data-deskripsi_produk="<?= $data['deskripsi_produk'] ?>" data-foto_produk_lama="<?= $data['foto_produk'] ?>" data-warna_produk="<?= $data['warna_produk'] ?>">Update</a>
                                  <a class="badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="produk?delete=<?= $data['id_produk'] ?>">Hapus</a>
                               </td>
@@ -194,8 +206,9 @@ if (isset($_POST["update"])) {
          </div>
       </div>
 
+      <!-- Tambah Produk -->
       <div class="modal fade" id="formModal-input" tabhome="-1" aria-labelledby="judulModal" aria-hidden="true">
-         <div class="modal-dialog modal-lg">
+         <div class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header">
                   <h5 class="modal-title" id="judulModal">Tambah Produk</h5>
@@ -204,7 +217,7 @@ if (isset($_POST["update"])) {
                   </button>
                </div>
                <div class="modal-body">
-                  <form action="#" method="post" enctype="multipart/form-data">
+                  <form action="" method="post" enctype="multipart/form-data">
                      <input type="hidden" name="foto_produk_lama" id="foto_produk_lama">
                      <div class="form-group">
                         <label for="id_produk">ID_Produk</label>
@@ -214,7 +227,7 @@ if (isset($_POST["update"])) {
                      <div class="form-group">
                         <label for="kategori">Kategori</label>
                         <select class="form-control" id="kategori" name="kategori">
-                           <option value="Paket Bundle" selected>Paket Bundle</option>
+                           <option value="Paket Bundle">Paket Bundle</option>
                            <option value="Custom Box">Custom Box</option>
                            <option value="Sajadah">Sajadah</option>
                            <option value="Tasbih">Tasbih</option>
@@ -253,7 +266,7 @@ if (isset($_POST["update"])) {
 
                      <div class="form-group">
                         <label for="warna_produk">Warna Produk</label>
-                        <input type="text" class="form-control" id="nama_produk" name="warna_produk" placeholder="Warna Produk">
+                        <input type="text" class="form-control" id="warna_produk" name="warna_produk" placeholder="Warna Produk">
                      </div>
 
                      <div class="form-group">
@@ -264,6 +277,65 @@ if (isset($_POST["update"])) {
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" name="submit" class="btn btn-primary">Tambah</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Tambah Gambar Produk -->
+      <div class="modal fade" id="formModal-input-gambar" tabhome="-1" aria-labelledby="judulModal" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="judulModal">Input Gambar</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <form action="" method="post" enctype="multipart/form-data">
+                     <input type="hidden" name="id_produk" id="id_produk">
+                     <input type="hidden" name="kategori" id="kategori">
+
+                     <div class="form-group">
+                        <label for="id_produk">ID Produk</label>
+                        <input type="text" class="form-control" id="id_produk" name="id_produk" placeholder="ID Produk" disabled>
+                     </div>
+
+                     <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Kategori" disabled>
+                     </div>
+
+                     <div class="list-gambar d-flex list-inline justify-content-center flex-row">
+                        <?php for ($i = 1; $i < 5; $i++) : 1 ?>
+                           <p class="text-center d-inline align-self-center"><?= $i; ?></p>
+                           <li class="d-flex justify-content-center flex-column overflow-hidden" style="margin:auto; width: 5em; height:5em;">
+                              <img style="width: 5em;" class="img<?= $i; ?>" src="" alt="<?= $i ?>">
+                           </li>
+
+                        <?php endfor; ?>
+                     </div>
+                     <div class="form-group mt-4">
+                        <label for="no_foto">Update Gambar ke 1-4</label>
+                        <select class="form-control" id="no_foto" name="no_foto">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                        </select>
+                     </div>
+
+                     <div class="form-group m-auto">
+                        <label for="foto_produk" class=" d-block">Masukan Gambar</label>
+                        <input type="file" class="" id="foto_produk" name="foto_produk" placeholder="Foto Produk">
+                     </div>
+
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="submit_gambar" class="btn btn-primary">Tambah</button>
                      </div>
                   </form>
                </div>
@@ -284,6 +356,7 @@ if (isset($_POST["update"])) {
       <!-- <script src="js/script.js"></script> -->
 
       <script>
+         // jQuery Tambah Produk
          $(function() {
             $('.tombolTambahData').on('click', function() {
                $('#judulModal').html('Tambah Produk');
@@ -327,6 +400,21 @@ if (isset($_POST["update"])) {
                $('.modal-body #foto_produk_lama').val(foto_produk_lama);
                $('.modal-body #warna_produk').val(warna_produk);
 
+            });
+         });
+
+         // jQuery Tambah Gambar Produk
+         $(function() {
+            $('.tombolTambahGambar').on('click', function() {
+               const id_produk = $(this).data('id_produk');
+               const kategori = $(this).data('kategori');
+
+               $('#formModal-input-gambar .modal-body #id_produk').val(id_produk);
+               $('#formModal-input-gambar .modal-body #kategori').val(kategori);
+               for (let i = 1; i < 5; i++) {
+                  $("#formModal-input-gambar .modal-body .img" + i).attr('src', '../images/produk/' + kategori + '/' + id_produk + '/' + id_produk + '_' + i + '.jpg');
+                  $("#formModal-input-gambar .modal-body .img" + i).attr('alt', '../images/produk/' + kategori + '/' + id_produk + '/' + id_produk + '_' + i + '.jpg');
+               }
             });
          });
       </script>

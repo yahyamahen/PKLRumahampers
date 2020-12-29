@@ -1,5 +1,5 @@
 /*==============================================================*/
-/* Table: CUSTOMERS                                             */
+/* Table: USER                                             */
 /*==============================================================*/
 CREATE TABLE user( 
    id          INT               PRIMARY KEY       NOT NULL         AUTO_INCREMENT, 
@@ -41,15 +41,6 @@ CREATE OR REPLACE TABLE produk
    deskripsi_produk	VARCHAR(1024)			NULL,
    foto_produk 		VARCHAR(50)			NULL,
    warna_produk         VARCHAR(20)			NULL
-);
-
-/*==============================================================*/
-/* Table: foto_produk                                           */
-/*==============================================================*/
-CREATE OR REPLACE TABLE foto_produk (
-   id			INTEGER		PRIMARY KEY	NOT NULL,
-   id_produk		CHAR(10)			NULL,
-   foto_produk		VARCHAR(255)			NULL
 );
 
 
@@ -95,20 +86,6 @@ CREATE OR REPLACE TABLE pemesanan
 );
 
 /*==============================================================*/
-/* Table: PENGIRIMAN                                            */
-/*==============================================================*/
-
-/* CREATE OR REPLACE TABLE pengiriman 
-(
-   resi_pengiriman      	CHAR(50)	PRIMARY KEY 	NOT NULL,
-   id_kurir             	INTEGER				NULL,
-   id_tujuan			INTEGER 			NULL,
-   tujuan_pengiriman    	VARCHAR(250)			NULL,
-   pintpoint    		VARCHAR(250) 			NULL,
-   total_harga_pengiriman     	INTEGER				NULL
-);*/
-
-/*==============================================================*/
 /* Table: KURIR                                                 */
 /*==============================================================*/
 CREATE OR REPLACE TABLE kurir 
@@ -137,9 +114,6 @@ ALTER TABLE pemesanan
    -- ADD FOREIGN KEY (resi_pengiriman) REFERENCES pengiriman (resi_pengiriman),
    ADD FOREIGN KEY (id_tujuan) REFERENCES list_tujuan_pengiriman (id_tujuan),
    ADD FOREIGN KEY (id_kurir) REFERENCES kurir (id_kurir);
-   
-ALTER TABLE foto_produk
-   ADD FOREIGN KEY (id_produk) REFERENCES produk (id_produk);
 
 ALTER TABLE wishlist
    ADD FOREIGN KEY (id_produk) REFERENCES produk (id_produk),
@@ -148,7 +122,3 @@ ALTER TABLE wishlist
 ALTER TABLE trolley
    ADD FOREIGN KEY (id_produk) REFERENCES produk (id_produk),
    ADD FOREIGN KEY (username) REFERENCES customers (username);
-
-/* ALTER TABLE pengiriman
-   ADD FOREIGN KEY (id_kurir) REFERENCES kurir (id_kurir),
-   ADD FOREIGN KEY (id_tujuan) REFERENCES list_tujuan_pengiriman (id_tujuan); */

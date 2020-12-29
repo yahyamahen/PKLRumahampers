@@ -12,6 +12,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 
    if ($key === hash('sha256', $row['username'])) {
       $_SESSION['login'] = true;
+      $_SESSION['user'] = $row['username'];
    }
 }
 
@@ -30,6 +31,7 @@ if (isset($_POST["login"])) {
       if (password_verify($password, $row["password"])) {
          // set session
          $_SESSION['login'] = true;
+         $_SESSION['user'] = $row['username'];
 
          if (isset($_POST['remember'])) {
             setcookie('id', $row['id'], time() + 60);

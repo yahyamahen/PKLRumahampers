@@ -2,11 +2,7 @@
 session_start();
 require_once "function.php";
 require_once "model.php";
-
-// if (!isset($_SESSION["login"])) {
-//    header("Location: login");
-//    exit;
-// }
+if_not_login_back_to_login();
 
 $pemesanan = read("SELECT * FROM pemesanan GROUP BY id_pemesanan ORDER BY waktu_pemesanan ASC;");
 
@@ -16,7 +12,8 @@ if (isset($_POST['search_btn'])) {
    id_pemesanan LIKE '%$key%' OR 
    username LIKE '%$key%'OR
    id_produk LIKE '%$key%' OR 
-   resi_pengiriman LIKE '%$key%';
+   resi_pengiriman LIKE '%$key%' OR
+   status_pemesanan LIKE '%$key%';
 ;");
 }
 
@@ -24,7 +21,8 @@ function pemesananNotice()
 {
    global $conn;
    if (isset($_POST["update"])) {
-      if (udpatePemesanan($_POST) == 1) {
+      var_dump($_POST);
+      if (updatePemesanan($_POST) > 0) {
          echo
             "<script>
                alert('Pemesanan berhasil diupdate');
@@ -34,15 +32,15 @@ function pemesananNotice()
          echo
             "<script> 
                alert('Pemesanan tidak berhasil diupdate');
-               document.location.href = 'pemsanan';
+               document.location.href = 'pemesanan';
             </script>;";
          echo "Error : " . mysqli_error($conn);
       }
    }
 }
 
-if (isset($_GET['id']) && isset($_GET['username'])) {
-   $id_pemesanan = $_GET['id'];
+if (isset($_GET['delete']) && isset($_GET['username'])) {
+   $id_pemesanan = $_GET['delete'];
    $username = $_GET['username'];
    if (deletePemesanan($username, $id_pemesanan) > 0) {
       echo
@@ -130,12 +128,30 @@ if (isset($_GET['id']) && isset($_GET['username'])) {
                            <td><?= $data['username'] ?></td>
                            <td align="center"><?= $data['resi_pengiriman'] ?></td>
                            <td width="15%" align="center">Rp. <?= number_format($data['total'], 0, ".", ".") ?></td>
-                           <td align="center"><?= $data['status_pemesanan'] ?></td>
+                           <td align="center">
+                              <?php if ($data['status_pemesanan'] == 'Menunggu Pembayaran') : ?>
+                                 <?php
+                                 $timestamp = strtotime($data['waktu_pemesanan']);
+                                 $limitdate = date("d M Y H:i", $timestamp + 60 * 60 * 24 * 1);
+                                 $curdate = date("d M Y H:i", time());
+                                 ?>
+                                 <?php if ($limitdate > $curdate) : ?>
+                                    <?= $data['status_pemesanan'] ?>
+                                    <?php if (trim($data['bukti_pembayaran']) == "") : ?>
+                                       <!-- <button type="submit" name="upload_bukti_pembayaran_btn" id="upload_bukti_pembayaran_btn" class="btn mt-n4" style="font-size: 1em;">Upload</button> -->
+                                    <?php endif; ?>
+                                 <?php else : ?>
+                                    <p style="color: red; font-size:0.8em; font-weight:500;">Expired</p>
+                                 <?php endif; ?>
+                              <?php else : ?>
+                                 <?= $data['status_pemesanan'] ?>
+                              <?php endif; ?>
+                           </td>
                            <td align="center"><?= $data['bukti_pembayaran'] ?></td>
                            <td width="5%" class=" text-center">
                               <!-- <a class="badge badge-pill badge-primary ml-1" href="detail?id=<?= $data['id_tujuan'] ?>">Detail</a> -->
-                              <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="kurir?update=<?= $data['id_tujuan'] ?>" data-id_tujuan="<?= $data['id_tujuan'] ?>" data-provinsi="<?= $data['provinsi'] ?>" data-kota="<?= $data['kota'] ?>" data-harga_pengiriman="<?= $data['harga_pengiriman'] ?>">Update</a>
-                              <a class="badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="list_tujuan_pengiriman?delete=<?= $data['id_tujuan'] ?>">Hapus</a>
+                              <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="pemesanan?update=<?= $data['id_pemesanan'] ?>&username=<?= $data['username']; ?>" data-id_pemesanan="<?= $data['id_pemesanan'] ?>" data-status_pemesanan="<?= $data['status_pemesanan'] ?>" data-username="<?= $data['username'] ?>">Update</a>
+                              <a class=" badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="pemesanan?delete=<?= $data['id_pemesanan'] ?>&username=<?= $data['username']; ?>">Hapus</a>
                            </td>
                         </tr>
                      <?php $i++;
@@ -158,27 +174,27 @@ if (isset($_GET['id']) && isset($_GET['username'])) {
                </div>
                <div class="modal-body">
                   <form action="" method="post">
-                     <input type="hidden" name="id_tujuan" id="id_tujuan">
+                     <input type="hidden" name="id_pemesanan" id="id_pemesanan">
+                     <input type="hidden" name="username" id="username">
                      <div class="form-group">
-                        <label for="provinsi">Provinsi</label>
-                        <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi" autocomplete="off">
+                        <label for="id_pemesanan">ID Pemesanan</label>
+                        <input type="text" class="form-control" id="id_pemesanan" name="id_pemesanan" placeholder="id_pemesanan" autocomplete="off" disabled>
                      </div>
 
                      <div class="form-group">
-                        <!-- <label class="float-right" style="font-size:0.8em" ;>Contoh : <strong>Cepat (1-3 Hari)</strong></label> -->
-                        <label for="perusahaan">Kota / Kabupaten</label>
-                        <input type="text" class="form-control" id="kota" name="kota" placeholder="Kota / Kabupaten" autocomplete="off">
+                        <label for="username">ID Pemesanan</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="username" autocomplete="off" disabled>
                      </div>
 
-                     <!-- <div class="form-group">
-                        <label for="perusahaan">Durasi Pengiriman</label>
-                        <label class="float-right" style="font-size:0.8em" ;>Contoh : <strong>1 - 3 Hari</strong></label>
-                        <input type="text" class="form-control" id="durasi_pengiriman" name="durasi_pengiriman" placeholder="Durasi Pengiriman" autocomplete="off">
-                     </div> -->
-
                      <div class="form-group">
-                        <label for="harga_pengiriman">Harga Pengiriman Kota</label>
-                        <input type="number" class="form-control" id="harga_pengiriman" name="harga_pengiriman" placeholder="Harga Pengiriman Kota" autocomplete="off" min="0">
+                        <label for="status_pemesanan">Status Pemesanan</label>
+                        <select class="form-control" id="status_pemesanan" name="status_pemesanan">
+                           <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
+                           <option value="Pemesanan Diproses">Pemesanan Diproses</option>
+                           <option value="Proses Pengiriman">Proses Pengiriman</option>
+                           <option value="Pesanan Selesai">Pesanan Selesai</option>
+                           <option value="Expired">Expired</option>
+                        </select>
                      </div>
 
                      <div class="modal-footer">
@@ -205,29 +221,27 @@ if (isset($_GET['id']) && isset($_GET['username'])) {
       <script>
          $(function() {
             $('.tombolTambahData').on('click', function() {
-               $('#judulModal').html('Tambah Kota Pengiriman');
+               $('#judulModal').html('Status Pemesanan');
                $('.modal-footer button[type=submit]').html('Tambah');
                $('.modal-footer button[type=submit]').addClass('btn btn-primary');
-               $('#provinsi').val('');
-               $('#kota').val('');
-               $('#harga_pengiriman').val('');
+               $('#id_pemesanan').val('');
+               $('#username').val('');
+               $('#status_pemesanan').val('');
             });
 
             $('.tampilModalUbah').on('click', function() {
-               $('#judulModal').html('Update Kota Pengiriman');
+               $('#judulModal').html('Update Produk');
                $('.modal-footer button[type=submit]').addClass('btn btn-success');
                $('.modal-footer button[type=submit]').html('Update');
                $('.modal-footer button[type=submit]').attr('name', 'update');
 
-               const id_tujuan = $(this).data('id_tujuan');
-               const provinsi = $(this).data('provinsi');
-               const kota = $(this).data('kota');
-               const harga_pengiriman = $(this).data('harga_pengiriman');
+               const id_pemesanan = $(this).data('id_pemesanan');
+               const username = $(this).data('username');
+               const status_pemesanan = $(this).data('status_pemesanan');
 
-               $('.modal-body #id_tujuan').val(id_tujuan);
-               $('.modal-body #provinsi').val(provinsi);
-               $('.modal-body #kota').val(kota);
-               $('.modal-body #harga_pengiriman').val(harga_pengiriman);
+               $('.modal-body #id_pemesanan').val(id_pemesanan);
+               $('.modal-body #username').val(username);
+               $('.modal-body #status_pemesanan').val(status_pemesanan);
             });
          });
       </script>

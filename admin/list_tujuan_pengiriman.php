@@ -2,11 +2,7 @@
 session_start();
 require_once "function.php";
 require_once "model.php";
-
-// if (!isset($_SESSION["login"])) {
-//    header("Location: login");
-//    exit;
-// }
+if_not_login_back_to_login();
 
 $list_tujuan_pengiriman = read("SELECT * FROM list_tujuan_pengiriman;");
 
@@ -21,7 +17,7 @@ function listTujuanNotice()
 {
    global $conn;
    if (isset($_POST["input"])) {
-      if (inputKota($_POST) == 1) {
+      if (inputKota($_POST) > 0) {
          echo
             "<script>
                alert('Kota tujuan pengiriman berhasil ditambahkan');

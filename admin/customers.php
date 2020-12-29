@@ -2,11 +2,7 @@
 session_start();
 require_once "function.php";
 require_once "model.php";
-
-// if (!isset($_SESSION["login"])) {
-//    header("Location: login");
-//    exit;
-// }
+if_not_login_back_to_login();
 
 $customers = read("SELECT * FROM customers;");
 
@@ -26,7 +22,7 @@ function customersNotice()
 {
    global $conn;
    if (isset($_POST["update"])) {
-      if (updateCustomers($_POST) == 1) {
+      if (updateCustomers($_POST) > 0) {
          echo
             "<script>
                alert('Password customer berhasil diupdate');

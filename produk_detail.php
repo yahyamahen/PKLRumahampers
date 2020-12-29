@@ -32,7 +32,7 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
 
    <div class="container-main content row">
       <?php foreach ($kategori_list as $data) : ?>
-         <a class="ml-4 mt-4 mb-3 sub-title" href="#"><?= $data['kategori'] ?></a>
+         <a class="ml-4 mt-4 mb-3 sub-title" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
       <?php endforeach; ?>
    </div>
 
@@ -45,7 +45,9 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
                   foreach ($produk as $data) : ?>
                      <?php for ($i; $i < 5; $i++) { ?>
                         <a href="# ">
-                           <li><img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg" alt="<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg"></li>
+                           <div class="d-flex justify-content-center flex-column overflow-hidden" style="margin: 0.7em 2em 0.7em 0em ; width: 5em; height:5em;">
+                              <li><img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg" alt=""></li>
+                           </div>
                         </a>
                      <?php } ?>
                   <?php endforeach; ?>

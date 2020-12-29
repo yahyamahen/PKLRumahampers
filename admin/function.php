@@ -19,18 +19,6 @@ function connection()
 
 $conn = connection();
 
-function if_not_login_back_to_home()
-{
-   if (!isset($_SESSION['login'])) {
-      echo
-         "<script>
-            alert('Login terlebih dahulu!');
-            document.location.href='home';
-         </script>";
-      exit;
-   }
-}
-
 function query($query)
 {
    global $conn;
@@ -126,7 +114,7 @@ function upload()
    $error = $_FILES['foto_produk']['error'];
    $tmpName = $_FILES['foto_produk']['tmp_name'];
 
-   var_dump($_FILES);
+   // var_dump($_FILES);
 
    if ($error === 4) {
       echo
@@ -140,7 +128,7 @@ function upload()
    $ekstensiGambar = explode('.', $namaFile);
    $ekstensiGambar = strtolower(end($ekstensiGambar));
 
-   echo $namaFile . $ekstensiGambar;
+   // echo $namaFile . $ekstensiGambar;
    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
       echo
          "<script>
@@ -171,6 +159,59 @@ function upload()
    return $namaFileBaru;
 }
 
+function upload_gambar($data)
+{
+   $id_produk = htmlspecialchars($data['id_produk']);
+   $kategori = htmlspecialchars($data['kategori']);
+   $no_foto = htmlspecialchars($data['no_foto']);
+
+   $filename = $_FILES['foto_produk']['name'];
+   $ukuranFile = $_FILES['foto_produk']['size'];
+   $error = $_FILES['foto_produk']['error'];
+   $tmpName = $_FILES['foto_produk']['tmp_name'];
+
+   if ($error === 4) {
+      echo
+         "<script>
+			alert('Pilih gambar terlebih dahulu');
+		</script>";
+      return false;
+   }
+
+   $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+   $ekstensiGambar = explode('.', $filename);
+   $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+   if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+      echo
+         "<script>
+               alert('Yang diupload harus gambar');
+            </script>";
+      return false;
+   }
+
+   if ($ukuranFile > 1000000) {
+      echo
+         "<script>
+			alert('File gambar minimal berukuran 1024kb');
+		</script>";
+      return false;
+   }
+
+   $newFileName = $id_produk . "_" . $no_foto . ".jpg";
+
+   $path = "../images/produk/" . $kategori . "/" . $id_produk;
+   echo $path . "/" . $newFileName . "<br>";
+   // exit;
+   if (file_exists($path)) {
+      move_uploaded_file($tmpName, '../images/produk/' . $kategori . "/" . $id_produk . "/" . $newFileName);
+   } else {
+      mkdir($path, 0777, true);
+      move_uploaded_file($tmpName, '../images/produk/' . $kategori . "/" . $id_produk . "/" . $newFileName);
+   }
+   // }
+}
+
 function deleteProduk($id)
 {
    global $conn;
@@ -196,13 +237,16 @@ function update($data)
    $foto_produk_lama = ($data["foto_produk_lama"]);
    $warna_produk = htmlspecialchars($data["warna_produk"]);
 
-   var_dump($data);
+   // var_dump($_FILES);
+   // echo $foto_produk_lama . "<br>";
 
    if ($_FILES['foto_produk']['error'] === 4) {
       $foto_produk = $foto_produk_lama;
    } else {
       $foto_produk = upload();
    }
+   // echo $foto_produk;
+   // exit;
 
    $query = "UPDATE produk SET id_produk = '$id_produk', kategori = '$kategori' , nama_produk = '$nama_produk' , harga_produk = '$harga_produk' , jumlah_produk = '$jumlah_produk' , berat_produk = '$berat_produk' , deskripsi_produk = '$deskripsi_produk' , foto_produk = '$foto_produk' , warna_produk = '$warna_produk' WHERE id_produk = '$key';";
 
@@ -335,22 +379,39 @@ function updateCustomers($data)
    return mysqli_affected_rows($conn);
 }
 
-
-// =================================== PEMESANAN ===================================== ///
-
-function udpatePemesanan($data)
+function deleteCustomers($username)
 {
    global $conn;
-   $id_pemesanan = $data["id_pemesanan"];
-   $username = $data["status_pemesanan"];
-   $status_pemesanan = $data["status_pemesanan"];
+   $query = "DELETE FROM wishlist WHERE username = '$username';";
+   mysqli_query($conn, $query);
 
-   $query = "UPDATE pemesanan SET status_pemesanan = '$status_pemesanan' WHERE username = '$username' && id_pemesanan = '$id_pemesanan';";
+   $query = "DELETE FROM trolley WHERE username = '$username';";
+   mysqli_query($conn, $query);
 
+   $query = "DELETE FROM customers WHERE username = '$username';";
    mysqli_query($conn, $query);
    echo mysqli_error($conn);
    return mysqli_affected_rows($conn);
 }
+
+
+// =================================== PEMESANAN ===================================== ///
+
+function updatePemesanan($data)
+{
+   global $conn;
+   $id_pemesanan = $data["id_pemesanan"];
+   $username = $data['username'];
+   $status_pemesanan = htmlspecialchars($data['status_pemesanan']);
+
+   $query = "UPDATE pemesanan SET status_pemesanan = '$status_pemesanan' WHERE id_pemesanan = '$id_pemesanan' && username = '$username';";
+
+   mysqli_query($conn, $query);
+
+   echo mysqli_error($conn);
+   return mysqli_affected_rows($conn);
+}
+
 
 function deletePemesanan($username, $id_pemesanan)
 {

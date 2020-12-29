@@ -2,11 +2,8 @@
 session_start();
 require_once "function.php";
 require_once "model.php";
+if_not_login_back_to_login();
 
-// if (!isset($_SESSION["login"])) {
-//    header("Location: login");
-//    exit;
-// }
 
 $kurir = read("SELECT * FROM kurir;");
 $nama_kurir = read("SELECT nama_kurir FROM kurir GROUP BY nama_kurir");
@@ -30,7 +27,7 @@ function kurirNotice()
 {
    global $conn;
    if (isset($_POST["input"])) {
-      if (inputKurir($_POST) == 1) {
+      if (inputKurir($_POST) > 0) {
          echo
             "<script>
                alert('Kurir berhasil ditambahkan');
@@ -47,7 +44,7 @@ function kurirNotice()
    }
 
    if (isset($_POST["update"])) {
-      if (updateSurat($_POST) == 1) {
+      if (updateKurir($_POST) == 1) {
          echo
             "<script>
                alert('Kurir berhasil diupdate');
