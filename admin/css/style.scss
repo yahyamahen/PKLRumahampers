@@ -7,11 +7,13 @@
 @import "pemesanan";
 
 body {
-   background-color: #dfdfdf;
+   background-color: salmon;
    .sidebar {
       height: 100%;
       background-color: white;
-      padding: 2em 1.5em 2em 2em;
+      padding: 2em 2em 2em 2em;
+      margin-top: 2em;
+
       .profile {
          border-bottom: 1px solid #999999;
          img {
@@ -26,7 +28,7 @@ body {
 
       .menu-bar {
          .hub-admin-btn {
-            margin-top: 5em;
+            margin-top: 10em;
          }
       }
    }

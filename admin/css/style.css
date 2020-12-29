@@ -1,5 +1,5 @@
 .login-body {
-  background-color: white;
+  background-color: salmon;
 }
 
 .login-body .login-frame {
@@ -26,12 +26,12 @@
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-image: url("../images/assets/bg-login-admin.png");
   background-color: #eaeaea;
-  background-image: url("../images/login-bg.png");
 }
 
 .register-body {
-  background-color: white;
+  background-color: salmon;
 }
 
 .register-body .register-frame {
@@ -66,6 +66,10 @@
   padding-left: 5em;
   color: white;
   text-shadow: 2px 2px 10px #444444;
+}
+
+.register-body .hero .header-title .img {
+  width: 50%;
 }
 
 body .akun-body {
@@ -103,13 +107,14 @@ body .modal form .profile-photo {
 }
 
 body {
-  background-color: #dfdfdf;
+  background-color: salmon;
 }
 
 body .sidebar {
   height: 100%;
   background-color: white;
-  padding: 2em 1.5em 2em 2em;
+  padding: 2em 2em 2em 2em;
+  margin-top: 2em;
 }
 
 body .sidebar .profile {
@@ -117,17 +122,21 @@ body .sidebar .profile {
 }
 
 body .sidebar .profile img {
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   width: 5em;
 }
 
 body .sidebar .profile a,
 body .sidebar .profile p {
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 body .sidebar .menu-bar .hub-admin-btn {
-  margin-top: 5em;
+  margin-top: 10em;
 }
 
 body .content {

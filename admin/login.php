@@ -65,8 +65,8 @@ if (isset($_POST["login"])) {
    <div class="row login-frame">
       <div class="col-md-5 d-flex flex-column justify-content-center">
          <div class="header-title mb-4 ml-4 align-self-center">
-            <h1>SiPesan</h1>
-            <h5>(Sistem Informasi Surat Pengantar Perusahaan)</h5>
+            <img src="../images/assets/logo.png" alt="logo">
+            <h5><br>(Khusus Admin)</h5>
          </div>
          <div class="form-login-body align-self-center">
             <h3>Masuk</h3>
@@ -93,7 +93,7 @@ if (isset($_POST["login"])) {
                </div>
 
             </form>
-            <div class="text-center mb-2 col-md-12"><a href="register">Register Akun</a></div>
+            <div class="text-center mb-2 col-md-12"><a href="registrasi">Register Akun</a></div>
             <div class="text-center col-md-12">Lupa Password? <a href="#">Hubungi Admin</a></div>
          </div>
       </div>

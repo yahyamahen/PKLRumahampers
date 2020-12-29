@@ -13,4 +13,4 @@
 //    $mahasiswa = read("SELECT * FROM mahasiswa WHERE npm = '$npm'");
 // }
 
-$admin = read("SELECT * FROM admin");
+$user = read("SELECT * FROM user");

@@ -6,15 +6,19 @@ require_once "model.php";
 $kategori = read("SELECT kategori FROM produk GROUP BY kategori ORDER BY kategori ASC;");
 $produk = read("SELECT * FROM produk;");
 
+if (isset($_POST['search_btn'])) {
+   $key = $_POST['keyword'];
+   $produk = read("SELECT * FROM produk WHERE nama_produk LIKE '%$key%'");
+}
+
 if (isset($_GET['kategori'])) {
    $ktg = $_GET['kategori'];
    $produk_filter = query("SELECT * FROM produk WHERE kategori = '$ktg';");
-   // if (isset($_POST['search_btn'])) {
-   //    $key = $_POST['keyword'];
-   //    $surat_filter = read("SELECT * FROM surat WHERE kategori = '$ktg' && 
-   // 	judul_surat LIKE '%$key%' OR
-   // 	perusahaan LIKE '%$key%';");
-   // }
+   if (isset($_POST['search_btn'])) {
+      $key = $_POST['keyword'];
+      $produk_filter = read("SELECT * FROM produk WHERE kategori = '$ktg' && 
+   	nama_produk LIKE '%$key%'");
+   }
 }
 
 $conn = mysqli_connect("localhost", "root", "", "rumahampers");
@@ -56,6 +60,21 @@ if (isset($_GET['delete'])) {
    }
 }
 
+if (isset($_POST["update"])) {
+   if (update($_POST) > 0) {
+      echo
+         "<script>
+			alert('Data Produk Terupdate');
+			document.location.href = 'produk.php';
+		</script>";
+   } else {
+      echo
+         "<script>
+			alert('Data Produk Tidak Dapat Terupdate');
+		</script>";
+      echo "<br> Error : " . mysqli_error($conn);
+   }
+}
 ?>
 
 <!doctype html>
@@ -99,7 +118,7 @@ if (isset($_GET['delete'])) {
                      <div class="input-group">
                         <input type="text" class="form-control" placeholder="Cari Produk..." name="keyword" id="keyword" autocomplete="off">
                         <div class="input-group-append">
-                           <button class="btn btn-outline-info" type="submit" id="search_btn" name="search_btn">Cari</button>
+                           <button class="btn btn-outline-info" type="submitcari" id="search_btn" name="search_btn">Cari</button>
                         </div>
                      </div>
                   </form>
@@ -137,7 +156,7 @@ if (isset($_GET['delete'])) {
                               <td align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></td>
                               <td width="5%" class=" text-center">
                                  <!-- <a class="badge badge-pill badge-primary ml-1" href="detail?id=<?= $data['id_produk'] ?>">Detail</a> -->
-                                 <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="produk?update=<?= $data['id_produk']  ?>">Update</a>
+                                 <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="produk?update=<?= $data['id_produk']  ?>" data-id_produk="<?= $data['id_produk'] ?>" data-kategori="<?= $data['kategori'] ?>" data-nama_produk="<?= $data['nama_produk'] ?>" data-harga_produk="<?= $data['harga_produk'] ?>" data-jumlah_produk="<?= $data['jumlah_produk'] ?>" data-berat_produk="<?= $data['berat_produk'] ?>" data-deskripsi_produk="<?= $data['deskripsi_produk'] ?>" data-foto_produk_lama="<?= $data['foto_produk'] ?>" data-warna_produk="<?= $data['warna_produk'] ?>">Update</a>
                                  <a class="badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="produk?delete=<?= $data['id_produk'] ?>">Hapus</a>
                               </td>
                            </tr>
@@ -162,7 +181,7 @@ if (isset($_GET['delete'])) {
                               <td align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></td>
                               <td width="5%" class=" text-center">
                                  <!-- <a class="badge badge-pill badge-primary ml-1" href="detail?id=<?= $data['id_produk'] ?>">Detail</a> -->
-                                 <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="produk?update=<?= $data['id_produk']  ?>">Update</a>
+                                 <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="produk?update=<?= $data['id_produk']  ?>" data-id_produk="<?= $data['id_produk'] ?>" data-kategori="<?= $data['kategori'] ?>" data-nama_produk="<?= $data['nama_produk'] ?>" data-harga_produk="<?= $data['harga_produk'] ?>" data-jumlah_produk="<?= $data['jumlah_produk'] ?>" data-berat_produk="<?= $data['berat_produk'] ?>" data-deskripsi_produk="<?= $data['deskripsi_produk'] ?>" data-foto_produk_lama="<?= $data['foto_produk'] ?>" data-warna_produk="<?= $data['warna_produk'] ?>">Update</a>
                                  <a class="badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="produk?delete=<?= $data['id_produk'] ?>">Hapus</a>
                               </td>
                            </tr>
@@ -186,7 +205,7 @@ if (isset($_GET['delete'])) {
                </div>
                <div class="modal-body">
                   <form action="#" method="post" enctype="multipart/form-data">
-
+                     <input type="hidden" name="foto_produk_lama" id="foto_produk_lama">
                      <div class="form-group">
                         <label for="id_produk">ID_Produk</label>
                         <input type="text" class="form-control" id="id_produk" name="id_produk" placeholder="ID Produk">
@@ -222,7 +241,7 @@ if (isset($_GET['delete'])) {
 
                      <div class="form-group">
                         <label for="berat_produk">Berat Produk</label>
-                        <input type="number" class="form-control" id="berat_produk" name="berat_produk" placeholder="Berat produk">
+                        <input type="number" step="0.01" class="form-control" id="berat_produk" name="berat_produk" placeholder="Berat produk">
                      </div>
 
                      <div class="form-group">
@@ -251,6 +270,7 @@ if (isset($_GET['delete'])) {
             </div>
          </div>
       </div>
+
       <!-- ==============================(WRITE YOUR) BODY (HERE)================================ -->
 
       <script src="../js/js/jquery-3.5.1.js"></script>
@@ -261,7 +281,55 @@ if (isset($_GET['delete'])) {
       <!-- <script src="../js/js/bootstrap.bundle.js"></script> -->
       <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
       <script src="../js/js/font-awesome.min.js"></script>
-      <script src="js/script.js"></script>
+      <!-- <script src="js/script.js"></script> -->
+
+      <script>
+         $(function() {
+            $('.tombolTambahData').on('click', function() {
+               $('#judulModal').html('Tambah Produk');
+               $('.modal-footer button[type=submit]').html('Tambah');
+               $('.modal-footer button[type=submit]').addClass('btn btn-primary');
+               $('#id_produk').val('');
+               $('#kategori').val('');
+               $('#nama_produk').val('');
+               $('#harga_produk').val('');
+               $('#jumlah_produk').val('');
+               $('#berat_produk').val('');
+               $('#deskripsi_produk').val('');
+               $('#foto_produk').val('');
+               $('#warna_produk').val('');
+            });
+
+            $('.tampilModalUbah').on('click', function() {
+               $('#judulModal').html('Update Produk');
+               $('.modal-footer button[type=submit]').addClass('btn btn-success');
+               $('.modal-footer button[type=submit]').html('Update');
+               $('.modal-footer button[type=submit]').attr('name', 'update');
+
+               const id_produk = $(this).data('id_produk');
+               const kategori = $(this).data('kategori');
+               const nama_produk = $(this).data('nama_produk');
+               const harga_produk = $(this).data('harga_produk');
+               const jumlah_produk = $(this).data('jumlah_produk');
+               const berat_produk = $(this).data('berat_produk');
+               const deskripsi_produk = $(this).data('deskripsi_produk');
+               const foto_produk_lama = $(this).data('foto_produk_lama');
+               const warna_produk = $(this).data('warna_produk');
+
+
+               $('.modal-body #id_produk').val(id_produk);
+               $('.modal-body #kategori').val(kategori);
+               $('.modal-body #nama_produk').val(nama_produk);
+               $('.modal-body #harga_produk').val(harga_produk);
+               $('.modal-body #jumlah_produk').val(jumlah_produk);
+               $('.modal-body #berat_produk').val(berat_produk);
+               $('.modal-body #deskripsi_produk').val(deskripsi_produk);
+               $('.modal-body #foto_produk_lama').val(foto_produk_lama);
+               $('.modal-body #warna_produk').val(warna_produk);
+
+            });
+         });
+      </script>
 </body>
 
 </html>

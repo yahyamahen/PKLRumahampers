@@ -1,7 +1,7 @@
 <?php
 require 'function.php';
 
-if (isset($_POST["registrasi"])) {
+if (isset($_POST["register"])) {
 
    if (registrasi($_POST) > 0) {
       echo "<script>
@@ -34,8 +34,9 @@ if (isset($_POST["registrasi"])) {
       <div class="col-md-6">
          <div class="hero">
             <div class="header-title">
-               <h1> Register Admin Rumahampers</h1>
-               <h5>(Semangat Bekerja - InsyaaAllah Berkah)</h5>
+               <h1><br><br> Register Admin <img src="../images/assets/logo.png" alt="logo"></h1>
+               <h5><br>(Semangat Bekerja - InsyaaAllah Berkah)</h5>
+
             </div>
          </div>
       </div>
