@@ -1,3 +1,18 @@
+<?php
+require 'function.php';
+
+if (isset($_POST["register"])) {
+
+   if (registrasi($_POST) > 0) {
+      echo "<script>
+      alert('user baru berhasil ditambahkan')
+      </script> ";
+   } else {
+      echo mysqli_error($conn);
+   }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -19,8 +34,8 @@
       <div class="col-md-6">
          <div class="hero">
             <div class="header-title">
-               <h1> SiPesan</h1>
-               <h5>(Sistem Informasi Surat Pengantar Perusahaan)</h5>
+               <h1> Register Admin Rumahampers</h1>
+               <h5>(Semangat Bekerja - InsyaaAllah Berkah)</h5>
             </div>
          </div>
       </div>
@@ -30,27 +45,8 @@
             <h3>Daftar</h3>
             <form class="row g-2" action="" method="post">
                <div class="col-md-12">
-                  <label for="npm" class="form-label">NPM</label>
-                  <input type="text" class="form-control" id="npm" name="npm" placeholder="NPM">
-               </div>
-               <div class="col-12">
-                  <label for="nama_mhs" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="nama_mhs" name="nama_mhs" placeholder="Nama Lengkap Mahasiswa">
-               </div>
-               <div class="col-md-6">
-                  <label for="jurusan" class="form-label">Jurusan</label>
-                  <select id="jurusan" name="jurusan" class="form-control">
-                     <option selected value="Teknik Infromatika">Teknik Informatika</option>
-                     <option value="Sistem Informasi">Sistem Informasi</option>
-                  </select>
-               </div>
-               <div class="col-md-6">
-                  <label for="semester" class="form-label">Semester</label>
-                  <input type="number" class="form-control" id="semester" name="semester" placeholder="Semester">
-               </div>
-               <div class="col-12">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="mahasiswa@mail.com">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="username">
                </div>
                <div class="col-md-12">
                   <label for="pass" class="form-label">Password</label>
@@ -61,14 +57,12 @@
                   <input type="password" class="form-control" id="password2" name="password2" placeholder="********">
                </div>
                <div class="col-12">
-                  <button type="submit" class="mt-4 form-control btn btn-primary" name="regist">DAFTAR</button>
-                  <?php // adminCreated(); 
-                  ?>
+                  <button type="submit" class="mt-4 form-control btn btn-primary" name="register">DAFTAR</button>
                </div>
             </form>
             <div class="col-12">
                <li class="list-group text-center mt-2"><a href="login">LOGIN</a></li>
-               <p class="text-center">NPM sudah digunakan? <a href="#">Hubungi Admin</a></p>
+               <p class="text-center">Username sudah digunakan? <a href="#">Hubungi Admin</a></p>
             </div>
          </div>
       </div>

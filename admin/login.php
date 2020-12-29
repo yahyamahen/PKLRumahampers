@@ -1,3 +1,50 @@
+<?php
+session_start();
+require "function.php";
+
+if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+   $id = $_COOKIE['id'];
+   $key = $_COOKIE['key'];
+
+   $query = "SeLECT username FROM user WHERE id = '$id';";
+   $result = mysqli_query($conn, $query);
+   $row = mysqli_fetch_assoc($result);
+
+   if ($key === hash('sha256', $row['username'])) {
+      $_SESSION['login'] = true;
+   }
+}
+
+
+if (isset($_POST["login"])) {
+
+   $username = $_POST["username"];
+   $password = $_POST["password"];
+
+   $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username';");
+
+   // cek username
+   if (mysqli_num_rows($result) === 1) {
+      //cek password
+      $row = mysqli_fetch_assoc($result);
+      if (password_verify($password, $row["password"])) {
+         // set session
+         $_SESSION['login'] = true;
+
+         if (isset($_POST['remember'])) {
+            setcookie('id', $row['id'], time() + 60);
+            setcookie('key', hash('sha256', $row['username']), time() + 60);
+         }
+         header("Location: produk.php");
+         exit;
+      }
+   }
+
+   $error = true;
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -25,8 +72,8 @@
             <h3>Masuk</h3>
             <form action="" method="POST" class="row g-1" id="form-login">
                <div class="form-group col-md-12">
-                  <label for="npm">NPM</label>
-                  <input class="form-control" type="text" id="npm" name="npm" placeholder="NPM">
+                  <label for="username">Username</label>
+                  <input class="form-control" type="text" id="username" name="username" placeholder="username">
                </div>
 
                <div class="form-group col-md-12">
@@ -44,11 +91,7 @@
                <div class=" form-group col-md-12 mt-2">
                   <button type="submit" name="login" id="login" class="form-control btn btn-primary"> MASUK </button>
                </div>
-               <!-- <?php if (isset($error)) : ?>
-                  <div class="form-group col-md-12">
-                     <p class="text-center" style="color: red; font-style: italic;">NPM / password salah</p>
-                  </div>
-               <?php endif; ?> -->
+
             </form>
             <div class="text-center mb-2 col-md-12"><a href="register">Register Akun</a></div>
             <div class="text-center col-md-12">Lupa Password? <a href="#">Hubungi Admin</a></div>
