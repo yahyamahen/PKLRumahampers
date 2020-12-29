@@ -1,14 +1,11 @@
 /*==============================================================*/
 /* Table: CUSTOMERS                                             */
 /*==============================================================*/
-CREATE TABLE admin (
-   id 			INT 		PRIMARY KEY 	NOT NULL 	AUTO_INCREMENT,
-   id_admin 		VARCHAR(255) 			NOT NULL,
-   pass 		VARCHAR(255) 			NOT NULL,
-   email 		VARCHAR(255) 			NULL,
-   foto_admin		VARCHAR(255)			NULL
+CREATE TABLE user( 
+   id          INT               PRIMARY KEY       NOT NULL         AUTO_INCREMENT, 
+   username    VARCHAR(50), 
+   password    VARCHAR(255)
 );
-
 
 /*==============================================================*/
 /* Table: CUSTOMERS                                             */

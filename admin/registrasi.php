@@ -1,7 +1,7 @@
 <?php
 require 'function.php';
 
-if (isset($_POST["register"])) {
+if (isset($_POST["registrasi"])) {
 
    if (registrasi($_POST) > 0) {
       echo "<script>

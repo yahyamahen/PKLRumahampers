@@ -1,10 +1,10 @@
 <?php
 session_start();
 require_once "function.php";
+require_once "model.php";
 
-$kategori = query("SELECT kategori FROM produk GROUP BY kategori ORDER BY kategori ASC;");
-$produk = query("SELECT * FROM produk;");
-$admin = query("SELECT * FROM user;");
+$kategori = read("SELECT kategori FROM produk GROUP BY kategori ORDER BY kategori ASC;");
+$produk = read("SELECT * FROM produk;");
 
 if (isset($_GET['kategori'])) {
    $ktg = $_GET['kategori'];
@@ -87,7 +87,7 @@ if (isset($_GET['delete'])) {
                   <button type="button" class="btn btn-info tombolTambahData mt-4" data-toggle="modal" data-target="#formModal-input">Tambah Produk</button>
                </div>
                <div class="col-md-4 d-flex">
-                  <a class="card-link" href="home" class=" d-inline" for=""> <strong>Kategori</strong> </a>
+                  <a class="card-link" href="produk" class=" d-inline" for=""> <strong>Kategori</strong> </a>
                   <ul class="">
                      <?php foreach ($kategori as $data) : ?>
                         <li class="d-inline mr-4"><a class=" card-link" href="produk?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a></li>
