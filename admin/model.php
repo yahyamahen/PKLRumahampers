@@ -2,7 +2,7 @@
 
 function if_not_login_back_to_login()
 {
-   if (!isset($_SESSION['login'])) {
+   if (!isset($_SESSION['admin'])) {
       echo
          "<script>
             alert('Login terlebih dahulu!');

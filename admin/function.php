@@ -145,10 +145,10 @@ function upload()
       return false;
    }
 
-   $namaFileBaru = $_POST['id_produk']  . "_" . "0" . "." . $ekstensiGambar;
+   $namaFileBaru = $_POST['id_produk']  . "_" . "0" . "." . "jpg";
 
    $path = "../images/produk/" . $_POST['kategori'] . "/"  . $_POST['id_produk'];
-   echo $path;
+   // echo $path;
    if (file_exists($path)) {
       move_uploaded_file($tmpName, '../images/produk/' . $_POST['kategori'] . "/"  . $_POST['id_produk'] . "/" . $namaFileBaru);
    } else {
@@ -201,7 +201,7 @@ function upload_gambar($data)
    $newFileName = $id_produk . "_" . $no_foto . ".jpg";
 
    $path = "../images/produk/" . $kategori . "/" . $id_produk;
-   echo $path . "/" . $newFileName . "<br>";
+   // echo $path . "/" . $newFileName . "<br>";
    // exit;
    if (file_exists($path)) {
       move_uploaded_file($tmpName, '../images/produk/' . $kategori . "/" . $id_produk . "/" . $newFileName);
@@ -209,6 +209,12 @@ function upload_gambar($data)
       mkdir($path, 0777, true);
       move_uploaded_file($tmpName, '../images/produk/' . $kategori . "/" . $id_produk . "/" . $newFileName);
    }
+
+   echo
+      "<script>
+      alert('Gambar berhasil diupdate');
+      document.location.href = 'produk';
+   </script>";
    // }
 }
 

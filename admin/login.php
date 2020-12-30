@@ -11,7 +11,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
    $row = mysqli_fetch_assoc($result);
 
    if ($key === hash('sha256', $row['username'])) {
-      $_SESSION['login'] = true;
+      $_SESSION['admin'] = true;
       $_SESSION['user'] = $row['username'];
    }
 }
@@ -30,7 +30,7 @@ if (isset($_POST["login"])) {
       $row = mysqli_fetch_assoc($result);
       if (password_verify($password, $row["password"])) {
          // set session
-         $_SESSION['login'] = true;
+         $_SESSION['admin'] = true;
          $_SESSION['user'] = $row['username'];
 
          if (isset($_POST['remember'])) {

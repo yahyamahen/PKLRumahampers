@@ -27,19 +27,19 @@ $quran = read("SELECT * FROM produk WHERE kategori = 'quran' LIMIT 1");
 $quran_rand = read("SELECT * FROM produk WHERE kategori = 'quran' ORDER BY RAND();");
 
 $sajadah = read("SELECT * FROM produk WHERE kategori = 'sajadah' LIMIT 1");
-$sajadah_rand = read("SELECT * FROM produk WHERE kategori = 'quran' ORDER BY RAND();");
+$sajadah_rand = read("SELECT * FROM produk WHERE kategori = 'sajadah' ORDER BY RAND();");
 
 $tasbih = read("SELECT * FROM produk WHERE kategori = 'tasbih' LIMIT 1");
-$tasbih_rand = read("SELECT * FROM produk WHERE kategori = 'quran' ORDER BY RAND();");
+$tasbih_rand = read("SELECT * FROM produk WHERE kategori = 'tasbih' ORDER BY RAND();");
 
 $mukenah = read("SELECT * FROM produk WHERE kategori = 'mukenah' LIMIT 1");
-$mukenah_rand = read("SELECT * FROM produk WHERE kategori = 'quran' ORDER BY RAND();");
+$mukenah_rand = read("SELECT * FROM produk WHERE kategori = 'mukenah' ORDER BY RAND();");
 
 $sarung = read("SELECT * FROM produk WHERE kategori = 'sarung' LIMIT 1");
-$sarung_rand = read("SELECT * FROM produk WHERE kategori = 'quran' ORDER BY RAND();");
+$sarung_rand = read("SELECT * FROM produk WHERE kategori = 'sarung' ORDER BY RAND();");
 
 $custom_box = read("SELECT * FROM produk WHERE kategori = 'custom_box' LIMIT 1");
-$custom_box_rand = read("SELECT * FROM produk WHERE kategori = 'quran' ORDER BY RAND();");
+$custom_box_rand = read("SELECT * FROM produk WHERE kategori = 'custom_box' ORDER BY RAND();");
 
 if (isset($_SESSION['login']) && isset($_SESSION['username'])) {
    $username = $_SESSION['username'];

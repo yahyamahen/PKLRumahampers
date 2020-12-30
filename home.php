@@ -101,8 +101,22 @@ require_once "model.php";
                            <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
                         </div>
                         <div class="action-button align-self-end">
-                           <a href="#"><i class="heart-wishtlist fa fa-heart"></i></a>
-                           <a href="#"><i class="cart-trolley fa fa-shopping-cart"></i></a>
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
                         </div>
                      </div>
                   <?php endforeach; ?>
@@ -119,11 +133,26 @@ require_once "model.php";
                            <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
                         </div>
                         <div class="action-button align-self-end">
-                           <a href="#"><i class="heart-wishtlist fa fa-heart"></i></a>
-                           <a href="#"><i class="cart-trolley fa fa-shopping-cart"></i></a>
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart btn" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="sheart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
                         </div>
                      </div>
                   <?php endforeach; ?>
+                  <?= wishlist_trolley_added_notice() ?>
 
                   <a class="carousel-control-prev ml-n3" href="#carouselExampleFade" role="button" data-slide="prev" style="color: grey;">
                      <span style="color: grey;" aria-hidden="true">
@@ -131,6 +160,342 @@ require_once "model.php";
                      </span>
                   </a>
                   <a class="carousel-control-next mr-n3" href="#carouselExampleFade" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-right"></i>
+                     </span>
+                  </a>
+               </div>
+            </div>
+
+            <?php foreach ($sajadah as $data) : ?>
+               <a class="sub-title" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
+            <?php endforeach; ?>
+
+            <div id="carouselExampleFade1" class="carousel slide carousel-fade" data-ride="carousel">
+               <div class="carousel-inner main-category">
+                  <?php foreach ($sajadah as $data) : ?>
+                     <div class="produk carousel-item d-flex active">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+
+                  <?php foreach ($sajadah_rand as $data) : ?>
+                     <div class="produk carousel-item d-flex">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart btn" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+                  <?= wishlist_trolley_added_notice() ?>
+
+                  <a class="carousel-control-prev ml-n3" href="#carouselExampleFade1" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-left"></i>
+                     </span>
+                  </a>
+                  <a class="carousel-control-next mr-n3" href="#carouselExampleFade1" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-right"></i>
+                     </span>
+                  </a>
+               </div>
+            </div>
+
+            <?php foreach ($tasbih as $data) : ?>
+               <a class="sub-title" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
+            <?php endforeach; ?>
+
+            <div id="carouselExampleFade2" class="carousel slide carousel-fade" data-ride="carousel">
+               <div class="carousel-inner main-category">
+                  <?php foreach ($tasbih as $data) : ?>
+                     <div class="produk carousel-item d-flex active">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+
+                  <?php foreach ($tasbih_rand as $data) : ?>
+                     <div class="produk carousel-item d-flex">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart btn" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+                  <?= wishlist_trolley_added_notice() ?>
+
+                  <a class="carousel-control-prev ml-n3" href="#carouselExampleFade2" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-left"></i>
+                     </span>
+                  </a>
+                  <a class="carousel-control-next mr-n3" href="#carouselExampleFade2" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-right"></i>
+                     </span>
+                  </a>
+               </div>
+            </div>
+
+            <?php foreach ($mukenah as $data) : ?>
+               <a class="sub-title" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
+            <?php endforeach; ?>
+
+            <div id="carouselExampleFade3" class="carousel slide carousel-fade" data-ride="carousel">
+               <div class="carousel-inner main-category">
+                  <?php foreach ($mukenah as $data) : ?>
+                     <div class="produk carousel-item d-flex active">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+
+                  <?php foreach ($mukenah_rand as $data) : ?>
+                     <div class="produk carousel-item d-flex">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart btn" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+                  <?= wishlist_trolley_added_notice() ?>
+
+                  <a class="carousel-control-prev ml-n3" href="#carouselExampleFade3" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-left"></i>
+                     </span>
+                  </a>
+                  <a class="carousel-control-next mr-n3" href="#carouselExampleFade3" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-right"></i>
+                     </span>
+                  </a>
+               </div>
+            </div>
+
+            <?php foreach ($sarung as $data) : ?>
+               <a class="sub-title" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
+            <?php endforeach; ?>
+
+            <div id="carouselExampleFade4" class="carousel slide carousel-fade" data-ride="carousel">
+               <div class="carousel-inner main-category">
+                  <?php foreach ($sarung as $data) : ?>
+                     <div class="produk carousel-item d-flex active">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+
+                  <?php foreach ($sarung_rand as $data) : ?>
+                     <div class="produk carousel-item d-flex">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <?php if (!isset($_SESSION['login'])) : ?>
+                              <form action="" method="post">
+                                 <button type="button" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart btn" data-toggle="modal" data-target="#form-input"></i></button>
+                                 <button type="button" name="add_trolley" id="add_trolley" data-toggle="modal" data-target="#form-input" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php else : ?>
+                              <form action="" method="post">
+                                 <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                                 <input type="hidden" name="id_produk" id="id_produk" value="<?= $data['id_produk'] ?>">
+                                 <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
+                                 <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
+                                 <input type="hidden" name="total_pcs" id="total_pcs" value="1">
+                                 <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
+                                 <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
+                              </form>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+                  <?= wishlist_trolley_added_notice() ?>
+
+                  <a class="carousel-control-prev ml-n4" href="#carouselExampleFade4" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-left"></i>
+                     </span>
+                  </a>
+                  <a class="carousel-control-next mr-n4" href="#carouselExampleFade4" role="button" data-slide="prev" style="color: grey;">
                      <span style="color: grey;" aria-hidden="true">
                         <i class="fa fa-chevron-right"></i>
                      </span>

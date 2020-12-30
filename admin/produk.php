@@ -24,12 +24,11 @@ if (isset($_GET['kategori'])) {
 
 //cek apakah tombol submit sudah ditekan ato blm
 if (isset($_POST["submit"])) {
-
    if (input($_POST) > 0) {
       echo "
 				<script>
 					alert('data berhasil ditambahkan');
-					document.location.href = 'produk.php';
+					document.location.href = 'produk';
 				</script>
 			";
    } else {
@@ -45,10 +44,10 @@ if (isset($_POST['submit_gambar'])) {
    if (upload_gambar($_POST)) {
       echo
          "<script>
-            alert('Gambar berhasil ditambahkan');
-            document.location.reload();
+            alert('Gambar berhasil diupdate');
+            document.location.href = 'produk';
          </script>";
-      header('Refresh: 0');
+      // header('Location: produk');
    }
 }
 
@@ -58,15 +57,13 @@ if (isset($_GET['delete'])) {
       echo "
          <script>
             alert('data berhasil dihapus');
-            document.location.href = 'produk.php';
-         </script>
-      ";
+            document.location.href = 'produk';
+         </script>";
    } else {
       echo "
          <script>
             alert('data gagal dihapus');
-         </script>
-      ";
+         </script>";
    }
 }
 
@@ -75,7 +72,7 @@ if (isset($_POST["update"])) {
       echo
          "<script>
 			alert('Data Produk Terupdate');
-			document.location.href = 'produk.php';
+			document.location.href = 'produk';
 		</script>";
    } else {
       echo
@@ -157,8 +154,8 @@ if (isset($_POST["update"])) {
                                  <div class="square mr-3">
                                     <img src="../images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>">
                                  </div>
-                                 <div class="nama-produk mt-n2    align-self-center">
-                                    <strong><?= $data['nama_produk'] ?></strong>
+                                 <div class="nama-produk mt-n2 align-self-center">
+                                    <strong><a href="../produk_detail?produk=<?= $data['id_produk'] ?>"><?= $data['nama_produk'] ?></a></strong>
                                  </div>
                               </td>
                               <td align="center"><?= $data['kategori'] ?></td>
@@ -183,8 +180,8 @@ if (isset($_POST["update"])) {
                                  <div class="square mr-3">
                                     <img src="../images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>">
                                  </div>
-                                 <div class="nama-produk mt-n2    align-self-center">
-                                    <strong><?= $data['nama_produk'] ?></strong>
+                                 <div class="nama-produk mt-n2 align-self-center">
+                                    <strong><a class="card-link" href="../produk_detail?produk=<?= $data['id_produk'] ?>"><?= $data['nama_produk'] ?></a></strong>
                                  </div>
                               </td>
                               <td align="center"><?= $data['kategori'] ?></td>
@@ -398,7 +395,6 @@ if (isset($_POST["update"])) {
                $('.modal-body #deskripsi_produk').val(deskripsi_produk);
                $('.modal-body #foto_produk_lama').val(foto_produk_lama);
                $('.modal-body #warna_produk').val(warna_produk);
-
             });
          });
 
