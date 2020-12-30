@@ -83,29 +83,60 @@ require_once "model.php";
       <!-- ======================================= CONTENT ======================================== -->
       <div class="row">
          <div class="col-md-9">
-            <a class="sub-title" href="#">Paket Bundle</a>
-            <div class="main-category">
-               <div class="slide-button">
-                  <a href="#"><i class="fa fa-chevron-left"></i></a>
-               </div>
-               <div class="produk">
-                  <img src="images/assets/Profile.jpg" alt="mantap">
-                  <div class="product-descript">
-                     <a class="produk-title" href="#"> Paket Couple Qur'an & Sajadah</a>
-                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio aliquid dicta eum? Natus dolorem magnam praesentium voluptas quam quas eaque?</p>
-                     <h5>Rp. 150.000</h5>
-                     <a href="#">selengkapnya >></a>
-                     <div class="action-button float-right">
-                        <a href="#"><i class="heart-wishtlist fa fa-heart"></i></a>
-                        <a href="#"><i class="cart-trolley fa fa-shopping-cart"></i></a>
+            <?php foreach ($quran as $data) : ?>
+               <a class="sub-title" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
+            <?php endforeach; ?>
+
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+               <div class="carousel-inner main-category">
+                  <?php foreach ($quran as $data) : ?>
+                     <div class="produk carousel-item d-flex active">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <a href="#"><i class="heart-wishtlist fa fa-heart"></i></a>
+                           <a href="#"><i class="cart-trolley fa fa-shopping-cart"></i></a>
+                        </div>
                      </div>
-                  </div>
-               </div>
-               <div class="slide-button">
-                  <a class="" href="#"><i class="fa fa-chevron-right"></i></a>
+                  <?php endforeach; ?>
+
+                  <?php foreach ($quran_rand as $data) : ?>
+                     <div class="produk carousel-item d-flex">
+                        <div class="d-flex justify-content-center overflow-hidden" style="width: 11em; height:11em;">
+                           <img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="mantap">
+                        </div>
+                        <div class="product-descript">
+                           <a class="produk-title" href="produk_detail?produk=<?= $data['id_produk'] ?>"> <?= $data['nama_produk'] ?></a>
+                           <p><?= $data['deskripsi_produk'] ?></p>
+                           <h5>Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h5>
+                           <a href="produk_detail?produk=<?= $data['id_produk'] ?>">selengkapnya >></a>
+                        </div>
+                        <div class="action-button align-self-end">
+                           <a href="#"><i class="heart-wishtlist fa fa-heart"></i></a>
+                           <a href="#"><i class="cart-trolley fa fa-shopping-cart"></i></a>
+                        </div>
+                     </div>
+                  <?php endforeach; ?>
+
+                  <a class="carousel-control-prev ml-n3" href="#carouselExampleFade" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-left"></i>
+                     </span>
+                  </a>
+                  <a class="carousel-control-next mr-n3" href="#carouselExampleFade" role="button" data-slide="prev" style="color: grey;">
+                     <span style="color: grey;" aria-hidden="true">
+                        <i class="fa fa-chevron-right"></i>
+                     </span>
+                  </a>
                </div>
             </div>
-
          </div>
 
          <!-- ======================================= SIDEBAR ======================================== -->

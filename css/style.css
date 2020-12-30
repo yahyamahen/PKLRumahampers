@@ -261,24 +261,12 @@
   display: flex;
   margin: 1em;
   height: auto;
-  padding: 1em;
+  padding: 1em 0em 1em 0em;
   background-color: white;
 }
 
-.image-bg .content .main-category .slide-button {
-  align-self: center;
-}
-
-.image-bg .content .main-category .slide-button a {
-  color: #adadad;
-}
-
-.image-bg .content .main-category .slide-button a:hover {
-  color: #949494;
-}
-
 .image-bg .content .main-category .produk {
-  padding: 0em 1em 0em 1em;
+  padding: 0em 6em 0em 6em;
 }
 
 .image-bg .content .main-category .produk h5 {

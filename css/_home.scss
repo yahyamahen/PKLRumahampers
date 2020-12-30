@@ -25,6 +25,7 @@
                );
             border-radius: 100em;
          }
+
          h1 {
             margin-bottom: 0.5em;
             color: white;
@@ -156,21 +157,21 @@
          display: flex;
          margin: 1em;
          height: auto;
-         padding: 1em;
+         padding: 1em 0em 1em 0em;
          background-color: white;
 
-         .slide-button {
-            align-self: center;
-            a {
-               color: #adadad;
-               &:hover {
-                  color: darken($color: #adadad, $amount: 10%);
-               }
-            }
-         }
+         // .slide-button {
+         //    align-self: center;
+         //    a {
+         //       color: #adadad;
+         //       &:hover {
+         //          color: darken($color: #adadad, $amount: 10%);
+         //       }
+         //    }
+         // }
 
          .produk {
-            padding: 0em 1em 0em 1em;
+            padding: 0em 6em 0em 6em;
 
             h5 {
                font-weight: 700;
