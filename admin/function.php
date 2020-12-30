@@ -258,7 +258,7 @@ function update($data)
 
    $result = mysqli_query($conn, $query);
 
-   echo mysqli_affected_rows($conn);
+   // echo mysqli_affected_rows($conn);
    echo mysqli_error($conn);
    return mysqli_affected_rows($conn);
 }

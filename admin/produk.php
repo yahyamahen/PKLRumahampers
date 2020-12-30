@@ -80,6 +80,7 @@ if (isset($_POST["update"])) {
 			alert('Data Produk Tidak Dapat Terupdate');
 		</script>";
       echo "<br> Error : " . mysqli_error($conn);
+      header('Location: produk');
    }
 }
 ?>
@@ -155,7 +156,7 @@ if (isset($_POST["update"])) {
                                     <img src="../images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>">
                                  </div>
                                  <div class="nama-produk mt-n2 align-self-center">
-                                    <strong><a href="../produk_detail?produk=<?= $data['id_produk'] ?>"><?= $data['nama_produk'] ?></a></strong>
+                                    <strong><a class="card-link" href="../produk_detail?produk=<?= $data['id_produk'] ?>"><?= $data['nama_produk'] ?></a></strong>
                                  </div>
                               </td>
                               <td align="center"><?= $data['kategori'] ?></td>
@@ -355,25 +356,26 @@ if (isset($_POST["update"])) {
          // jQuery Tambah Produk
          $(function() {
             $('.tombolTambahData').on('click', function() {
-               $('#judulModal').html('Tambah Produk');
-               $('.modal-footer button[type=submit]').html('Tambah');
-               $('.modal-footer button[type=submit]').addClass('btn btn-primary');
-               $('#id_produk').val('');
-               $('#kategori').val('');
-               $('#nama_produk').val('');
-               $('#harga_produk').val('');
-               $('#jumlah_produk').val('');
-               $('#berat_produk').val('');
-               $('#deskripsi_produk').val('');
-               $('#foto_produk').val('');
-               $('#warna_produk').val('');
+               $('#formModal-input #judulModal').html('Tambah Produk');
+               $('#formModal-input .modal-footer button[type=submit]').addClass('btn btn-info');
+               $('#formModal-input .modal-footer button[type=submit]').attr('name', 'submit');
+               $('#formModal-input .modal-footer button[type=submit]').html('Tambah');
+               $('#formModal-input #id_produk').val('');
+               $('#formModal-input #kategori').val('');
+               $('#formModal-input #nama_produk').val('');
+               $('#formModal-input #harga_produk').val('');
+               $('#formModal-input #jumlah_produk').val('');
+               $('#formModal-input #berat_produk').val('');
+               $('#formModal-input #deskripsi_produk').val('');
+               $('#formModal-input #foto_produk').val('');
+               $('#formModal-input #warna_produk').val('');
             });
 
             $('.tampilModalUbah').on('click', function() {
                $('#judulModal').html('Update Produk');
-               $('.modal-footer button[type=submit]').addClass('btn btn-success');
-               $('.modal-footer button[type=submit]').html('Update');
-               $('.modal-footer button[type=submit]').attr('name', 'update');
+               $('#formModal-input .modal-footer button[type=submit]').attr('name', 'update');
+               $('#formModal-input .modal-footer button[type=submit]').html('Update');
+               $('#formModal-input .modal-footer button[type=submit]').addClass('btn btn-success');
 
                const id_produk = $(this).data('id_produk');
                const kategori = $(this).data('kategori');
@@ -386,15 +388,15 @@ if (isset($_POST["update"])) {
                const warna_produk = $(this).data('warna_produk');
 
 
-               $('.modal-body #id_produk').val(id_produk);
-               $('.modal-body #kategori').val(kategori);
-               $('.modal-body #nama_produk').val(nama_produk);
-               $('.modal-body #harga_produk').val(harga_produk);
-               $('.modal-body #jumlah_produk').val(jumlah_produk);
-               $('.modal-body #berat_produk').val(berat_produk);
-               $('.modal-body #deskripsi_produk').val(deskripsi_produk);
-               $('.modal-body #foto_produk_lama').val(foto_produk_lama);
-               $('.modal-body #warna_produk').val(warna_produk);
+               $('#formModal-input .modal-body #id_produk').val(id_produk);
+               $('#formModal-input .modal-body #kategori').val(kategori);
+               $('#formModal-input .modal-body #nama_produk').val(nama_produk);
+               $('#formModal-input .modal-body #harga_produk').val(harga_produk);
+               $('#formModal-input .modal-body #jumlah_produk').val(jumlah_produk);
+               $('#formModal-input .modal-body #berat_produk').val(berat_produk);
+               $('#formModal-input .modal-body #deskripsi_produk').val(deskripsi_produk);
+               $('#formModal-input .modal-body #foto_produk_lama').val(foto_produk_lama);
+               $('#formModal-input .modal-body #warna_produk').val(warna_produk);
             });
          });
 
@@ -406,6 +408,7 @@ if (isset($_POST["update"])) {
 
                $('#formModal-input-gambar .modal-body #id_produk').val(id_produk);
                $('#formModal-input-gambar .modal-body #kategori').val(kategori);
+
                for (let i = 1; i < 5; i++) {
                   $("#formModal-input-gambar .modal-body .img" + i).attr('src', '../images/produk/' + kategori + '/' + id_produk + '/' + id_produk + '_' + i + '.jpg');
                   // $("#formModal-input-gambar .modal-body .img" + i).attr('alt', '../images/produk/' + kategori + '/' + id_produk + '/' + id_produk + '_' + i + '.jpg');

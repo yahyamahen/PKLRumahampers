@@ -152,7 +152,6 @@ require_once "model.php";
                         </div>
                      </div>
                   <?php endforeach; ?>
-                  <?= wishlist_trolley_added_notice() ?>
 
                   <a class="carousel-control-prev ml-n3" href="#carouselExampleFade" role="button" data-slide="prev" style="color: grey;">
                      <span style="color: grey;" aria-hidden="true">
@@ -236,7 +235,6 @@ require_once "model.php";
                         </div>
                      </div>
                   <?php endforeach; ?>
-                  <?= wishlist_trolley_added_notice() ?>
 
                   <a class="carousel-control-prev ml-n3" href="#carouselExampleFade1" role="button" data-slide="prev" style="color: grey;">
                      <span style="color: grey;" aria-hidden="true">
@@ -320,7 +318,6 @@ require_once "model.php";
                         </div>
                      </div>
                   <?php endforeach; ?>
-                  <?= wishlist_trolley_added_notice() ?>
 
                   <a class="carousel-control-prev ml-n3" href="#carouselExampleFade2" role="button" data-slide="prev" style="color: grey;">
                      <span style="color: grey;" aria-hidden="true">
@@ -404,7 +401,6 @@ require_once "model.php";
                         </div>
                      </div>
                   <?php endforeach; ?>
-                  <?= wishlist_trolley_added_notice() ?>
 
                   <a class="carousel-control-prev ml-n3" href="#carouselExampleFade3" role="button" data-slide="prev" style="color: grey;">
                      <span style="color: grey;" aria-hidden="true">
@@ -488,7 +484,6 @@ require_once "model.php";
                         </div>
                      </div>
                   <?php endforeach; ?>
-                  <?= wishlist_trolley_added_notice() ?>
 
                   <a class="carousel-control-prev ml-n4" href="#carouselExampleFade4" role="button" data-slide="prev" style="color: grey;">
                      <span style="color: grey;" aria-hidden="true">
@@ -502,6 +497,7 @@ require_once "model.php";
                   </a>
                </div>
             </div>
+            <?= wishlist_trolley_added_notice() ?>
          </div>
 
          <!-- ======================================= SIDEBAR ======================================== -->
