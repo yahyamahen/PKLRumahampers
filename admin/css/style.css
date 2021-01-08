@@ -26,7 +26,7 @@
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("../images/assets/bg-login-admin.png");
+  background-image: url("../../images/assets/admin_bg.jpg");
   background-color: #eaeaea;
 }
 
@@ -58,14 +58,13 @@
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("../images/register-bg.png");
+  background-image: url("../../images/assets/admin_reg.jpg");
 }
 
 .register-body .hero .header-title {
   padding-top: 3em;
   padding-left: 5em;
-  color: white;
-  text-shadow: 2px 2px 10px #444444;
+  color: #3a3a3a;
 }
 
 .register-body .hero .header-title .img {
@@ -73,8 +72,9 @@
 }
 
 body .akun-body {
+  width: 75%;
   background-color: white;
-  margin: 2em 2em 2em 1em;
+  margin: 2em 2em 2em 3em;
   padding-bottom: 2em;
 }
 
@@ -110,34 +110,36 @@ body {
   background-color: salmon;
 }
 
-body .sidebar {
-  height: 100%;
-  background-color: white;
-  padding: 2em 2em 2em 2em;
-  margin-top: 2em;
+body .sidebar-outer {
+  position: relative;
 }
 
-body .sidebar .profile {
+body .sidebar-outer .sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 2em 2em 2em 2em;
+}
+
+body .sidebar-outer .sidebar .profile {
   border-bottom: 1px solid #999999;
 }
 
-body .sidebar .profile img {
+body .sidebar-outer .sidebar .profile img {
   align-self: center;
   width: 5em;
 }
 
-body .sidebar .profile a,
-body .sidebar .profile p {
+body .sidebar-outer .sidebar .profile a,
+body .sidebar-outer .sidebar .profile p {
   align-self: center;
-}
-
-body .sidebar .menu-bar .hub-admin-btn {
-  margin-top: 10em;
 }
 
 body .content {
   padding: 2em 3em 2em 3em;
-  margin: 2em 2em 2em 1em;
+  margin: 2em 2em 2em 2em;
   background-color: white;
 }
 

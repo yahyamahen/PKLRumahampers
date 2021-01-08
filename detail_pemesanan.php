@@ -159,10 +159,12 @@ if (isset($_POST["submit_pesan"])) {
                         <input type="number" class="form-control w-25 ml-1 mr-1" name="kodepos" id="kodepos" placeholder="Kode Pos" autocomplete="off" value="<?= $data['kodepos'] ?>" min="0">
                      </div>
 
-                     <div class="col-md-12 mt-3">
-                        <label for="catatan" class="form-label">Catatan Pemesanan</label>
-                        <textarea rows="4" class="form-control catatan-pemesanan" name="catatan_pemesanan" id="catatan_pemesanan" placeholder="Catatan Pemesanan"></textarea>
-                     </div>
+                     <?php if (trim($_GET['id_kurir']) != '') : ?>
+                        <div class="col-md-12 mt-3">
+                           <label for="catatan" class="form-label">Catatan Pemesanan</label>
+                           <textarea rows="4" class="form-control catatan-pemesanan" name="catatan_pemesanan" id="catatan_pemesanan" placeholder="Catatan Pemesanan"></textarea>
+                        </div>
+                     <?php endif; ?>
 
                      <?php if (trim($data['kota']) == "") : ?>
                         <div class="col-md-12 mt-3 d-flex">

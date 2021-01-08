@@ -37,7 +37,7 @@ if (isset($_POST["login"])) {
             setcookie('id', $row['id'], time() + 60);
             setcookie('key', hash('sha256', $row['username']), time() + 60);
          }
-         header("Location: produk.php");
+         header("Location: pemesanan");
          exit;
       }
    }
@@ -68,7 +68,7 @@ if (isset($_POST["login"])) {
       <div class="col-md-5 d-flex flex-column justify-content-center">
          <div class="header-title mb-4 ml-4 align-self-center">
             <img src="../images/assets/logo.png" alt="logo">
-            <h5><br>(Khusus Admin)</h5>
+            <h5 class="mt-4 text-center">(Khusus Admin)</h5>
          </div>
          <div class="form-login-body align-self-center">
             <h3>Masuk</h3>
@@ -94,9 +94,15 @@ if (isset($_POST["login"])) {
                   <button type="submit" name="login" id="login" class="form-control btn btn-primary"> MASUK </button>
                </div>
 
+               <?php if (isset($error)) : ?>
+                  <div class="form-group col-md-12">
+                     <p class="text-center" style="color: red; font-style: italic;">Username / password salah</p>
+                  </div>
+               <?php endif; ?>
+
             </form>
-            <div class="text-center mb-2 col-md-12"><a href="registrasi">Register Akun</a></div>
-            <div class="text-center col-md-12">Lupa Password? <a href="#">Hubungi Admin</a></div>
+            <div class="text-center mb-2 col-md-12"><a href="registrasi">Register Admin</a></div>
+            <!-- <div class="text-center col-md-12">Lupa Password? <a href="#">Hubungi Admin</a></div> -->
          </div>
       </div>
 

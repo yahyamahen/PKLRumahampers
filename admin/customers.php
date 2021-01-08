@@ -127,7 +127,7 @@ if (isset($_GET['delete'])) {
                            <td align="center"><?= $data['email'] ?></td>
                            <td align="center"><?= $data['no_telp'] ?></td>
                            <td width="5%" class=" text-center">
-                              <a class="badge badge-pill badge-primary ml-1" href="customers?username=<?= $data['username'] ?>">Detail</a>
+                              <a class="badge badge-pill badge-primary ml-1" href="detail_customers?username=<?= $data['username'] ?>">Detail</a>
                               <a class="badge badge-pill badge-success ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal-input" href="customers?update=<?= $data['username'] ?>" data-username="<?= $data['username'] ?>" data-nama_lengkap="<?= $data['nama_lengkap'] ?>" data-email="<?= $data['email'] ?>" data-password="<?= $data['password'] ?>">Update</a>
                               <a class="badge badge-pill badge-danger ml-1" onclick="return confirm('Anda Yakin?');" href="customers?delete=<?= $data['username'] ?>">Hapus</a>
                            </td>

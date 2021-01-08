@@ -51,27 +51,27 @@ function userCreated()
                      <input type="password" class="form-control" name="pass2" id="pass2" placeholder="**********" autocomplete="off" required>
                   </div>
                   <div class="col-md-12 mt-2">
-                     <label for="no_telp" class="form-label">No. Handphone *</label>
-                     <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off" required>
+                     <label for="no_telp" class="form-label">No. Handphone</label>
+                     <input type="number" class="form-control" name="no_telp" id="no_telp" placeholder="085777333888" autocomplete="off">
                   </div>
                   <!-- <div class="col-md-12 mt-2">
                      <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
                      <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="16-10-2000" autocomplete="off">
                   </div> -->
                   <div class="col-md-12 mt-2">
-                     <label class="form-label">Alamat *</label>
+                     <label class="form-label">Alamat</label>
                   </div>
                   <div class="col-md-4">
-                     <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Provinsi *" required>
+                     <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Provinsi">
                   </div>
                   <div class="col-md-4">
-                     <input type="text" class="form-control" name="kota" id="kota" placeholder="Kota/Kabupaten *" required>
+                     <input type="text" class="form-control" name="kota" id="kota" placeholder="Kota/Kabupaten">
                   </div>
                   <div class="col-md-4">
-                     <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="Kecamatan *" required>
+                     <input type="text" class="form-control" name="kecamatan" id="kecamatan" placeholder="Kecamatan">
                   </div>
                   <div class="col-md-8 mt-2">
-                     <textarea rows="4" type="textarea" class="form-control alamat-lengkap" name="alamat_lengkap" id="alamat_lengkap" placeholder="Alamat Lengkap *" autocomplete="off" required></textarea>
+                     <textarea rows="4" type="textarea" class="form-control alamat-lengkap" name="alamat_lengkap" id="alamat_lengkap" placeholder="Alamat Lengkap" autocomplete="off"></textarea>
                   </div>
                   <div class="col-md-4 mt-2">
                      <input type="number" class="form-control" name="kodepos" id="kodepos" placeholder="Kode Pos" autocomplete="off">

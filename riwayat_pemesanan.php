@@ -72,20 +72,29 @@ if (isset($_POST["upload_bukti_pembayaran_btn"])) {
                               $curdate = date("d M Y H:i", time());
                               ?>
                               <?php if ($limitdate > $curdate) : ?>
-                                 <input type="hidden" name="username" id="username" value="<?= $data['username'] ?>">
-                                 <input type="hidden" name="id_pemesanan" id="id_pemesanan" value="<?= $data['id_pemesanan'] ?>">
-                                 <input type="hidden" name="status_pemesanan" id="status_pemesanan" value="<?= $data['status_pemesanan'] ?>">
-                                 <input type="hidden" name="bukti_pembayaran_lama" id="bukti_pembayaran_lama" value="<?= $data['bukti_pembayaran'] ?>">
-                                 <label for="gambar" class="card-link d-block upload-bukti-pembayaran" style="font-size: 0.8em;" style="font-size:0.8em;">Upload Bukti<br> Pembayaran<br><input type="file" name="gambar" id="gambar" class="ml-5 d-none"></label>
                                  <?php if (trim($data['bukti_pembayaran']) == "") : ?>
-                                    <button type="submit" name="upload_bukti_pembayaran_btn" id="upload_bukti_pembayaran_btn" class="btn mt-n4" style="font-size: 1em;">Upload</button>
-
+                                    <input type="hidden" name="username" id="username" value="<?= $data['username'] ?>">
+                                    <input type="hidden" name="id_pemesanan" id="id_pemesanan" value="<?= $data['id_pemesanan'] ?>">
+                                    <input type="hidden" name="status_pemesanan" id="status_pemesanan" value="<?= $data['status_pemesanan'] ?>">
+                                    <input type="hidden" name="bukti_pembayaran_lama" id="bukti_pembayaran_lama" value="<?= $data['bukti_pembayaran'] ?>">
+                                    <label for="gambar" class="card-link d-block upload-bukti-pembayaran" style="font-size: 0.8em;" style="font-size:0.5em;">Upload Bukti<br> Pembayaran<br><input type="file" name="gambar" id="gambar" class="ml-5 d-none"></label>
+                                    <button type="submit" name="upload_bukti_pembayaran_btn" id="upload_bukti_pembayaran_btn" class="btn mt-n4" style="font-size: 0.9em;">Upload</button>
                                  <?php endif; ?>
                               <?php else : ?>
                                  <p style="color: red; font-size:0.8em; font-weight:500;">Expired</p>
                               <?php endif; ?>
+                           <?php elseif ($data['status_pemesanan'] == 'Menunggu Konfirmasi Pembayaran') : ?>
+                              <?php if (trim($data['bukti_pembayaran']) != "") : ?>
+                                 <a class="mt-n2 nav-link tombolUpdateBukti" data-toggle="modal" data-target="#formModal-bukti" style="font-size:0.9em; font-weight:7 00;" href="" data-id_pemesanan="<?= $data['id_pemesanan'] ?>" data-username="<?= $data['username'] ?>" data-status_pemesanan="<?= $data['status_pemesanan'] ?>" data-bukti_pembayaran="<?= $data['bukti_pembayaran'] ?>">Terupload</a>
+                              <?php else : ?>
+                                 <p style="font-size:0.8em; font-weight:500;"><?= $data['bukti_pembayaran'] ?></p>
+                              <?php endif; ?>
                            <?php else : ?>
-                              <p style="font-size:0.8em; font-weight:500;"><?= $data['bukti_pembayaran'] ?></p>
+                              <?php if (trim($data['bukti_pembayaran']) != "") : ?>
+                                 <a class="mt-n2 nav-link tombolLihatBukti" data-toggle="modal" data-target="#formModal-bukti" style="font-size:0.9em; font-weight:7 00;" href="" data-id_pemesanan="<?= $data['id_pemesanan'] ?>" data-username="<?= $data['username'] ?>" data-status_pemesanan="<?= $data['status_pemesanan'] ?>" data-bukti_pembayaran="<?= $data['bukti_pembayaran'] ?>">Terupload</a>
+                              <?php else : ?>
+                                 <p style="font-size:0.8em; font-weight:500;"><?= $data['bukti_pembayaran'] ?></p>
+                              <?php endif; ?>
                            <?php endif; ?>
                         </th>
                      </form>
@@ -98,7 +107,7 @@ if (isset($_POST["upload_bukti_pembayaran_btn"])) {
                         <?php endforeach; ?>
                      </td>
                      <td align="center" class="total-riwayat-pembelian">Rp. <?= number_format($data['total'], 0, ".", ".") ?></td>
-                     <td align="center">
+                     <td width="32%" align="center">
                         <?php if ($data['status_pemesanan'] == 'Menunggu Pembayaran') : ?>
                            <?php
                            $timestamp = strtotime($data['waktu_pemesanan']);
@@ -111,8 +120,11 @@ if (isset($_POST["upload_bukti_pembayaran_btn"])) {
                            <?php else : ?>
                               <p class="status-pembayaran mt-3">Expired</p>
                            <?php endif; ?>
+                        <?php elseif ($data['status_pemesanan'] == 'Proses Pengiriman') : ?>
+                           <p class="status-pembayaran mt-2"><?= $data['status_pemesanan'] ?> </p>
+                           <p class="mt-n3" style="font-size: 0.9em;">Resi : <?= $data['resi_pengiriman'] ?> </p>
                         <?php else : ?>
-                           <p class="status-pembayaran mt-3"><?= $data['status_pemesanan'] ?> </p>
+                           <p class="status-pembayaran mt-2"><?= $data['status_pemesanan'] ?> </p>
                         <?php endif; ?>
                      </td>
                      </tr>
@@ -122,6 +134,54 @@ if (isset($_POST["upload_bukti_pembayaran_btn"])) {
          </div>
       </div>
    </div>
+
+   <div class="modal fade" id="formModal-bukti" tabhome="-1" aria-labelledby="judulModal" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title ml-0" id="judulModal">BUKTI UPLOAD PEMBAYARAN</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form action="" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id_pemesanan" id="id_pemesanan">
+                  <input type="hidden" name="username" id="username">
+                  <input type="hidden" name="status_pemesanan" id="status_pemesanan">
+                  <input type="hidden" name="bukti_pembayaran_lama" id="bukti_pembayaran_lama">
+
+                  <div class="form-group">
+                     <label for="id_pemesanan">ID Pemesanan</label>
+                     <input type="text" class="form-control" id="id_pemesanan" name="id_pemesanan" placeholder="ID Pemesanan" disabled>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="bukti_pembayaran">Bukti Pembayaran</label>
+                     <input type="text" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" placeholder="Bukti Pembayaran" disabled>
+                  </div>
+
+                  <div class="list-gambar d-flex list-inline justify-content-center flex-row">
+                     <div class="d-flex justify-content-center flex-column overflow-hidden" style="margin:auto; width: 10em;">
+                        <img style="width: 10em;" class="img" src="" alt="">
+                     </div>
+                  </div>
+
+                  <div class="form-group m-auto hide-content">
+                     <label for="gambar" class="d-block">Update Bukti Pembayaran</label>
+                     <input type="file" class="" id="gambar" name="gambar" placeholder="Foto Produk">
+                  </div>
+
+                  <div class="modal-footer hide-content">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button type="submit" name="upload_bukti_pembayaran_btn" class="btn btn-danger">Update</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
 
    <!-- ======================================= FOOTER ======================================== -->
    <?php require_once "footer.php" ?>
@@ -134,6 +194,47 @@ if (isset($_POST["upload_bukti_pembayaran_btn"])) {
    <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
    <script src="js/js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
+
+   <script>
+      // jQuery Update Bukti Pembayaran
+      $(function() {
+         $('.tombolUpdateBukti').on('click', function() {
+            $('#judulModal').html('Update Bukti Pembayaran');
+            $('#formModal-bukti .hide-content').removeClass('d-none');
+
+            const username = $(this).data('username');
+            const id_pemesanan = $(this).data('id_pemesanan');
+            const status_pemesanan = $(this).data('status_pemesanan');
+            const bukti_pembayaran = $(this).data('bukti_pembayaran');
+
+            $('#formModal-bukti .modal-body #id_pemesanan').val(id_pemesanan);
+            $('#formModal-bukti .modal-body #username').val(username);
+            $('#formModal-bukti .modal-body #status_pemesanan').val(status_pemesanan);
+            $('#formModal-bukti .modal-body #bukti_pembayaran_lama').val(bukti_pembayaran);
+            $('#formModal-bukti .modal-body #bukti_pembayaran').val(bukti_pembayaran);
+            $("#formModal-bukti .modal-body .img").attr('src', 'images/customers/' + username + '/' + bukti_pembayaran);
+            $("#formModal-bukti .modal-body .img").attr('alt', bukti_pembayaran);
+         });
+
+         $('.tombolLihatBukti').on('click', function() {
+            $('#judulModal').html('Lihat Bukti Pembayaran');
+            $('#formModal-bukti .hide-content').addClass('d-none');
+
+            const username = $(this).data('username');
+            const id_pemesanan = $(this).data('id_pemesanan');
+            const status_pemesanan = $(this).data('status_pemesanan');
+            const bukti_pembayaran = $(this).data('bukti_pembayaran');
+
+            $('#formModal-bukti .modal-body #id_pemesanan').val(id_pemesanan);
+            $('#formModal-bukti .modal-body #username').val(username);
+            $('#formModal-bukti .modal-body #status_pemesanan').val(status_pemesanan);
+            $('#formModal-bukti .modal-body #bukti_pembayaran_lama').val(bukti_pembayaran);
+            $('#formModal-bukti .modal-body #bukti_pembayaran').val(bukti_pembayaran);
+            $("#formModal-bukti .modal-body .img").attr('src', 'images/customers/' + username + '/' + bukti_pembayaran);
+            $("#formModal-bukti .modal-body .img").attr('alt', bukti_pembayaran);
+         });
+      });
+   </script>
 </body>
 
 </html>

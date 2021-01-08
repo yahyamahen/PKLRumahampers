@@ -64,19 +64,19 @@ if (isset($_SESSION['login']) && isset($_SESSION['username'])) {
 
    $harga_pengiriman = read("SELECT list_tujuan_pengiriman.id_tujuan, customers.kota as 'kota_customers', list_tujuan_pengiriman.kota as 'kota_pengiriman', list_tujuan_pengiriman.harga_pengiriman FROM customers, list_tujuan_pengiriman WHERE customers.username = '$username' && list_tujuan_pengiriman.kota = customers.kota;");
 
-   $pemesanan = read("SELECT customers.username, pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
+   $pemesanan = read("SELECT customers.username, pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan, pemesanan.resi_pengiriman
    FROM pemesanan, produk, customers
    WHERE pemesanan.id_produk = produk.id_produk && pemesanan.username = customers.username && customers.username = '$username' GROUP BY pemesanan.id_pemesanan ORDER BY pemesanan.waktu_pemesanan DESC");
 
    if (isset($_GET['pemesanan'])) {
       $id_pemesanan = $_GET['pemesanan'];
       $username = $_SESSION['username'];
-      $pemesanan_terakhir = read("SELECT customers.username, pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
+      $pemesanan_terakhir = read("SELECT customers.username, pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan, pemesanan.resi_pengiriman
       FROM pemesanan, produk , customers
       WHERE pemesanan.id_produk = produk.id_produk && pemesanan.username = customers.username && customers.username = '$username' && pemesanan.id_pemesanan = '$id_pemesanan' LIMIT 1");
    }
 
-   $pembayaran = read("SELECT customers.username, pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan 
+   $pembayaran = read("SELECT customers.username, pemesanan.bukti_pembayaran, pemesanan.id_pemesanan, pemesanan.id_produk, produk.nama_produk, pemesanan.total, pemesanan.waktu_pemesanan, pemesanan.status_pemesanan, pemesanan.resi_pengiriman
    FROM pemesanan, produk, customers
    WHERE pemesanan.id_produk = produk.id_produk && pemesanan.username = customers.username && customers.username = '$username'  GROUP BY pemesanan.id_pemesanan ORDER BY pemesanan.waktu_pemesanan DESC LIMIT 1");
 }

@@ -400,6 +400,19 @@ function deleteCustomers($username)
    return mysqli_affected_rows($conn);
 }
 
+function updatePassword($data)
+{
+   global $conn;
+   $username = htmlspecialchars($data['username_pass']);
+   $password = mysqli_real_escape_string($conn, $data["password_baru"]);
+   $password = password_hash($data['password_baru'], PASSWORD_DEFAULT);
+
+   $query = "UPDATE customers SET pass = '$password' WHERE username = '$username';";
+
+   mysqli_query($conn, $query);
+   return mysqli_affected_rows($conn);
+}
+
 
 // =================================== PEMESANAN ===================================== ///
 
@@ -414,6 +427,59 @@ function updatePemesanan($data)
 
    mysqli_query($conn, $query);
 
+   echo mysqli_error($conn);
+   return mysqli_affected_rows($conn);
+}
+
+function update_pemesanan($data)
+{
+   global $conn;
+   $id_pemesanan = $data["id_pemesanan"];
+   $username = $data['username'];
+   $status_pemesanan = $data['status_pemesanan'];
+   $id_kurir = $data['id_kurir'];
+   $nama_kurir = $data['nama_kurir'];
+   $id_tujuan = $data['id_tujuan'];
+   $kota = $data['kota'];
+   $resi_pengiriman =  null;
+
+   if ($status_pemesanan == 'Menunggu Pembayaran') {
+      $status_pemesanan = 'Pemesanan Diproses';
+   } else if ($status_pemesanan == 'Menunggu Konfirmasi Pembayaran') {
+      $status_pemesanan = 'Pemesanan Diproses';
+   } else if ($status_pemesanan == 'Pemesanan Diproses') {
+      $status_pemesanan = 'Proses Pengiriman';
+      $resi_pengiriman =  $id_pemesanan . "/" . $nama_kurir . "_" . $id_kurir . "/" .  $id_tujuan . "_" . $kota  . "/" . date('d-m-Y', time());
+   } else if ($status_pemesanan == 'Proses Pengiriman') {
+      $status_pemesanan = 'Pesanan Selesai';
+      $resi_pengiriman =  $id_pemesanan . "/" . $nama_kurir . "_" . $id_kurir . "/" .  $id_tujuan . "_" . $kota  . "/" . date('d-m-Y', time());
+   } else if ($status_pemesanan == 'Pesanan Selesai') {
+      echo "
+      <script>
+         alert('Pemesanan sudah selesai');
+         document.location.href='pemesanan';
+      </script>";
+      return false;
+   } else {
+      echo "
+      <script>
+         alert('Waktu pembayaran sudah expired');
+         document.location.href='pemesanan';
+      </script>";
+   }
+
+   // echo "<br>" . $id_pemesanan;
+   // echo "<br>" . $username;
+   // echo "<br>" . $status_pemesanan;
+   // echo "<br>" . $id_kurir;
+   // echo "<br>" . $nama_kurir;
+   // echo "<br>" . $id_tujuan;
+   // echo "<br>" . $resi_pengiriman;
+   // exit;
+
+   $query = "UPDATE pemesanan SET status_pemesanan = '$status_pemesanan', resi_pengiriman = '$resi_pengiriman' WHERE id_pemesanan = '$id_pemesanan' && username = '$username';";
+
+   mysqli_query($conn, $query);
    echo mysqli_error($conn);
    return mysqli_affected_rows($conn);
 }

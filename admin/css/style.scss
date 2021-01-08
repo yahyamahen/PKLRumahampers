@@ -1,41 +1,47 @@
 @import "login";
 @import "register";
-@import "akun";
 @import "customers";
+@import "detail_customers";
 @import "kurir";
 @import "list_tujuan_pengiriman";
 @import "pemesanan";
 
 body {
    background-color: salmon;
-   .sidebar {
-      height: 100%;
-      background-color: white;
-      padding: 2em 2em 2em 2em;
-      margin-top: 2em;
+   .sidebar-outer {
+      position: relative;
+      .sidebar {
+         position: fixed;
+         top: 0;
+         bottom: 0;
+         left: 0;
+         background-color: white;
+         padding: 2em 2em 2em 2em;
+         // margin-top: 2em;
 
-      .profile {
-         border-bottom: 1px solid #999999;
-         img {
-            align-self: center;
-            width: 5em;
+         .profile {
+            border-bottom: 1px solid #999999;
+            img {
+               align-self: center;
+               width: 5em;
+            }
+            a,
+            p {
+               align-self: center;
+            }
          }
-         a,
-         p {
-            align-self: center;
-         }
-      }
 
-      .menu-bar {
-         .hub-admin-btn {
-            margin-top: 10em;
-         }
+         // .menu-bar {
+         //    .hub-admin-btn {
+         //       margin-top: 10em;
+         //    }
+         // }
       }
    }
 
    .content {
       padding: 2em 3em 2em 3em;
-      margin: 2em 2em 2em 1em;
+      margin: 2em 2em 2em 2em;
       background-color: white;
       .profile-details {
          img {

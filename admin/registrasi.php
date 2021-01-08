@@ -33,8 +33,9 @@ if (isset($_POST["register"])) {
       <div class="col-md-6">
          <div class="hero">
             <div class="header-title">
-               <h1><br><br> Register Admin <img src="../images/assets/logo.png" alt="logo"></h1>
-               <h5><br>(Semangat Bekerja - InsyaaAllah Berkah)</h5>
+               <h1 class="mt-5">Register Admin </h1>
+               <img src="../images/assets/logo_dark.png" class="mt-3" alt="logo">
+               <h5 class="mt-4">(Semangat Bekerja - InsyaaAllah Berkah)</h5>
 
             </div>
          </div>
@@ -62,7 +63,7 @@ if (isset($_POST["register"])) {
             </form>
             <div class="col-12">
                <li class="list-group text-center mt-2"><a href="login">LOGIN</a></li>
-               <p class="text-center">Username sudah digunakan? <a href="#">Hubungi Admin</a></p>
+               <!-- <p class="text-center">Username sudah digunakan? <a href="#">Hubungi Admin</a></p> -->
             </div>
          </div>
       </div>

@@ -50,7 +50,11 @@ if (isset($_GET['pemesanan'])) {
                      $curdate = date("d M Y H:i", time());
                      ?>
                      <?php if ($limitdate > $curdate) : ?>
-                        <p>Lakukan pembayaran sebelum <br><strong style="font-size: 1.1em;"><?= $limitdate ?></strong> <br> Pada salah satu rekening bank dibawah sejumlah </p>
+                        <p>Lakukan pembayaran sebelum <br>
+                           <strong id="expiry_payment_date" style="font-size: 1.1em;"><?= $limitdate ?></strong> <br>
+                           <span id="demo" class="d-block mt-2 mb-2" style="font-size: 1.3em; font-weight:700;"></span>
+                           Pada salah satu rekening bank dibawah sejumlah
+                        </p>
                         <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
                         <a href="" class=" card-link">SALIN NOMINAL</a>
                      <?php elseif (time() > date("d M Y H:i", strtotime($data['waktu_pemesanan']) + 60 * 60 * 24 * 1)) : ?>
@@ -67,9 +71,12 @@ if (isset($_GET['pemesanan'])) {
                      $curdate = date("d M Y H:i", time());
                      ?>
                      <?php if ($limitdate > $curdate) : ?>
-                        <p>Lakukan pembayaran sebelum <br><strong style="font-size: 1.1em;"><?= $limitdate ?></strong> <br> Pada salah satu rekening bank dibawah sejumlah </p>
+                        <p>Lakukan pembayaran sebelum <br>
+                           <strong style="font-size: 1.1em;"><?= $limitdate ?></strong> <br> Pada salah satu rekening bank dibawah sejumlah
+                        </p>
                         <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
                         <a href="" class=" card-link">SALIN NOMINAL</a>
+                        <p style="font-size:0.8em; margin-bottom:0em;"><em>Pastikan transfer sampai dengan digit nominal paling akhir</em> </p>
                      <?php elseif ($limitdate > time()) :  ?>
                         <p>Waktu pembayaran <br> <strong style="font-size:1.1em; color:red;"> Expired </strong></p>
                      <?php endif ?>
@@ -119,7 +126,38 @@ if (isset($_GET['pemesanan'])) {
    <!-- <script src="js/js/bootstrap.bundle.js"></script> -->
    <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
    <script src="js/js/font-awesome.min.js"></script>
-   <script src="js/script.js"></script>
+   <!-- <script src="js/script.js"></script> -->
+
+   <script>
+      // Set the date we're counting down to
+      var timestamp = document.getElementById('expiry_payment_date').textContent;
+      var countDownDate = new Date(timestamp);
+
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+         // Get today's date and time
+         var now = new Date().getTime();
+
+         // Find the distance between now and the count down date
+         var distance = countDownDate - now;
+
+         // Time calculations for days, hours, minutes and seconds
+         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+         // Display the result in the element with id="demo"
+         document.getElementById("demo").innerHTML = hours + "h " +
+            minutes + "m " + seconds + "s ";
+
+         // If the count down is finished, write some text
+         if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+         }
+      }, 1000);
+   </script>
 </body>
 
 </html>

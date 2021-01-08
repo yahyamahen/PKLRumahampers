@@ -18,7 +18,7 @@ if (isset($_GET['kategori'])) {
    if (isset($_POST['search_btn'])) {
       $key = $_POST['keyword'];
       $produk_filter = read("SELECT * FROM produk WHERE kategori = '$ktg' && 
-   	nama_produk LIKE '%$key%'");
+   	nama_produk LIKE '%$key%' || id_produk LIKE '%$key%'");
    }
 }
 

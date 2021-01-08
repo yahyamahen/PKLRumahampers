@@ -37,12 +37,13 @@ function insert_pemesanan($data)
    global $conn;
 
    $var_pemesanan = rand(1, 10000);
+   $var_harga = rand(1, 500);
    $id_pemesanan = "PG" . $var_pemesanan;
    $total_data_cart = count($data['id_produk_pesan']);
    // echo "Total Data : " . $total_data_cart . "<br>";
 
    for ($i = 0; $i < $total_data_cart; $i++) {
-      // $id_pemesanan = htmlspecialchars($data['id_pemeesanan']);
+      // $id_pemesanan = htmlspecialchars($data['id_pemesanan']);
       $username = htmlspecialchars($data['username']);
       $id_produk = htmlspecialchars($data['id_produk_pesan'][$i]);
       $total_pcs = htmlspecialchars($data['total_pcs'][$i]);
@@ -51,30 +52,31 @@ function insert_pemesanan($data)
       $id_tujuan = htmlspecialchars($data['id_tujuan']);
       $tujuan_pengiriman = htmlspecialchars($data['tujuan_pengiriman']);
       $total_harga_pengiriman = htmlspecialchars($data['total_harga_pengiriman']);
-      $resi_pengiriman =  $id_pemesanan . "/" . $id_produk . "/" . $nama_kurir . "_" . $id_kurir . "/" . $id_tujuan . "/" . date('d_M_Y', time());
-      $total = htmlspecialchars($data['total']);
+      $resi_pengiriman =  NULL;
+      // $resi_pengiriman =  $id_pemesanan . "/" . $id_produk . "/" . $nama_kurir . "_" . $id_kurir . "/" . $id_tujuan . "/" . date('d_M_Y', time());
+      $total = htmlspecialchars($data['total']) + $var_harga;
       $bank_pembayaran = htmlspecialchars($data['bank_pembayaran']);
       $waktu_pemesanan = date("Y-m-d H:i:s", time());
       $status_pemesanan = "Menunggu Pembayaran";
       $catatan_pemesanan = htmlspecialchars($data['catatan_pemesanan']);
 
-      echo "Data - $i <br>";
-      echo "ID Pemesanan : " . $id_pemesanan . " <br>";
-      echo "Username : " . $username . " <br>";
-      echo "ID Produk : " . $id_produk . "<br>";
-      echo "Total Diambil : " . $total_pcs . "<br>";
-      echo "ID Kurir : " . $id_kurir . "<br>";
-      echo "Nama Kurir : " . $nama_kurir . "<br>";
-      echo "ID Tujuan : " . $id_tujuan . "<br>";
-      echo "Tujuan Pengiriman : " . $tujuan_pengiriman . "<br>";
-      echo "Biaya Pengiriman : " . $total_harga_pengiriman . "<br>";
-      echo "Resi Pengiriman : " . $resi_pengiriman . "<br>";
-      echo "Total : " . $total . "<br>";
-      echo "Bank Pembayarab : " . $bank_pembayaran . "<br>";
-      echo "Waktu Pemesanan : " . $waktu_pemesanan . "<br>";
-      echo "Status Pemesanan : " . $status_pemesanan . "<br>";
-      echo "Catatan Pemesanan : " . $catatan_pemesanan . "<br>";
-      echo "<br>";
+      // echo "Data - $i <br>";
+      // echo "ID Pemesanan : " . $id_pemesanan . " <br>";
+      // echo "Username : " . $username . " <br>";
+      // echo "ID Produk : " . $id_produk . "<br>";
+      // echo "Total Diambil : " . $total_pcs . "<br>";
+      // echo "ID Kurir : " . $id_kurir . "<br>";
+      // echo "Nama Kurir : " . $nama_kurir . "<br>";
+      // echo "ID Tujuan : " . $id_tujuan . "<br>";
+      // echo "Tujuan Pengiriman : " . $tujuan_pengiriman . "<br>";
+      // echo "Biaya Pengiriman : " . $total_harga_pengiriman . "<br>";
+      // echo "Resi Pengiriman : " . $resi_pengiriman . "<br>";
+      // echo "Total : " . $total . "<br>";
+      // echo "Bank Pembayarab : " . $bank_pembayaran . "<br>";
+      // echo "Waktu Pemesanan : " . $waktu_pemesanan . "<br>";
+      // echo "Status Pemesanan : " . $status_pemesanan . "<br>";
+      // echo "Catatan Pemesanan : " . $catatan_pemesanan . "<br>";
+      // echo "<br>";
 
       // $result = mysqli_query($conn, "SELECT id_pemesanan FROM pemesanan WHERE id_pemesanan = '$id_pemesanan'");
       // if (mysqli_fetch_assoc($result)) {
@@ -137,8 +139,8 @@ function update_pemesanan($data)
    global $conn;
    $username = $data["username"];
    $id_pemesanan = $data['id_pemesanan'];
-
-   $status_pemesanan = "Pemesanan Diproses";
+   // $status_pemesanan = $data['satus_pemesanan'];
+   $status_pemesanan = "Menunggu Konfirmasi Pembayaran";
    $bukti_pembayaran_lama = $data['bukti_pembayaran_lama'];
 
    if ($_FILES['gambar']['error'] === 4) {
@@ -463,5 +465,39 @@ function registration($data)
 
    mysqli_query($conn, $insertsql);
 
+   return mysqli_affected_rows($conn);
+}
+
+function updatePassword($data)
+{
+   global $conn;
+   $username = htmlspecialchars($data['username_pass']);
+   $password_lama = mysqli_real_escape_string($conn, $data["password_lama"]);
+   $password_lama_hash = $data["password_lama_hash"];
+   $password_baru = mysqli_real_escape_string($conn, $data["password_baru"]);
+   $konfirm_password_baru = mysqli_real_escape_string($conn, $data["konfirm_password_baru"]);
+
+   if (password_verify($password_lama, $password_lama_hash)) {
+      if ($password_baru !== $konfirm_password_baru) {
+         echo
+            "<script>
+               alert('Konfirmasi password Tidak Sesuai');
+            </script>";
+         return false;
+      } else {
+         $password = password_hash($data['password_baru'], PASSWORD_DEFAULT);
+      }
+   } else {
+      echo
+         "<script>
+            alert('Password lama salah');
+         </script>";
+      return false;
+   }
+
+
+   $query = "UPDATE customers SET pass = '$password' WHERE username = '$username';";
+
+   mysqli_query($conn, $query);
    return mysqli_affected_rows($conn);
 }

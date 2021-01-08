@@ -120,7 +120,7 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
          </div>
       </div>
 
-      <div class="panel-comment row">
+      <!-- <div class="panel-comment row">
          <div class="col-md-12">
             <hr>
             <h4 class="ml-4 mb-3 sub-title" href="#">Diskusi Produk</h4>
@@ -163,7 +163,7 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
                </li>
             </ul>
          </div>
-      </div>
+      </div> -->
    </div>
 
    <div class="row container-main content">
