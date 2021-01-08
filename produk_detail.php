@@ -44,18 +44,32 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
                   <?php $i = 0;
                   foreach ($produk as $data) : ?>
                      <?php for ($i; $i < 5; $i++) { ?>
-                        <a href="# ">
-                           <div class="d-flex justify-content-center flex-column overflow-hidden" style="margin: 0.7em 2em 0.7em 0em ; width: 5em; height:5em;">
-                              <li><img src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg" alt=""></li>
-                           </div>
-                        </a>
+                        <div class="d-flex justify-content-center flex-column overflow-hidden" style="margin: 0.7em 2em 0.7em 0em ; width: 5em; height:5em;">
+                           <li><img class="thumb" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg" alt=""></li>
+                        </div>
                      <?php } ?>
                   <?php endforeach; ?>
                </ul>
 
                <?php foreach ($produk as $data) : ?>
                   <div class="main-square d-flex justify-content-center overflow-hidden">
-                     <img class="float-left image-order flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="main_product">
+                     <a href="#overlay-display">
+                        <img class="jumbo float-left flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="main_product">
+                     </a>
+                  </div>
+                  <div class="overlay" id="overlay-display">
+                     <a href="#" class="close btn btn-secondary">X</a>
+                     <img class="jumbo float-left flex-shrink-0 lightbox" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>" alt="main_product">
+                     <ul class="product-image-list float-left">
+                        <?php $i = 0;
+                        foreach ($produk as $data) : ?>
+                           <?php for ($i; $i < 5; $i++) { ?>
+                              <div class="d-flex justify-content-center flex-column overflow-hidden" style="margin: 0.7em 2em 0.7em 0em ; width: 5em; height:5em;">
+                                 <li><img class="thumb" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['id_produk'] ?>_<?= $i ?>.jpg" alt=""></li>
+                              </div>
+                           <?php } ?>
+                        <?php endforeach; ?>
+                     </ul>
                   </div>
                <?php endforeach; ?>
 
@@ -184,6 +198,44 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
    <!-- <script src="js/js/bootstrap.bundle.min.js"></script> -->
    <script src="js/js/font-awesome.min.js"></script>
    <script src="js/script.js"></script>
+
+   <script>
+      const product = document.querySelector('.product');
+      const jumbo = document.querySelector('.jumbo');
+      const lightbox = document.querySelector('.lightbox');
+      const thumbs = document.querySelectorAll('.thumb');
+
+      product.addEventListener('click', function(e) {
+
+         // console.log('OK');
+         if (e.target.className == 'thumb') {
+            jumbo.src = e.target.src;
+            jumbo.classList.add('fade');
+
+            if (e.target.className == 'thumb') {
+               console.log('OK');
+               lightbox.src = e.target.src;
+            }
+
+            setTimeout(function() {
+               jumbo.classList.remove('fade');
+            }, 500);
+
+            thumbs.forEach(function(thumb) {
+               // if (thumb.classList.contains('active')) {
+               //    thumbs.classList.remove('active');
+               // }
+
+               thumb.className = 'thumb'
+            });
+
+            e.target.classList.add('active');
+         }
+
+
+
+      });
+   </script>
 </body>
 
 </html>

@@ -577,14 +577,104 @@ body .product-details .product-image-list {
   list-style-type: none;
 }
 
-body .product-details .product-image-list img {
+body .product-details .product-image-list .thumb {
   width: 5em;
   margin: 0.4em 1.5em 0.4em 0em;
 }
 
-body .product-details .image-order {
+body .product-details .product-image-list .thumb:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+body .product-details .jumbo {
   margin-top: 0.4em;
   height: 28.3em;
+}
+
+body .product-details .jumbo:hover {
+  cursor: pointer;
+}
+
+body .product-details .overlay {
+  display: flex;
+  justify-content: center;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1;
+  transition: 0.8s;
+  text-align: center;
+  padding: 6em 0em;
+}
+
+body .product-details .overlay img {
+  max-height: 100%;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+}
+
+body .product-details .overlay .close {
+  position: absolute;
+  top: 60px;
+  left: 48%;
+  color: white;
+  opacity: 0;
+}
+
+body .product-details .overlay:target {
+  width: auto;
+  height: auto;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+body .product-details .overlay:target img {
+  animation: zoomAndFade 0.7s;
+}
+
+body .product-details .overlay:target .close {
+  animation: slideDownFade 0.6s 0.2s forwards;
+  z-index: 1;
+}
+
+@keyframes zoomAndFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    margin-top: -20px;
+  }
+  100% {
+    opacity: 0.5;
+    margin-top: 0px;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+body .product-details .fade {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+body .product-details .active {
+  opacity: 0.5;
 }
 
 body .product-details .product-description .produk-title {

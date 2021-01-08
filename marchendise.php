@@ -55,7 +55,7 @@ if (isset($_GET['filter-harga-btn'])) {
       <div class="row d-flex justify-content-center">
          <div class="col-md-4">
             <div class="dropdown mt-5">
-               <p class=" d-inline mr-3 ml-4">Filter</p>
+               <p class=" d-inline mr-3 ml-4">Kategori</p>
                <a class="btn btn-outline-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   Marchendise
                </a>

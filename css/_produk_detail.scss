@@ -19,15 +19,108 @@ body {
 
       .product-image-list {
          list-style-type: none;
-         img {
+         .thumb {
             width: 5em;
             margin: 0.4em 1.5em 0.4em 0em;
+            &:hover {
+               opacity: 0.8;
+               cursor: pointer;
+            }
          }
       }
 
-      .image-order {
+      .jumbo {
          margin-top: 0.4em;
          height: 28.3em;
+
+         &:hover {
+            cursor: pointer;
+         }
+      }
+
+      .overlay {
+         display: flex;
+         justify-content: center;
+         width: 0;
+         height: 0;
+         overflow: hidden;
+         position: fixed;
+         left: 0;
+         right: 0;
+         background-color: rgba($color: black, $alpha: 0);
+         z-index: 1;
+         transition: 0.8s;
+         text-align: center;
+         padding: 6em 0em;
+
+         img {
+            max-height: 100%;
+            box-shadow: 2px 2px 7px rgba($color: black, $alpha: 0.5);
+         }
+
+         .close {
+            position: absolute;
+            top: 60px;
+            left: 48%;
+            color: white;
+            opacity: 0;
+         }
+
+         &:target {
+            width: auto;
+            height: auto;
+            top: 0;
+            bottom: 0;
+            background-color: rgba($color: black, $alpha: 0.8);
+
+            img {
+               animation: zoomAndFade 0.7s;
+            }
+
+            .close {
+               animation: slideDownFade 0.6s 0.2s forwards;
+               z-index: 1;
+            }
+         }
+      }
+
+      @keyframes zoomAndFade {
+         0% {
+            // transform: scale(0);
+            opacity: 0;
+         }
+
+         100% {
+            // transform: scale(1);
+            opacity: 1;
+         }
+      }
+
+      @keyframes slideDownFade {
+         0% {
+            opacity: 0;
+            margin-top: -20px;
+         }
+
+         100% {
+            opacity: 0.5;
+            margin-top: 0px;
+         }
+      }
+
+      @keyframes fadeIn {
+         to {
+            opacity: 1;
+         }
+      }
+
+      .fade {
+         opacity: 0;
+         animation: fadeIn 0.5s forwards;
+      }
+
+      .active {
+         opacity: 0.5;
       }
 
       .product-description {
