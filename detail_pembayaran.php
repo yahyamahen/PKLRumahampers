@@ -72,14 +72,15 @@ if (isset($_GET['pemesanan'])) {
                      ?>
                      <?php if ($limitdate > $curdate) : ?>
                         <p>Lakukan pembayaran sebelum <br>
-                           <strong style="font-size: 1.1em;"><?= $limitdate ?></strong> <br> Pada salah satu rekening bank dibawah sejumlah
+                           <strong id="expiry_payment_date" style="font-size: 1.1em;"><?= $limitdate ?></strong> <br>
+                           <span id="demo" class="d-block mt-2 mb-2" style="font-size: 1.3em; font-weight:700;"></span>
+                           Pada salah satu rekening bank dibawah sejumlah
                         </p>
                         <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
                         <a href="" class=" card-link">SALIN NOMINAL</a>
-                        <p style="font-size:0.8em; margin-bottom:0em;"><em>Pastikan transfer sampai dengan digit nominal paling akhir</em> </p>
-                     <?php elseif ($limitdate > time()) :  ?>
+                     <?php elseif (time() > date("d M Y H:i", strtotime($data['waktu_pemesanan']) + 60 * 60 * 24 * 1)) : ?>
                         <p>Waktu pembayaran <br> <strong style="font-size:1.1em; color:red;"> Expired </strong></p>
-                     <?php endif ?>
+                     <?php endif; ?>
                   <?php endforeach; ?>
                <?php endif; ?>
 
