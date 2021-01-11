@@ -12,10 +12,10 @@ CREATE TABLE user(
 /*==============================================================*/
 CREATE OR REPLACE TABLE customers 
 (
-   username    		CHAR(100)	PRIMARY KEY      NOT NULL,
-   pass              	VARCHAR(100)            	 NOT NULL,
+   username    		   CHAR(100)	   PRIMARY KEY       NOT NULL,
+   pass              	VARCHAR(100)            	      NOT NULL,
    nama_lengkap         VARCHAR(100)                     NOT NULL,
-   email                VARCHAR(100)                	 NOT NULL,
+   email                VARCHAR(100)                	   NOT NULL,
    no_telp              CHAR(15)                         NULL,
    tanggal_lahir        DATE                             NULL,
    provinsi             VARCHAR(50)                      NULL,
@@ -23,7 +23,7 @@ CREATE OR REPLACE TABLE customers
    kecamatan            VARCHAR(50)                      NULL,   
    alamat_lengkap       VARCHAR(1024)                    NULL,
    kodepos           	CHAR(10)                         NULL,
-   foto_profil    	VARCHAR(100)         		 NULL
+   foto_profil    	   VARCHAR(100)         		      NULL
 );
 
 
@@ -37,9 +37,9 @@ CREATE OR REPLACE TABLE produk
    nama_produk          VARCHAR(100)			NOT NULL,
    harga_produk         INTEGER				NOT NULL,
    jumlah_produk        INTEGER				NOT NULL,
-   berat_produk		FLOAT 				NULL,
-   deskripsi_produk	VARCHAR(1024)			NULL,
-   foto_produk 		VARCHAR(50)			NULL,
+   berat_produk		   FLOAT 				NULL,
+   deskripsi_produk	   (1024)			   NULL,
+   foto_produk 		   VARCHAR(50)			NULL,
    warna_produk         VARCHAR(20)			NULL
 );
 
@@ -69,20 +69,20 @@ CREATE OR REPLACE TABLE trolley (
 /* Table: PEMESANAN                                             */
 /*==============================================================*/
 CREATE OR REPLACE TABLE pemesanan 
-(  id 			INTEGER 	PRIMARY KEY 	NOT NULL 	AUTO_INCREMENT,
-   id_pemesanan		CHAR(10)		 	NOT NULL,
-   username             CHAR(50)			NOT NULL,
-   id_produk            CHAR(10)                        NOT NULL,
+(  id 			INTEGER 	      PRIMARY KEY 	   NOT NULL 	AUTO_INCREMENT,
+   id_pemesanan		CHAR(10)		 	      NOT NULL,
+   username             CHAR(50)			   NOT NULL,
+   id_produk            CHAR(10)          NOT NULL,
    id_kurir            	INTEGER				NOT NULL,
-   resi_pengiriman      VARCHAR(50)			NOT NULL,
-   id_tujuan 		INTEGER 		 	NOT NULL,
+   resi_pengiriman      VARCHAR(50)			NULL,
+   id_tujuan 		INTEGER 		 	         NOT NULL,
    total_harga_pengiriman	INTEGER			NOT NULL,
    total                INTEGER				NOT NULL,
    bank_pembayaran      VARCHAR(20)			NULL,
-   bukti_pembayaran     VARCHAR(200)			NULL,
-   waktu_pemesanan	TIMESTAMP			NULL,
+   bukti_pembayaran     VARCHAR(200)		NULL,
+   waktu_pemesanan	TIMESTAMP			   NOT NULL,
    status_pemesanan     VARCHAR(20)			NULL,
-   catatan_pemesanan 	VARCHAR(255)			NULL
+   catatan_pemesanan 	VARCHAR(255)		NULL
 );
 
 /*==============================================================*/

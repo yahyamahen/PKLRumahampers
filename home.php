@@ -56,19 +56,19 @@ if (isset($_GET['search_btn'])) {
          <h2>Rumahampers</h2>
       </div>
       <div class="visi-detail col-md-4">
-         <img src="images/assets/profile.jpg" alt="visi1">
+         <img src="images/assets/berkah.png" alt="visi1">
          <h3>BERKAH</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta?</p>
+         <p>Berbagi berkah kebaikan untuk umat</p>
       </div>
       <div class="visi-detail col-md-4">
-         <img src="images/assets/profile.jpg" alt="visi2">
+         <img src="images/assets/potensi.png" alt="visi2">
          <h3>POTENSI</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta?</p>
+         <p>Potensi untuk bersilaturahim dan amal</p>
       </div>
       <div class="visi-detail col-md-4">
-         <img src="images/assets/profile.jpg" alt="visi3">
+         <img src="images/assets/manfaat.png" alt="visi3">
          <h3>MANFAAT</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta?</p>
+         <p>Berbagi berkah kebaikan untuk sesama</p>
       </div>
    </div>
 
