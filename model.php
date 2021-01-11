@@ -11,7 +11,7 @@ function if_not_login_back_to_home()
    }
 }
 
-$marchendise_list = read("SELECT kategori FROM produk GROUP BY kategori ORDER BY kategori ASC;");
+$marchendise_list = read("SELECT kategori FROM produk WHERE kategori != 'Custom Box' && kategori != 'Paket Bundle' GROUP BY kategori ORDER BY kategori ASC;");
 
 if (isset($_GET['produk'])) {
    $id_produk = $_GET['produk'];
