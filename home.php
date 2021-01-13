@@ -547,7 +547,7 @@ if (isset($_GET['search_btn'])) {
          <div class="col-md-3 sidebar">
             <div class="testimoni">
                <img src="images/assets/Profile.jpg" alt="picture">
-               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, nesciunt?</p>
+               <p>Alhamdulillah, hampersnya cantik dan bermanfaat. Semoga berkah</p>
             </div>
 
             <!-- <div class="article">
