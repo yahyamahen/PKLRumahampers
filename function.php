@@ -194,7 +194,7 @@ function update_cart($data)
 
       if ($total_pcs > $jumlah_produk) {
          echo
-            "<script>
+         "<script>
                alert('Stok " . $nama_produk . " hanya " . $jumlah_produk . " ');   
             </script>";
          break;
@@ -217,7 +217,7 @@ function upload()
 
    if ($error === 4) {
       echo
-         "<script>
+      "<script>
    		alert('Pilih gambar terlebih dahulu');
    	</script>";
       return false;
@@ -228,7 +228,7 @@ function upload()
    $ekstensiGambar = strtolower(end($ekstensiGambar));
    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
       echo
-         "<script>
+      "<script>
 			alert('Yang diupload harus gambar');
 		</script>";
       return false;
@@ -236,7 +236,7 @@ function upload()
 
    if ($ukuranFile > 5000000) {
       echo
-         "<script>
+      "<script>
 			alert('File gambar minimal berukuran 4096kb');
 		</script>";
       return false;
@@ -264,7 +264,7 @@ function upload_bukti_pembayaran()
 
    if ($error === 4) {
       echo
-         "<script>
+      "<script>
    		alert('Pilih gambar terlebih dahulu');
    	</script>";
       return false;
@@ -275,7 +275,7 @@ function upload_bukti_pembayaran()
    $ekstensiGambar = strtolower(end($ekstensiGambar));
    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
       echo
-         "<script>
+      "<script>
 			alert('Yang diupload harus gambar atau pdf');
 		</script>";
       return false;
@@ -283,7 +283,7 @@ function upload_bukti_pembayaran()
 
    if ($ukuranFile > 5000000) {
       echo
-         "<script>
+      "<script>
 			alert('File minimal berukuran 4096kb');
 		</script>";
       return false;
@@ -309,7 +309,7 @@ function wishlist_trolley_added_notice()
    if (isset($_POST["add_wishlist"])) {
       if (add_wishlist_trolley($_POST) == 1) {
          echo
-            "<script>
+         "<script>
                alert('Produk berhasil ditambahkan pada wishlist');
             </script>";
       } else {
@@ -320,7 +320,7 @@ function wishlist_trolley_added_notice()
    if (isset($_POST["add_trolley"])) {
       if (add_wishlist_trolley($_POST) == 1) {
          echo
-            "<script>
+         "<script>
                alert('Produk berhasil ditambahkan pada trolley');
             </script>";
       } else {
@@ -339,13 +339,13 @@ function add_wishlist_trolley($data)
 
       if (mysqli_fetch_assoc($result)) {
          echo
-            "<script>
+         "<script>
                alert('Produk di wishlist sudah ada');
             </script>";
          return false;
       }
 
-      $insertsql = "INSERT INTO wishlist (id, username, id_produk) VALUES ( '', '$username', '$id_produk');";
+      $insertsql = "INSERT INTO wishlist (id, username, id_produk) VALUES ('', '$username', '$id_produk');";
       mysqli_query($conn, $insertsql);
 
       echo mysqli_error($conn);
@@ -363,7 +363,7 @@ function add_wishlist_trolley($data)
 
       if (mysqli_fetch_assoc($result)) {
          echo
-            "<script>
+         "<script>
                alert('Produk di trolley sudah ada');
             </script>";
          return false;
@@ -371,13 +371,13 @@ function add_wishlist_trolley($data)
 
       if ($total_pcs > $jumlah_produk) {
          echo
-            "<script>
+         "<script>
                alert('Produk " . $nama_produk . " hanya " . $jumlah_produk . "');
             </script>";
          return false;
       }
 
-      $insertsql = "INSERT INTO trolley (id, username, id_produk, total_pcs) VALUES ( '', '$username', '$id_produk', '$total_pcs');";
+      $insertsql = "INSERT INTO trolley (id, username, id_produk, total_pcs) VALUES ('', '$username', '$id_produk', '$total_pcs');";
       mysqli_query($conn, $insertsql);
 
       echo mysqli_error($conn);
@@ -428,7 +428,7 @@ function registration($data)
 
    if (mysqli_fetch_assoc($result)) {
       echo
-         "<script>
+      "<script>
 			   alert('Username sudah digunakan');
 		   </script>";
       return false;
@@ -438,7 +438,7 @@ function registration($data)
 
    if (mysqli_fetch_assoc($result)) {
       echo
-         "<script>
+      "<script>
 			   alert('Email sudah digunakan');
 		   </script>";
       return false;
@@ -447,7 +447,7 @@ function registration($data)
    // konfirmasi password
    if ($pass !== $pass2) {
       echo
-         "<script>
+      "<script>
 			   alert('Password tidak sesuai!');
 		   </script>";
       return false;
@@ -480,7 +480,7 @@ function updatePassword($data)
    if (password_verify($password_lama, $password_lama_hash)) {
       if ($password_baru !== $konfirm_password_baru) {
          echo
-            "<script>
+         "<script>
                alert('Konfirmasi password Tidak Sesuai');
             </script>";
          return false;
@@ -489,7 +489,7 @@ function updatePassword($data)
       }
    } else {
       echo
-         "<script>
+      "<script>
             alert('Password lama salah');
          </script>";
       return false;

@@ -8,13 +8,13 @@ if_not_login_back_to_home();
 if (isset($_POST["edit"])) {
    if (update($_POST) > 0) {
       echo
-         "<script>
+      "<script>
          alert('Data Customers Terupdate');
          document.location.href = 'edit_biodata';
 		</script>";
    } else {
       echo
-         "<script>
+      "<script>
 			alert('Data Customers Tidak Berhasil Diupdate');
 		</script>";
       echo "<br> Error : " . mysqli_error($conn);

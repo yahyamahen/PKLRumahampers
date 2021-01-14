@@ -49,7 +49,7 @@ CREATE OR REPLACE TABLE produk
 /*==============================================================*/
 CREATE OR REPLACE TABLE wishlist (
    id			INTEGER		PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
-   username		CHAR(10)			NULL,
+   username		CHAR(100)			NULL,
    id_produk		CHAR(10)			NULL
 );
 
@@ -59,10 +59,11 @@ CREATE OR REPLACE TABLE wishlist (
 /*==============================================================*/
 CREATE OR REPLACE TABLE trolley (
    id			INTEGER		PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
-   username		CHAR(10)			NULL,
+   username		CHAR(100)			NULL,
    id_produk		CHAR(10)			NULL,
    total_pcs		INTEGER				NULL
 );
+
 
 
 /*==============================================================*/

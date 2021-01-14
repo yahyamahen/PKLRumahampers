@@ -43,7 +43,7 @@ if (isset($_GET['search_btn'])) {
                <?php endif; ?>
                <h1>Dapatkan paket terbaik</h1>
                <img src="images/assets/Logo.png" alt="">
-               </p><a href="#" class="btn btn-primary order-now">ORDER SEKARANG</a>
+               </p><a href="#order-now" class="btn btn-primary order-now">ORDER SEKARANG</a>
                <p>
             </div>
          </div>
@@ -126,7 +126,7 @@ if (isset($_GET['search_btn'])) {
             <?php else : ?>
 
                <?php foreach ($quran as $data) : ?>
-                  <a class="sub-title" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
+                  <a class="sub-title" id="order-now" href="marchendise?kategori=<?= $data['kategori'] ?>"><?= $data['kategori'] ?></a>
                <?php endforeach; ?>
 
                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">

@@ -118,7 +118,7 @@ function upload()
 
    if ($error === 4) {
       echo
-         "<script>
+      "<script>
 			alert('Pilih gambar terlebih dahulu');
 		</script>";
       return false;
@@ -131,7 +131,7 @@ function upload()
    // echo $namaFile . $ekstensiGambar;
    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
       echo
-         "<script>
+      "<script>
 			alert('Yang diupload harus gambar');
 		</script>";
       return false;
@@ -139,7 +139,7 @@ function upload()
 
    if ($ukuranFile > 1000000) {
       echo
-         "<script>
+      "<script>
 			alert('File gambar minimal berukuran 1024kb');
 		</script>";
       return false;
@@ -172,7 +172,7 @@ function upload_gambar($data)
 
    if ($error === 4) {
       echo
-         "<script>
+      "<script>
 			alert('Pilih gambar terlebih dahulu');
 		</script>";
       return false;
@@ -184,7 +184,7 @@ function upload_gambar($data)
 
    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
       echo
-         "<script>
+      "<script>
                alert('Yang diupload harus gambar');
             </script>";
       return false;
@@ -192,7 +192,7 @@ function upload_gambar($data)
 
    if ($ukuranFile > 1000000) {
       echo
-         "<script>
+      "<script>
 			alert('File gambar minimal berukuran 1024kb');
 		</script>";
       return false;
@@ -211,7 +211,7 @@ function upload_gambar($data)
    }
 
    echo
-      "<script>
+   "<script>
       alert('Gambar berhasil diupdate');
       document.location.href = 'produk';
    </script>";
@@ -392,6 +392,9 @@ function deleteCustomers($username)
    mysqli_query($conn, $query);
 
    $query = "DELETE FROM trolley WHERE username = '$username';";
+   mysqli_query($conn, $query);
+
+   $query = "DELETE FROM pemesanan WHERE username = '$username';";
    mysqli_query($conn, $query);
 
    $query = "DELETE FROM customers WHERE username = '$username';";
