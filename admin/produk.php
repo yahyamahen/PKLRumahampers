@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
 if (isset($_POST['submit_gambar'])) {
    if (upload_gambar($_POST)) {
       echo
-         "<script>
+      "<script>
             alert('Gambar berhasil diupdate');
             document.location.href = 'produk';
          </script>";
@@ -70,13 +70,13 @@ if (isset($_GET['delete'])) {
 if (isset($_POST["update"])) {
    if (update($_POST) > 0) {
       echo
-         "<script>
+      "<script>
 			alert('Data Produk Terupdate');
 			document.location.href = 'produk';
 		</script>";
    } else {
       echo
-         "<script>
+      "<script>
 			alert('Data Produk Tidak Dapat Terupdate');
 		</script>";
       echo "<br> Error : " . mysqli_error($conn);
@@ -274,7 +274,7 @@ if (isset($_POST["update"])) {
 
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" class="btn btn-primary">Tambah</button>
+                        <button type="submit" name="submit" class="btn btn-primary">Update</button>
                      </div>
                   </form>
                </div>
