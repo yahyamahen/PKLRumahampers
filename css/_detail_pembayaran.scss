@@ -38,4 +38,10 @@
          font-size: 0.9em;
       }
    }
+   .salin-link {
+      cursor: pointer;
+      &:hover {
+         cursor: pointer;
+      }
+   }
 }

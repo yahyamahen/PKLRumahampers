@@ -56,7 +56,8 @@ if (isset($_GET['pemesanan'])) {
                            Pada salah satu rekening bank dibawah sejumlah
                         </p>
                         <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
-                        <a href="" class=" card-link">SALIN NOMINAL</a>
+                        <p class='d-none' id="n1"><?= $data['total'] ?></p>
+                        <a onclick="copyToClipboard('n1')" class="salin-link card-link">SALIN NOMINAL</a>
                      <?php elseif (time() > date("d M Y H:i", strtotime($data['waktu_pemesanan']) + 60 * 60 * 24 * 1)) : ?>
                         <p>Waktu pembayaran <br> <strong style="font-size:1.1em; color:red;"> Expired </strong></p>
                      <?php endif; ?>
@@ -76,8 +77,11 @@ if (isset($_GET['pemesanan'])) {
                            <span id="demo" class="d-block mt-2 mb-2" style="font-size: 1.3em; font-weight:700;"></span>
                            Pada salah satu rekening bank dibawah sejumlah
                         </p>
-                        <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
-                        <a href="" class=" card-link">SALIN NOMINAL</a>
+                        <h5 class="total-pembayaran" style="font-size: 2em; font-weight:700" id="n1">Rp. <?= number_format($data['total'], 0, ".", ".") ?></h5>
+                        <p class='d-none' id="n1"><?= $data['total'] ?></p>
+                        <div class="tooltip">
+                           <a onclick="copyToClipboard('n1')" class="salin-link card-link">SALIN NOMINAL</a>
+                        </div>
                      <?php elseif (time() > date("d M Y H:i", strtotime($data['waktu_pemesanan']) + 60 * 60 * 24 * 1)) : ?>
                         <p>Waktu pembayaran <br> <strong style="font-size:1.1em; color:red;"> Expired </strong></p>
                      <?php endif; ?>
@@ -88,27 +92,27 @@ if (isset($_GET['pemesanan'])) {
                <div class="bank-list d-flex justify-content-center mt-4">
                   <li class="list-inline mr-5 ml-5 d-flex flex-column">
                      <img src="images/assets/bca.png" alt="bca">
-                     <span class="mt-2 mb-n2">No. Rekening : <strong>045484654</strong> </span>
+                     <span class="mt-2 mb-n2">No. Rekening : <strong id="r2">045484653</strong> </span>
                      <span class=" mb-n1">a. n : Ahmad Sujianto</span>
-                     <a href="#" class=" card-link">Salin No. Rekening</a>
+                     <a onclick="copyToClipboard('r2')" class="card-link salin-link">Salin No. Rekening</a>
                   </li>
                   <li class="list-inline mr-5 ml-5 d-flex flex-column">
                      <img src="images/assets/mandiri.png" alt="mandiri">
-                     <span class="mt-2 mb-n2">No. Rekening : <strong>045484654</strong> </span>
+                     <span class="mt-2 mb-n2">No. Rekening : <strong id="r3">045484654</strong> </span>
                      <span class=" mb-n1">a. n : Ahmad Sujianto</span>
-                     <a href="#" class=" card-link">Salin No. Rekening</a>
+                     <a onclick="copyToClipboard('r3')" class="card-link salin-link">Salin No. Rekening</a>
                   </li>
                   <li class="list-inline mr-5 ml-5 d-flex flex-column">
                      <img src="images/assets/bni.png" alt="bni">
-                     <span class="mt-2 mb-n2">No. Rekening : <strong>045484654</strong> </span>
+                     <span class="mt-2 mb-n2">No. Rekening : <strong id="r4">045484655</strong> </span>
                      <span class=" mb-n1">a. n : Ahmad Sujianto</span>
-                     <a href="#" class=" card-link">Salin No. Rekening</a>
+                     <a onclick="copyToClipboard('r4')" class="card-link salin-link">Salin No. Rekening</a>
                   </li>
                   <li class="list-inline mr-5 ml-5 d-flex flex-column">
                      <img src="images/assets/bri.png" alt="bri">
-                     <span class="mt-2 mb-n2">No. Rekening : <strong>045484654</strong> </span>
+                     <span class="mt-2 mb-n2">No. Rekening : <strong id="r5">045484656</strong> </span>
                      <span class=" mb-n1">a. n : Ahmad Sujianto</span>
-                     <a href="#" class=" card-link">Salin No. Rekening</a>
+                     <a onclick="copyToClipboard('r5')" class="card-link salin-link">Salin No. Rekening</a>
                   </li>
                </div>
                <p class="mt-4">Jika pembayaran tidak otomatis terproses lakukan konfirmasi pembayaran pada riwayat pemesanan</p>
@@ -158,6 +162,15 @@ if (isset($_GET['pemesanan'])) {
             document.getElementById("demo").innerHTML = "EXPIRED";
          }
       }, 1000);
+
+      function copyToClipboard(elementId) {
+         var aux = document.createElement("input");
+         aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+         document.body.appendChild(aux);
+         aux.select();
+         document.execCommand("copy");
+         document.body.removeChild(aux);
+      }
    </script>
 </body>
 

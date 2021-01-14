@@ -105,12 +105,12 @@ $kategori_list = read("SELECT kategori FROM produk WHERE id_produk = '$id_produk
                      <?php endif; ?>
                      <p class="mt-3 d-inline">Berat Produk : <strong><?= $data['berat_produk'] ?> Kg</strong></p>
 
-                     <form action="" method="post">
-                        <div class="input-group mt-4">
-                           <label>Jumlah</label>
-                           <button class="ml-2 btn btn-outline-secondary add_pcs" type="button">-</button>
-                           <input type="number" class="form-control form_pcs" placeholder="pcs" name="total_pcs" id="total_pcs" value="1" min="1">
-                           <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
+                     <form action="" method="post" class="mt-3">
+                        <div class=" input-group"">
+                        <label>Jumlah</label>
+                        <button class=" ml-2 btn btn-outline-secondary button-minus" data-field="total_pcs" type="button">-</button>
+                           <input width="2em" type="text" class="form-control quantity-field" placeholder="1" value="1" name="total_pcs" step="1" min="1" max="">
+                           <button class="btn btn-outline-secondary button-plus" data-field="total_pcs" type="button">+</button>
                         </div>
 
                         <h4 class="mt-4 mb-4">Rp. <?= number_format($data['harga_produk'], 0, ".", ".") ?></h4>

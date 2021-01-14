@@ -1,31 +1,33 @@
-// // Set the date we're counting down to
-// var timestamp = document.getElementById("expiry_payment_date").textContent;
-// console.log(timestamp);
-// var countDownDate = new Date(timestamp);
+function incrementValue(e) {
+   e.preventDefault();
+   var fieldName = $(e.target).data('field');
+   var parent = $(e.target).closest('div');
+   var currentVal = parseInt(parent.find("input[name='" + fieldName + "']").val(), 10);
 
-// // Update the count down every 1 second
-// var x = setInterval(function () {
-//    // Get today's date and time
-//    var now = new Date().getTime();
+   if (!isNaN(currentVal)) {
+      parent.find("input[name='" + fieldName + "']").val(currentVal + 1);
+   } else {
+      parent.find("input[name='" + fieldName + "']").val(0);
+   }
+}
 
-//    // Find the distance between now and the count down date
-//    var distance = countDownDate - now;
+function decrementValue(e) {
+   e.preventDefault();
+   var fieldName = $(e.target).data('field');
+   var parent = $(e.target).closest('div');
+   var currentVal = parseInt(parent.find("input[name='" + fieldName + "']").val(), 10);
 
-//    // Time calculations for days, hours, minutes and seconds
-//    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-//    var hours = Math.floor(
-//       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-//    );
-//    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+   if (!isNaN(currentVal) && currentVal > 1) {
+      parent.find("input[name='" + fieldName + "']").val(currentVal - 1);
+   } else {
+      parent.find("input[name='" + fieldName + "']").val();
+   }
+}
 
-//    // Display the result in the element with id="demo"
-//    document.getElementById("demo").innerHTML =
-//       hours + "h " + minutes + "m " + seconds + "s ";
+$('.input-group').on('click', '.button-plus', function(e) {
+   incrementValue(e);
+});
 
-//    // If the count down is finished, write some text
-//    if (distance < 0) {
-//       clearInterval(x);
-//       document.getElementById("demo").innerHTML = "EXPIRED";
-//    }
-// }, 1000);
+$('.input-group').on('click', '.button-minus', function(e) {
+   decrementValue(e);
+});

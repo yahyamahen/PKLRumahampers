@@ -187,7 +187,7 @@ if (isset($_GET['search_btn'])) {
                                     <input type="hidden" name="nama_produk" id="nama_produk" value="<?= $data['nama_produk'] ?>">
                                     <input type="hidden" name="jumlah_produk" id="jumlah_produk" value="<?= $data['jumlah_produk'] ?>">
                                     <input type="hidden" name="total_pcs" id="total_pcs" value="1">
-                                    <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="sheart-wishtlist fa fa-heart"></i></button>
+                                    <button type="submit" name="add_wishlist" id="add_wishlist" class="btn"><i class="heart-wishtlist fa fa-heart"></i></button>
                                     <button type="submit" name="add_trolley" id="add_trolley" class="btn"><i class="cart-trolley fa fa-shopping-cart"></i></button>
                                  </form>
                               <?php endif; ?>

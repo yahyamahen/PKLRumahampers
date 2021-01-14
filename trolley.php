@@ -10,14 +10,14 @@ if (isset($_GET["id_produk"])) {
    $username = $_SESSION["username"];
    if (delete_trolley($username, $id_produk) > 0) {
       echo
-         "<script>
+      "<script>
             alert('Produk pada trolley Terhapus');
             document.location.href='trolley?trolley=$username';
          </script>";
       // header('Location: trolley?trolley=$username');
    } else {
       echo
-         "<script>
+      "<script>
             alert('Produk pada trolley Tidak Dapat Terhapus " . "<br> Error : " . mysqli_error($conn) . "');
             document.location.href='trolley?trolley=$username';
          </sciprt>";
@@ -28,13 +28,13 @@ if (isset($_GET["id_produk"])) {
 if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
    if (update_cart($_POST) > 0) {
       echo
-         "<script>
+      "<script>
             // alert('Trolley diperbarui');
             document.location.href='trolley?trolley=" . $username . "';
          </script>";
    } else {
       echo
-         "<script>
+      "<script>
             // alert('Trolley diperbarui');
             document.location.href='trolley?trolley=" . $username . "';
          </script>";
@@ -98,13 +98,15 @@ if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
                                  <div class="float-left d-flex justify-content-center square">
                                     <img class="mr-3 flex-shrink-0" src="images/produk/<?= $data['kategori'] ?>/<?= $data['id_produk'] ?>/<?= $data['foto_produk'] ?>">
                                  </div>
-                                 <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $data['id_produk']; ?>"><?= $data['nama_produk']; ?><p class="" style="font-size: 0.9em; color:grey"> Stok <= <?= $data['jumlah_produk'] ?></p> </a> </td> <td class="harga" align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", "."); ?>
+                                 <a class="produk-title text-color align-self-center" href="produk_detail?produk=<?= $data['id_produk']; ?>"><?= $data['nama_produk']; ?><p class="" style="font-size: 0.9em; color:grey"> Stok <= <?= $data['jumlah_produk'] ?></p> </a>
+                              </td>
+                              <td class="harga" align="center">Rp. <?= number_format($data['harga_produk'], 0, ".", "."); ?>
                               </td>
                               <td class="stok-trolley" align="center">
                                  <div class="input-group">
-                                    <button class="ml-2 btn btn-outline-secondary add_pcs" type="button">-</button>
-                                    <input type="number" class="form-control form_pcs" placeholder="<?= $data['total_pcs'] ?>" value="<?= $data['total_pcs'] ?>" name="total_pcs[]" min="1">
-                                    <button class="btn btn-outline-secondary rmv_pcs" type="button">+</button>
+                                    <button class="ml-2 btn btn-outline-secondary button-minus" data-field="total_pcs[]" type="button">-</button>
+                                    <input type="text" class="form-control quantity-field" placeholder="<?= $data['total_pcs'] ?>" value="<?= $data['total_pcs'] ?>" name="total_pcs[]" step="1" min="1" max="">
+                                    <button class="btn btn-outline-secondary button-plus" data-field="total_pcs[]" type="button">+</button>
                                  </div>
                               <td class="jumlah-trolley harga" align="center">Rp. <?= number_format($data['total_pcs'] * $data['harga_produk'], 0, ".", "."); ?></td>
                               <td class="delete-trolley" align="center"><a href="trolley?id_produk=<?= $data['id_produk'] ?>" onclick="confirm('Ingin menghapus dari trolley?');"><i class="far fa-trash-alt"></i></a></td>

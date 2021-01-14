@@ -8,13 +8,13 @@ if_not_login_back_to_home();
 if (isset($_POST["edit_alamat"])) {
    if (update_alamat($_POST) > 0) {
       echo
-         "<script>
+      "<script>
             alert('Data Alamat Customers Diperbarui');
             document.location.href = 'detail_pemesanan?id_kurir';
          </script>";
    } else {
       echo
-         "<script>
+      "<script>
             alert('Data Customers Tidak Berhasil Diupdate');
          </script>";
       echo "<br> Error : " . mysqli_error($conn);
@@ -26,13 +26,13 @@ if (isset($_GET["cart"])) {
    $username = $_SESSION["username"];
    if (delete_trolley($username, $id_produk) > 0) {
       echo
-         "<script>
+      "<script>
             alert('Produk pada cart Terhapus');
             document.location.href='detail_pemesanan?id_kurir';
          </script>";
    } else {
       echo
-         "<script>
+      "<script>
             alert('Produk pada cart Tidak Dapat Terhapus');
             document.location.href='detail_pemesanan?id_kurir'';
          </sciprt>";
@@ -43,13 +43,13 @@ if (isset($_GET["cart"])) {
 if (isset($_POST["update_cart"]) || isset($_POST["update_cart2"])) {
    if (update_cart($_POST) > 0) {
       echo
-         "<script>
+      "<script>
             alert('Cart diperbarui');
             document.location.href = 'detail_pemesanan?id_kurir';
          </script>";
    } else {
       echo
-         "<script>
+      "<script>
             alert('Cart tidak diperbarui');
             document.location.href = 'detail_pemesanan?id_kurir';
          </script>";
@@ -64,27 +64,27 @@ if (isset($_GET['id_kurir'])) {
 if (isset($_POST["submit_pesan"])) {
    if (!isset($_POST['setuju'])) {
       echo
-         "<script>
+      "<script>
             alert('Checklist setuju persyaratan dan ketentuan');
             document.location.href = 'detail_pemesanan?id_kurir';
          </script>";
    } else {
       if (trim($_GET['id_kurir']) == "") {
          echo
-            "<script>
+         "<script>
                alert('Pilih kurir pengiriman');
                document.location.href = 'detail_pemesanan?id_kurir';
             </script>";
       } else {
          if (insert_pemesanan($_POST) > 0) {
             echo
-               "<script>
+            "<script>
                   alert('Terimakasih telah berbelanja di Rumahampers');
                   document.location.href = 'detail_pembayaran?pemesanan=';
                </script>";
          } else {
             echo
-               "<script>
+            "<script>
                   alert('Pemesanan tidak dapat dilakukan');
                   document.location.href = 'detail_pemesanan?id_kurir';
                </script>";
@@ -202,7 +202,13 @@ if (isset($_POST["submit_pesan"])) {
                            <input type="hidden" name="username[]" id="username" value="<?= $data['username'] ?>">
                            <tr>
                               <td><a href="produk_detail?produk=<?= $data['id_produk'] ?>" class="produk-title" style="font-size: 1em;"><?= $data['nama_produk'] ?></a> <br> (Rp. <?= number_format($data['harga_produk']) ?>)</td>
-                              <td align="center"><input type="number" class="form-control form_pcs w-25" name="total_pcs[]" value="<?= $data['total_pcs'] ?>" min="1"></td>
+                              <td width="25%" align="center">
+                                 <div class="input-group">
+                                    <button class="ml-2 btn btn-outline-secondary button-minus" data-field="total_pcs[]" type="button">-</button>
+                                    <input type="text" class="form-control quantity-field" placeholder="<?= $data['total_pcs'] ?>" value="<?= $data['total_pcs'] ?>" name="total_pcs[]" step="1" min="1" max="">
+                                    <button class="btn btn-outline-secondary button-plus" data-field="total_pcs[]" type="button">+</button>
+                                 </div>
+                              </td>
                               <td>Rp. <?php $harga_sum = $data['harga_produk'] * $data['total_pcs'];
                                        echo number_format($harga_sum);  ?>
                               </td>

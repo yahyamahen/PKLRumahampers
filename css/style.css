@@ -865,6 +865,14 @@ body .cart-detail .pesan-button:hover, body .cart-detail .pesan-button:active, b
   font-size: 0.9em;
 }
 
+.image-bg .salin-link {
+  cursor: pointer;
+}
+
+.image-bg .salin-link:hover {
+  cursor: pointer;
+}
+
 body .riwayat-pemesanan {
   padding: 3em;
   background-color: white;
@@ -1098,7 +1106,7 @@ a {
 
 .container-main {
   margin: auto;
-  width: 95%;
+  max-width: 1320px;
 }
 
 .white-bg {
@@ -1276,5 +1284,10 @@ body .produk-title {
 
 body .produk-title:hover {
   color: #d8664f;
+}
+
+body .quantity-field::-webkit-inner-spin-button,
+body .quantity-field ::-webkit-outer-spin-button {
+  appearance: none;
 }
 /*# sourceMappingURL=style.css.map */
